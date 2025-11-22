@@ -1,0 +1,655 @@
+/* ===================== RESET ===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #111;
+  background-color: #f8f8f8;
+  cursor: none; /* Standard-Cursor verstecken */
+}
+
+/* ===================== HEADER ===================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  z-index: 2000; /* hoch genug für Dropdown */
+}
+
+
+@font-face {
+  font-family: 'Covered By Your Grace';
+  src: url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff2') format('woff2'),
+       url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+
+header::before {
+  content: "WHY NOT ?";
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #111;
+  font-family: 'Covered by your grace', cursive;
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
+
+
+
+/* ===================== WORK SECTION ===================== */
+#work {
+  position: relative;
+  margin-top: 65px; /* Abstand unter fixed Header */
+  width: 100%;
+  padding: 6px 0 4px; /* kompakter Abstand oben/unten */
+  background: #f8f8f8;
+  text-align: center;
+  z-index: 900;
+}
+
+#work h1 {
+  margin: 0;
+  padding: 0;
+  font-family: garamond, serif;
+  font-size: clamp(5rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1; /* kompakte Höhe */
+}
+
+    #work h2 {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #333;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+
+
+/* ===================== VIDEO BLOCK ===================== */
+  .video-block {
+      max-width: 1500px;
+      margin: 20px auto;
+    }
+
+    .video-block video {
+      width: 100%;
+      height: auto;
+      max-height: 93vh;
+      object-fit: contain;
+      display: block;
+    }
+
+
+
+
+
+
+
+
+
+
+/* ===================== FOOTER ===================== */
+#Contact {
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 28px 16px;
+  text-align: center;
+}
+
+#Contact .footer-links {
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#Contact .footer-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.7rem;
+  padding: 4px 0;
+}
+
+#Contact .footer-links a:hover,
+#Contact .footer-links a:focus {
+  text-decoration: underline;
+}
+
+#Contact .footer-copy {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 4px;
+  display: block;
+}
+
+
+/* ===================== SLIDER ===================== */
+/* Slider Container */
+    .slider {
+      position: relative;
+      width: 100%;              /* füllt die Fensterbreite */
+      max-width: 100%;        /* maximale Bildbreite */
+      max-height: 88vh;
+      margin: 20px auto 40px auto;
+      aspect-ratio: 4 / 3;      /* Verhältnis: passt für Quer- und Hochformate */
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Slides Wrapper */
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease;
+      max-height: 100%;
+      width: 100%;
+    }
+
+    .slide {
+      flex: 0 0 100%;              /* jede Slide nimmt volle Breite */
+      display: flex;               /* Inhalt zentrieren */
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slides img {
+      max-height: 100%;         /* Bild bleibt innerhalb der Slider-Höhe */
+      max-width: 100%;          /* nicht über max-width hinaus */
+      object-fit: contain;      /* nie beschnitten */
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Pfeile */
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      color: #333;
+      border: none;
+      font-size: 2.5rem;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 10;
+    }
+    .slider:hover .prev,
+    .slider:hover .next { opacity: 1; }
+    .prev { left: 15px; }
+    .next { right: 15px; }
+
+
+
+
+/* ===================== Text unter dem slider ===================== */
+
+
+/* Grundtext auf Projektseite */
+body.projektseite .detail-text {
+  font-family: "Calibri Light", "Calibri", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  text-align: left; /* optional für sauberen Blocksatz */
+}
+
+/* Erster Absatz/Satz größer und in Capitals */
+body.projektseite .detail-text .intro {
+  font-size: 1.6rem;         /* doppelt so groß */
+  text-transform: uppercase; /* alles in CAPITALS */
+  margin-bottom: 0;      /* etwas Abstand zum Rest */
+  font-family: garamond;
+  
+}
+
+
+/* Erster Absatz/Satz größer und in Capitals */
+body.projektseite .detail-text3 .intro {
+  font-size: 1.6rem;         /* doppelt so groß */
+  text-transform: uppercase; /* alles in CAPITALS */
+  margin-bottom: 0;      /* etwas Abstand zum Rest */
+  font-family: garamond;
+  text-align: left;
+  hyphens: auto;
+}
+
+/* Zwei Spalten - Projektseite bei kleinen Bildbreiten*/
+body.projektseite .text-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+body.projektseite .text-block p {
+  margin: 0;
+  font-size: 1rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Mobilansicht */
+@media (max-width: 800px) {
+  body.projektseite .text-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Drei Spalten - Projektseite bei großen Bildbreiten*/
+
+   /* Textbereich: Grid für 3 / 2 / 1 Spalten */
+    .detail-text3 {
+      max-width: 100%;
+      margin: 20px auto;
+      margin-top: 5px;
+      padding: 0;
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+
+   /* Grid für Textblöcke */
+    .text-columns3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Spalten */
+      gap: 20px;
+      
+   /* Desktop-Layout */
+    grid-template-areas:
+    "intro intro ."
+    "block1 block2 block3";
+    }
+
+    /* Erster Satz über 2 Spalten */
+    .text-columns3 .intro  {
+      grid-column: span 2;
+    }
+
+.text-columns3 .intro   { grid-area: intro; }
+.text-columns3 .block1  { grid-area: block1; }
+.text-columns3 .block2  { grid-area: block2; }
+.text-columns3 .block3  { grid-area: block3; }
+
+    /* Tablet: 2 Spalten */
+    @media (max-width: 1024px) {
+      .text-columns3 {
+       grid-template-columns: 1fr 1fr;
+       grid-template-areas:
+        "intro intro"
+        "block1 block3"
+        "block2 block3 ";
+      }
+    .text-columns3 p.intro {
+        grid-column: span 2; /* nimmt ganze Breite bei 2 Spalten */
+      }
+    }
+
+    /* Smartphone: 1 Spalte */
+    @media (max-width: 600px) {
+      .text-columns3 {
+       grid-template-columns: 1fr;
+       grid-template-areas:
+         "intro"
+         "block1"
+         "block2"
+         "block3";
+      }
+      .text-columns3 .intro {
+        grid-column: span 1; /* ganze Breite bei 1 Spalte */
+      }
+    }
+ 
+    body.projektseite .detail-text .intro {
+  text-align: left; /* oder center – je nach gewünschter Ausrichtung */
+}
+
+
+/* ===================== Bilder Nebeneinander (Pearl) ===================== */
+    .image-row {
+      max-width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+      margin-bottom: 35px;
+    }
+
+    .image-row img {
+      flex: 1 1 calc(50% - 30px);
+      max-width: calc(50% - 30px);
+      height: auto;           /* feste Höhe, z. B. 400px bei flagship */
+      display: block;
+      margin-top: 20px;
+      
+      object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+      .image-row img {
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: auto;          /* auf kleinen Screens nicht fixieren */
+      }
+    }
+
+    /*hortensia*/
+    .image-row2 {
+      width: 1500px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      margin-bottom: 40px;
+    }
+
+    .image-row2 img {
+      flex: 1 1 calc(50% - 30px);
+      max-width: calc(50% - 30px);
+      height: auto;           /* feste Höhe, z. B. 400px bei flagship */
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .image-row2 img {
+        flex: 1 1 100%;
+        max-width: 100%;
+        height: auto;          /* auf kleinen Screens nicht fixieren */
+      }
+    }
+
+
+/*hab*/
+.image-row3 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;        /* erlaubt Umbruch bei schmalen Screens */
+  gap: 40px;              /* fixer Abstand zwischen Bildern */
+  width: 100%;
+  max-width: 1600px;      /* optional: Gesamtbreite begrenzen */
+  margin: 80px auto 80px auto;
+}
+
+.image-row3 img {
+  flex: 1 1 calc((100% / 3) - (40px * 2 / 3)); /* 3 Spalten mit gleichmäßigem Abstand */
+  max-width: calc((100% / 3) - (40px * 2 / 3));
+  height: auto;
+  display: block;
+  object-fit: cover;      /* sorgt für sauberen Zuschnitt, falls nötig */
+  border-radius: 0;       /* keine Rundung */
+}
+
+/* Ab 992px und kleiner: nur ein Bild pro Zeile */
+@media (max-width: 992px) {
+  .image-row3 img {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+
+  /*pearl*/
+    .image-row4 {
+      width: 1500px;
+      max-width: 100%;
+      display: flex;
+      gap: 60px;
+      align-items: flex-start; /* WICHTIG: verhindert vertikales Strecken der Bilder */
+      /* flex-wrap bleibt möglich, für kleine Bildschirme */
+      flex-wrap: wrap;
+      overflow: hidden; /* sorgt dafür, dass margin-bottom wirkt */
+      padding-top: -30px;
+    }
+    
+    /* Spalten-Breiten (3/4 + 1/4) */
+    .image-row4 .col-large{
+      flex: 0 0 calc(80% - 48px); /* 45px = anteiliger Abstand; anpassen wenn nötig */
+      max-width: calc(80% - 48px);
+    }
+
+    .image-row4 .col-small{
+      flex: 0 0 calc(20% - 12px);
+      max-width: calc(20% - 12px);
+    }
+
+    .image-row4 img {
+      display: block;
+      width: 100%;
+      height: auto;      /* bewahrt das Seitenverhältnis */
+      object-fit: contain; /* optional: contain vermeidet Crop; use cover zum füllen + zuschneiden */
+    }
+
+    .image-row4::after {
+      content: "";
+      display: block;
+      height: 30px; /* entspricht dem gewünschten Margin-Bottom */
+    }
+
+    @media (max-width: 768px) {
+      .image-row4 .col-large,
+      .image-row4 .col-small{
+      flex: 0 0 100%;
+      max-width: 100%;
+      }
+    }
+
+
+
+/* ===================== Bild alleine (Pearl) ===================== */
+    /* Bild allein */
+    .image-alone {
+      max-width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .image-alone img {
+      height: auto;  
+      width: 100%;       
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+   /* Bild allein */
+    .image-alone2 {
+      max-width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .image-alone2 img {
+      height: auto;  
+      width: 100%;       
+      display: block;
+      margin-top: 10px;
+    }
+
+    /* Bild allein - small (metamorphose) */
+    .image-alone-small {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .image-alone-small img {
+      height: auto;  
+      width: 100%;       
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 40px;
+    }
+
+    /* Bild allein - h (metamorphose) */
+    .image-alone-h {
+      max-width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .image-alone-h img {
+      height: auto;  
+      width: 100%;       
+      display: block;
+      margin-top: 10px;
+      margin-bottom: 60px;
+    }
+
+/* ===================== PAGE WRAPPER (Pearl/TFH)===================== */
+  /*Fasst Text und Slider in eine Box*/
+  .page-wrapper {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  }
+
+   /* ALLE Inhalte, die in page-wrapper stehen */
+  .slider,
+  .detail-text3,
+  .image-row,
+  .video-block,
+  .image-alone {
+    max-width: 100%;     /* übernehmen die page-wrapper Breite */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+
+
+  /*Fasst Text und Slider in eine Box- tfh*/
+  .page-wrapper2 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  }
+  /* ALLE Inhalte, die in page-wrapper stehen */
+  .slider,
+  .detail-text,
+  .image-row,
+  .image-alone {
+    max-width: 100%;     /* übernehmen die page-wrapper Breite */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+/* ===================== Backlink Pfeil ===================== */
+.back-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease;
+  z-index: 1500;
+}
+
+.back-link:hover { transform: translateX(-5px); } 
+
+
+
+
+/* ===================== Cursor ===================== */
+
+
+  /* Der sichtbare Custom-Cursor */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22px;               /* Grundgröße - anpassen wenn nötig */
+    height: 22px;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5); /* schwarzer Kreis, 50% opazität */
+    pointer-events: none;      /* darf keine Interaktionen blockieren */
+    z-index: 2147483647;       /* sehr hoch, damit er oben bleibt */
+    box-shadow: 0 0 18px 6px rgba(0,0,0,0.12); /* weiche Umrandung / Glow */
+    transition: transform 120ms cubic-bezier(.2,.8,.2,1), width 120ms, height 120ms, background 120ms;
+    will-change: transform, top, left;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Zustand bei "hover" über klickbaren Elementen */
+  .custom-cursor.cursor--hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 22px 10px rgba(0,0,0,0.14);
+  }
+
+  /* Optional: sichtbare "pressed" Rückmeldung */
+  .custom-cursor.cursor--down {
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 20px;
+    height: 20px;
+    background: rgba(0,0,0,0.6);
+  }
+
+  /* Hilfsklasse um auf Touch-Devices keinen custom cursor zu zeigen */
+  .no-custom-cursor .custom-cursor { display: none !important; }
+
+  /* Hand-Cursor vollständig deaktivieren */
+a, button, [role="button"], .project, .project-info, .work-categories a, .submenu li a {
+  cursor: none !important;
+}

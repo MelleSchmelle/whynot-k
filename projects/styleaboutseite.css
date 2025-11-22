@@ -1,0 +1,537 @@
+/* ===================== RESET ===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #111;
+  background-color: #f8f8f8;
+}
+
+/* ===================== HEADER ===================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  z-index: 2000; /* hoch genug für Dropdown */
+}
+
+@font-face {
+  font-family: 'Covered By Your Grace';
+  src: url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff2') format('woff2'),
+       url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+
+
+header::before {
+  content: "WHY NOT ?";
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #111;
+  font-family: 'Covered by your grace', cursive;
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
+
+
+/* ===================== WORK SECTION ===================== */
+#work {
+  position: relative;
+  margin-top: 65px; /* Abstand unter fixed Header */
+  width: 100%;
+  padding: 6px 0 4px; /* kompakter Abstand oben/unten */
+  background: #f8f8f8;
+  text-align: center;
+  z-index: 900;
+}
+
+#work h1 {
+  margin: 0;
+  padding: 0;
+  font-family: garamond, serif;
+  font-size: clamp(5rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1; /* kompakte Höhe */
+}
+
+    #work h2 {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #333;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+
+/* ===================== Bild Intro ===================== */
+
+:root{ /* Passe hier die Bildbreite an; margin-left berechnet 1/4 davon */
+     --img-w: 400px;
+    } 
+
+    /* Bild + Intro */
+    .about-container {
+      margin-top: 80px; /* Höhe anpassen an die Header-Höhe */
+      display: flex;
+      align-items: flex-start; /* Text oben an Bildkante ausrichten */
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 1rem;
+      position: relative; /* wichtig für Überlagerungen */
+    }
+
+     /* Bildseite: feste Basis (var(--img-w)) damit sich Überlappung berechnen lässt */
+    .about-image{
+      flex: 0 0 var(--img-w); /* fixierte Breite, responsive per media-query */
+      position:relative;
+      z-index:1;
+    }
+
+    .about-image img {
+      height: auto;
+      width: 100%;
+      max-width: 400px;
+      display:block;
+    }
+
+    .about-intro {
+      flex: 1 1 auto; 
+      /* Überlappung = -1/4 der Bildbreite */
+      margin-left: calc(-1 * (var(--img-w) / 4));; /* Schiebt den Text ca. 1/4 ins Bild */
+      z-index: 2; /* Text über Bild */
+      padding: 1.5rem 1.8rem;
+      text-align:left; /* explizit linksbündig wie gewünscht */
+      min-width: 0; /* verhindert, dass Flex-Item zu breit wird und einbricht */
+    }
+
+     /* Dein Zitat / Text */
+     .Zitat {
+      font-size: 1.6rem;         /* doppelt so groß */
+      text-transform: uppercase; /* alles in CAPITALS */
+      font-family: garamond;
+      line-height: 1.5;
+      color: #e7335a;
+      margin:0;
+    }
+
+
+    /* Responsive: auf kleinen Geräten rutscht der Text unter das Bild (keine Überlappung) */
+    @media (max-width: 800px){
+      :root{ --img-w: 280px; } /* optional: kleinere Bildbasis auf Mobil */
+      .about-container{
+        flex-direction: column;
+        align-items: center;
+      }
+      .about-image{
+        flex: 0 0 var(--img-w);
+        margin-bottom: 1rem;
+      }
+      .about-intro{
+        margin-left: 0;           /* keine Überlappung mehr */
+        width:100%;
+        padding:0;               /* optional: neues Layout ohne Box */
+        background: transparent;
+        box-shadow:none;
+        border-radius:0;
+      }
+      .Zitat{
+        font-size: 1.05rem;
+        text-transform:none; /* optional: entferne uppercase auf sehr kleinen Geräten */
+        color:#e7335a;
+        text-transform: uppercase;
+      }
+    }
+
+
+/* ===================== Detailtext About ===================== */
+
+
+
+    /* Detail-Text darunter */
+    .detail-text {
+      max-width:1400px; /* gleiche max-Breite wie dein Container */
+      margin: 40px auto;
+      padding: 0 1rem;
+      font-family: "Calibri Light", "Calibri", sans-serif;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #333;
+      text-align: left; /* optional für sauberen Blocksatz */
+    }
+
+    /* Grid für zwei Spalten */
+    .two-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* zwei gleich breite Spalten */
+      gap: 100px;
+    }
+
+    /* Absatz-Text */
+    .two-columns p {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      line-height: 1.6;
+      margin: 0 0 1em;
+    }
+
+    /* Responsiv: auf kleinen Bildschirmen einspaltig */
+    @media (max-width: 800px) {
+      .two-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+/* ===================== why not ===================== */
+
+    /* why not */
+    .why-not {
+      margin-top: 180px;
+      text-align: center;
+      font-size: 6rem;
+      font-weight: normal;
+      letter-spacing: 2px;
+      color: #111;
+      font-family: 'Covered by your grace', cursive; /* handwritten Style */
+      width: 100%;                   /* Block nimmt volle Breite des Containers */
+      margin-bottom: -100px;
+    }
+
+    /* antwort */
+    .antwort {
+      width: 100%;           /* volle Breite */
+      text-align: center; /* zentrieren */
+      margin-top: 0;
+      margin-bottom: 180px;
+    }
+
+    
+    /* Der Absatz selbst als inline-block zentriert darstellen */
+    .antwort p {
+      font-size: 1.6rem;         /* doppelt so groß */
+      font-family: sans-serif;
+      line-height: 1.5;
+      color: #e7335a;
+      margin:0;
+      display: inline-block;
+      white-space: pre-line; /* Zeilenumbrüche wie im HTML */
+    }
+  
+    /* einzelne Zeichen: starten unsichtbar und leicht verschoben */
+    .char {
+      opacity: 0;
+      display: inline-block;
+      transform: translateY(8px);
+      white-space: pre;           /* damit Spaces sichtbar bleiben */
+      will-change: opacity, transform;
+    }
+
+    /* Keyframe für das "hochfade" */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+
+
+
+    
+/* ===================== Leistungen ===================== */
+
+
+    /* Container */
+    .leistungen {
+      max-width: 1400px;
+      font-family: sans-serif;
+      margin: 20px auto;
+      border-top: 1px solid rgba(0,0,0,0.1); /* Linie oben für den ganzen Block */
+    }
+
+    /* Jedes Item */
+    .item {
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      min-height: 7rem; /* einheitliche Blockhöhe, kann angepasst werden */
+      display: flex;
+      align-items: center; /* sorgt für zentrierte Inhalte (Oberthema/Details) */
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Inhaltsschicht */
+    .content {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;   /* vertikale Mitte */
+      justify-content: flex-start; /* linksbündig */
+      padding: 0 1rem;
+    }
+  
+    /* Beide Layer übereinander */
+    .oberthema,
+    .details {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      white-space: nowrap; /* verhindert Umbruch, falls gewünscht */
+    }
+
+    /* Startzustand */
+    .oberthema {
+      font-size: 2.2rem;
+      font-family: garamond;
+      text-transform: uppercase;
+      font-weight: 300;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .details {
+      opacity: 0;
+      transform: translateY(20px);
+      text-align: left;
+      line-height: 1.6;
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      font-family: "Calibri Light", "Calibri", sans-serif;
+ 
+    }
+ 
+    /* Hover-Effekt: Details einblenden, Oberthema ausblenden */
+    .item:hover .oberthema {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+
+    .item:hover .details {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+
+    
+/* ===================== Contact ===================== */
+/* ===================== Contact ===================== */
+
+.contacts {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* HEADER – Text links, Icons rechts */
+.contact-header {
+  max-width: 450px;
+  margin: 120px auto 20px; /* gleicher Abstand wie vorher */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* get in touch */
+.git {
+  font-size: 1.4rem;
+  font-family: sans-serif;
+  line-height: 1.5;
+  color: #000;
+  margin: 0; /* wichtig, damit es bündig ist */
+}
+
+/* Icons rechts daneben */
+.icons-contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icons-contact img {
+  width: 30px;
+  height: auto;
+  transition: transform 0.2s ease;
+  display: block;
+}
+
+.icons-contact img:hover {
+  transform: scale(1.1);
+}
+
+/* Formular */
+.contact-form {
+  max-width: 450px;
+  margin: 0 auto 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #fafafa;
+  font-family: "Calibri Light", "Calibri", sans-serif;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.form-btn {
+  padding: 12px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.form-btn:hover {
+  opacity: 0.8;
+}
+
+
+
+
+/* ===================== FOOTER ===================== */
+
+#Contact {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 16px;
+  text-align: center;
+}
+
+#Contact .footer-links {
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#Contact .footer-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.7rem;
+  padding: 4px 0;
+}
+
+#Contact .footer-links a:hover,
+#Contact .footer-links a:focus {
+  text-decoration: underline;
+}
+
+#Contact .footer-copy {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 4px;
+  display: block;
+}
+
+
+
+/* ===================== Backlink Pfeil ===================== */
+.back-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease;
+  z-index: 1500;
+}
+
+.back-link:hover { transform: translateX(-5px); } 
+
+
+
+
+
+/* ===================== Cursor ===================== */
+
+  /* Der sichtbare Custom-Cursor */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22px;               /* Grundgröße - anpassen wenn nötig */
+    height: 22px;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5); /* schwarzer Kreis, 50% opazität */
+    pointer-events: none;      /* darf keine Interaktionen blockieren */
+    z-index: 2147483647;       /* sehr hoch, damit er oben bleibt */
+    box-shadow: 0 0 18px 6px rgba(0,0,0,0.12); /* weiche Umrandung / Glow */
+    transition: transform 120ms cubic-bezier(.2,.8,.2,1), width 120ms, height 120ms, background 120ms;
+    will-change: transform, top, left;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Zustand bei "hover" über klickbaren Elementen */
+  .custom-cursor.cursor--hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 22px 10px rgba(0,0,0,0.14);
+  }
+
+  /* Optional: sichtbare "pressed" Rückmeldung */
+  .custom-cursor.cursor--down {
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 20px;
+    height: 20px;
+    background: rgba(0,0,0,0.6);
+  }
+
+  /* Hilfsklasse um auf Touch-Devices keinen custom cursor zu zeigen */
+  .no-custom-cursor .custom-cursor { display: none !important; }
+  /* Hand-Cursor vollständig deaktivieren */
+a, button, [role="button"], .project, .project-info, .work-categories a, .submenu li a {
+  cursor: none !important;
+}

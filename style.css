@@ -1,0 +1,422 @@
+/* ===================== RESET ===================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: #111;
+  background-color: #f8f8f8;
+}
+
+/* ===================== HEADER ===================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f8f8;
+  z-index: 2000; /* hoch genug für Dropdown */
+}
+
+@font-face {
+  font-family: 'Covered By Your Grace';
+  src: url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff2') format('woff2'),
+       url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff') format('woff');
+  font-display: swap;
+}
+
+
+header::before {
+  content: "WHY NOT ?";
+  font-size: 1.5rem;
+  font-weight: normal;
+  letter-spacing: 2px;
+  color: #111;
+  font-family: 'Covered by your grace', cursive;
+}
+
+nav ul {
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+  opacity: 0.6;
+}
+
+/* ===================== NAVIGATION DROPDOWN ===================== */
+.has-submenu {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #f8f8f8;
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 2500; /* über allem */
+
+}
+
+.submenu li {
+  padding: 6px 20px;
+  white-space: nowrap;
+}
+
+.submenu li a {
+  color: #111;
+  text-decoration: none;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+}
+
+.submenu li a:hover {
+  opacity: 0.6;
+}
+
+.has-submenu:hover .submenu {
+  display: block;
+}
+
+/* ===================== WORK SECTION ===================== */
+:root {
+  --header-height: 64px;      /* Höhe des fixed Headers */
+  --work-bar-height: 56px;    /* Höhe der Kategorie-Leiste */
+}
+
+section#work {
+  position: relative;
+  margin-top: var(--header-height); /* Abstand unter fixed Header */
+  width: 100%;
+  padding: 6px 0 4px; /* kompakter Abstand oben/unten */
+  background: #f8f8f8;
+  text-align: center;
+  z-index: 900;
+}
+
+section#work h1.work-title {
+  margin: 0;
+  padding: 0;
+  font-family: garamond, serif;
+  font-size: clamp(5rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1; /* kompakte Höhe */
+  text-transform: uppercase;
+}
+
+/* ===================== WORK-KATEGORIEN ===================== */
+.work-categories {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: nowrap;
+
+  max-height: 0;
+  padding: 0 20px;
+  opacity: 0;
+  overflow: hidden;
+  text-transform: uppercase;
+
+  background: rgba(247, 244, 244, 0.45);
+  transition: max-height 220ms ease, padding 220ms ease, opacity 220ms ease;
+}
+
+/* Hover: Leiste ausklappen */
+section#work:hover .work-categories,
+section#work .work-title:hover + .work-categories {
+  max-height: var(--work-bar-height);
+  padding: 6px 20px;
+  opacity: 1;
+}
+
+.work-categories a {
+  color: #171717;
+  text-decoration: none;
+  white-space: nowrap;
+  font-weight: 300;
+  padding: 6px 8px;
+  display: inline-block;
+  cursor: pointer;
+  
+}
+
+/* Responsive: Leiste umbrechen */
+@media (max-width: 720px) {
+  .work-categories {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  section#work:hover .work-categories,
+  section#work .work-title:hover + .work-categories {
+    max-height: 240px;
+    padding: 8px 12px;
+  }
+}
+
+/* ===================== PROJEKTGRID ===================== */
+.project-list {
+  position: relative;           /* wichtig für absolute Items */
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 40px 20px;
+}
+
+.project {
+  position: absolute;           /* Masonry JS positioniert */
+  top: 0;
+  left: 0;
+  width: 100%;                  /* wird durch JS überschrieben */
+  margin-bottom: 0;             /* Abstand kommt aus JS */
+  overflow: hidden;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.project img,
+.project video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+  object-fit: cover;
+}
+
+.project:hover img,
+.project:hover video {
+  transform: scale(1.05);
+}
+
+/* Overlay */
+.project-info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+.project:hover .project-info {
+  opacity: 1;
+}
+
+.project-info h2 {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+/* ===================== FOOTER ===================== */
+#Contact {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 16px;
+  text-align: center;
+}
+
+#Contact .footer-links {
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+#Contact .footer-links a {
+  color: #333;
+  text-decoration: none;
+  font-size: 0.7rem;
+  padding: 4px 0;
+}
+
+#Contact .footer-links a:hover,
+#Contact .footer-links a:focus {
+  text-decoration: underline;
+}
+
+#Contact .footer-copy {
+  font-size: 0.7rem;
+  color: #666;
+  margin-top: 4px;
+  display: block;
+}
+
+
+
+/* Impressum, AGB, Datenschutz */
+body.impressum nav a {
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+body.impressum #agb {
+  position: static !important; /* fix/sticky von globalem CSS überschreiben */ 
+  text-align: center;
+  margin: 80px 0 20px;
+}
+
+body.impressum #agb h1 {
+  font-size: clamp(3rem, 2vw, 1rem);
+  font-family:Garamond;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin: 0 0 0.3em 0;
+  text-transform:uppercase;
+}
+
+/* Textbereich breite */
+body.impressum .agb-textbreite {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 12px 8px;
+  display: block;
+  width: 100%;
+}
+
+/* Grundtext auf Projektseite */
+body.impressum .agb-inhalt {
+  font-family: "Calibri Light", "Calibri", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  text-align: justify; /* optional für sauberen Blocksatz */
+  padding: 0px 24px 12px 24px ;
+}
+
+/* Erster Absatz/Satz größer und in Capitals */
+body.impressum .agb-überschrift2 {
+  font-size: 1.4rem;         /* doppelt so groß */
+  text-transform: uppercase; /* alles in CAPITALS */
+  margin-bottom: 0.1em;      /* etwas Abstand zum Rest */
+  font-family: garamond;
+  padding: 12px 8px 8px 8px;
+}
+
+/* Zurück-Pfeil */
+body.impressum .back-link {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #333;
+  transition: transform 0.2s ease;
+  z-index: 1500;
+}
+
+body.impressum  .back-link:hover { transform: translateX(-5px); } 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+/* Nur auf der Aboutseite */
+
+
+body {
+  cursor: none; /* Standard-Cursor verstecken */
+}
+
+
+  /* Der sichtbare Custom-Cursor */
+  .custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 22px;               /* Grundgröße - anpassen wenn nötig */
+    height: 22px;
+    transform: translate(-50%, -50%) scale(1);
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.5); /* schwarzer Kreis, 50% opazität */
+    pointer-events: none;      /* darf keine Interaktionen blockieren */
+    z-index: 2147483647;       /* sehr hoch, damit er oben bleibt */
+    box-shadow: 0 0 18px 6px rgba(0,0,0,0.12); /* weiche Umrandung / Glow */
+    transition: transform 120ms cubic-bezier(.2,.8,.2,1), width 120ms, height 120ms, background 120ms;
+    will-change: transform, top, left;
+    mix-blend-mode: normal;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  /* Zustand bei "hover" über klickbaren Elementen */
+  .custom-cursor.cursor--hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    width: 28px;
+    height: 28px;
+    background: rgba(0, 0, 0, 0.55);
+    box-shadow: 0 0 22px 10px rgba(0,0,0,0.14);
+  }
+
+  /* Optional: sichtbare "pressed" Rückmeldung */
+  .custom-cursor.cursor--down {
+    transform: translate(-50%, -50%) scale(0.9);
+    width: 20px;
+    height: 20px;
+    background: rgba(0,0,0,0.6);
+  }
+
+  /* Hilfsklasse um auf Touch-Devices keinen custom cursor zu zeigen */
+  .no-custom-cursor .custom-cursor { display: none !important; }
+
+  /* Hand-Cursor vollständig deaktivieren */
+a, button, [role="button"], .project, .project-info, .work-categories a, .submenu li a {
+  cursor: none !important;
+}
