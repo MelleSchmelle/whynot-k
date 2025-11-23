@@ -22,7 +22,6 @@ function updateSlider() {
   slides.style.transform = `translateX(${-index * 100}%)`;
 }
 
-
 //filter Projekte hauptseite//
 document.addEventListener("DOMContentLoaded", () => {
   const filterLinks = document.querySelectorAll(".work-categories a, .submenu a");
@@ -35,8 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (w < 1000) return 2;      // Tablet
   return 3;                    // Desktop
   }
-
-  
 
  function layoutMasonry() {
   const visibleProjects = projects.filter(p => p.style.display !== "none");
