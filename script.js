@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function getColumnCount() {
   const w = window.innerWidth;
-  if (w < 600) return 1;       // Smartphone
+  if (w < 700) return 1;       // Smartphone
   if (w < 1000) return 2;      // Tablet
   return 3;                    // Desktop
   }
