@@ -92,6 +92,7 @@ nav a:hover {
   .video-block {
       max-width: 1500px;
       margin: 20px auto;
+      padding: 0 20px;
     }
 
     .video-block video {
@@ -101,12 +102,6 @@ nav a:hover {
       object-fit: contain;
       display: block;
     }
-
-
-
-
-
-
 
 
 
@@ -170,6 +165,7 @@ nav a:hover {
       transition: transform 0.5s ease;
       max-height: 100%;
       width: 100%;
+      
     }
 
     .slide {
@@ -185,6 +181,7 @@ nav a:hover {
       object-fit: contain;      /* nie beschnitten */
       display: block;
       margin: 0 auto;
+       padding: 0 20px; 
     }
 
     /* Pfeile */
@@ -227,7 +224,6 @@ body.projektseite .detail-text .intro {
   text-transform: uppercase; /* alles in CAPITALS */
   margin-bottom: 0;      /* etwas Abstand zum Rest */
   font-family: garamond;
-  
 }
 
 
@@ -239,6 +235,7 @@ body.projektseite .detail-text3 .intro {
   font-family: garamond;
   text-align: left;
   hyphens: auto;
+  padding: 0 10px;
 }
 
 /* Zwei Spalten - Projektseite bei kleinen Bildbreiten*/
@@ -246,6 +243,7 @@ body.projektseite .text-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 40px;
+  padding: 0 20px;
 }
 
 body.projektseite .text-block p {
@@ -267,9 +265,7 @@ body.projektseite .text-block p {
    /* Textbereich: Grid für 3 / 2 / 1 Spalten */
     .detail-text3 {
       max-width: 100%;
-      margin: 20px auto;
-      margin-top: 5px;
-      padding: 0;
+      margin: 25px auto;
       font-size: clamp(0.9rem, 1.2vw, 1.1rem);
       line-height: 1.6;
       box-sizing: border-box;
@@ -280,6 +276,7 @@ body.projektseite .text-block p {
       display: grid;
       grid-template-columns: repeat(3, 1fr); /* Desktop: 3 Spalten */
       gap: 20px;
+      padding:0 20px;
       
    /* Desktop-Layout */
     grid-template-areas:
@@ -349,7 +346,7 @@ body.projektseite .text-block p {
       height: auto;           /* feste Höhe, z. B. 400px bei flagship */
       display: block;
       margin-top: 20px;
-      
+      padding: 0 20px;   /* 🔥 Padding links/rechts */
       object-fit: contain;
     }
 
@@ -363,20 +360,23 @@ body.projektseite .text-block p {
 
     /*hortensia*/
     .image-row2 {
-      width: 1500px;
-      margin: auto;
-      display: flex;
-      justify-content: center;
-      gap: 60px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-      margin-bottom: 40px;
+     width: 100%;
+     max-width: 1500px;  /* bleibt zentriert */
+     margin: 0 auto;
+     display: flex;
+     justify-content: center;
+     gap: 40px;
+     flex-wrap: wrap;
+     padding: 0 20px;   /* 🔥 Padding links/rechts */
+     box-sizing: border-box;
+     margin-bottom: 40px;
     }
 
     .image-row2 img {
-      flex: 1 1 calc(50% - 30px);
-      max-width: calc(50% - 30px);
-      height: auto;           /* feste Höhe, z. B. 400px bei flagship */
+      flex: 1 1 calc(50% - 20px);
+      max-width: calc(50% - 20px);
+      width: 100%;
+      height: auto;
       display: block;
     }
 
@@ -388,8 +388,40 @@ body.projektseite .text-block p {
       }
     }
 
-
+  
 /*hab*/
+.image-row5 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;        /* erlaubt Umbruch bei schmalen Screens */
+  gap: 40px;              /* fixer Abstand zwischen Bildern */
+  width: 100%;
+  max-width: 1600px;      /* optional: Gesamtbreite begrenzen */
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding:0 20px;
+}
+
+.image-row5 img {
+  flex: 1 1 calc((100% / 3) - (40px * 2 / 3)); /* 3 Spalten mit gleichmäßigem Abstand */
+  max-width: calc((100% / 3) - (40px * 2 / 3));
+  height: auto;
+  display: block;
+  object-fit: cover;      /* sorgt für sauberen Zuschnitt, falls nötig */
+  border-radius: 0;       /* keine Rundung */
+}
+
+/* Ab 992px und kleiner: nur ein Bild pro Zeile */
+@media (max-width: 992px) {
+  .image-row5 img {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+
+
+  /*pearl*/
+ 
 .image-row3 {
   display: flex;
   justify-content: center;
@@ -397,7 +429,8 @@ body.projektseite .text-block p {
   gap: 40px;              /* fixer Abstand zwischen Bildern */
   width: 100%;
   max-width: 1600px;      /* optional: Gesamtbreite begrenzen */
-  margin: 80px auto 80px auto;
+  margin: 40px auto;
+  padding:0 20px;
 }
 
 .image-row3 img {
@@ -417,8 +450,6 @@ body.projektseite .text-block p {
   }
 }
 
-
-  /*pearl*/
     .image-row4 {
       width: 1500px;
       max-width: 100%;
@@ -428,7 +459,7 @@ body.projektseite .text-block p {
       /* flex-wrap bleibt möglich, für kleine Bildschirme */
       flex-wrap: wrap;
       overflow: hidden; /* sorgt dafür, dass margin-bottom wirkt */
-      padding-top: -30px;
+      padding: 0 20px;
     }
     
     /* Spalten-Breiten (3/4 + 1/4) */
@@ -456,12 +487,24 @@ body.projektseite .text-block p {
     }
 
     @media (max-width: 768px) {
+      .image-row4 {
+        justify-content: center; /* zentriert die Bilder in der Spalte */
+      }
+
       .image-row4 .col-large,
-      .image-row4 .col-small{
+      .image-row4 .col-small {
       flex: 0 0 100%;
       max-width: 100%;
+      margin: 0 auto; /* sorgt dafür, dass die Spalte selbst mittig ist */
+      }
+    
+
+     .image-row4 .col-small img {
+        max-height: 600px;  /* anpassen nach Geschmack */
+        width:auto;
       }
     }
+
 
 
 
@@ -508,7 +551,6 @@ body.projektseite .text-block p {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 40px;
     }
 
     .image-alone-small img {
@@ -516,7 +558,7 @@ body.projektseite .text-block p {
       width: 100%;       
       display: block;
       margin-top: 10px;
-      margin-bottom: 40px;
+      margin-bottom: 50px;
     }
 
     /* Bild allein - h (metamorphose) */
@@ -526,7 +568,6 @@ body.projektseite .text-block p {
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      margin-top: 40px;
     }
 
     .image-alone-h img {
@@ -536,6 +577,16 @@ body.projektseite .text-block p {
       margin-top: 10px;
       margin-bottom: 60px;
     }
+
+
+    .image-alone,
+    .image-alone2,
+    .image-alone-small,
+    .image-alone-h {
+      padding: 0 20px;     /* 🔥 Einheitliches Seiten-Padding */
+      box-sizing: border-box;
+    }
+
 
 /* ===================== PAGE WRAPPER (Pearl/TFH)===================== */
   /*Fasst Text und Slider in eine Box*/

@@ -236,6 +236,8 @@ section#work .work-title:hover + .work-categories {
   font-weight: 300;
 }
 
+
+
 /* ===================== FOOTER ===================== */
 #Contact {
   max-width: 1400px;
@@ -343,23 +345,7 @@ body.impressum .back-link {
 body.impressum  .back-link:hover { transform: translateX(-5px); } 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-/* Nur auf der Aboutseite */
-
+/*cursor*/
 
 body {
   cursor: none; /* Standard-Cursor verstecken */

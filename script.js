@@ -28,18 +28,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const filterLinks = document.querySelectorAll(".work-categories a, .submenu a");
   const projects = [...document.querySelectorAll(".project")];
   const container = document.querySelector(".project-list");
-  const columnCount = 3;
-  const gap = 20;
+
+  function getColumnCount() {
+  const w = window.innerWidth;
+  if (w < 600) return 1;       // Smartphone
+  if (w < 1000) return 2;      // Tablet
+  return 3;                    // Desktop
+  }
+
+  
 
  function layoutMasonry() {
   const visibleProjects = projects.filter(p => p.style.display !== "none");
-  const containerWidth = container.clientWidth;
+  const style = getComputedStyle(container);
+  const paddingLeft = parseFloat(style.paddingLeft);
+  const paddingRight = parseFloat(style.paddingRight);
+
+  const containerWidth = container.clientWidth - paddingLeft - paddingRight;
+
+
+  const columnCount = getColumnCount();
+  const gap = 20;
+
   const colWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
   const colHeights = Array(columnCount).fill(0);
 
   visibleProjects.forEach((p, i) => {
     const col = i % columnCount;       // feste Reihenfolge statt "kürzeste Spalte"
-    const x = col * (colWidth + gap);
+    const x = paddingLeft + col * (colWidth + gap);
     const y = colHeights[col];
 
     p.style.width = colWidth + "px";
@@ -210,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-// curser
+// cursor
 document.addEventListener("mousemove", (e) => {
   const circle = document.querySelector(".cursor-circle");
   if (!circle) return;
