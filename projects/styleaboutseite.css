@@ -52,6 +52,21 @@ nav a:hover {
   opacity: 0.6;
 }
 
+/* Smartphone */
+@media (max-width: 700px) {
+  header {
+    padding: 10px 20px; /* kompakter */
+  }
+
+  header .logo {
+    height: 40px; /* etwas kleiner */
+  }
+
+  header nav ul {
+    gap: 15px;
+    font-size: 16px; /* Text etwas größer für Touch */
+  }
+}
 
 /* ===================== WORK SECTION ===================== */
 #work {
@@ -139,7 +154,7 @@ nav a:hover {
 
 
     /* Responsive: auf kleinen Geräten rutscht der Text unter das Bild (keine Überlappung) */
-    @media (max-width: 800px){
+    @media (max-width: 700px){
       :root{ --img-w: 280px; } /* optional: kleinere Bildbasis auf Mobil */
       .about-container{
         flex-direction: column;
@@ -198,7 +213,7 @@ nav a:hover {
     }
 
     /* Responsiv: auf kleinen Bildschirmen einspaltig */
-    @media (max-width: 800px) {
+    @media (max-width: 600px) {
       .two-columns {
         grid-template-columns: 1fr;
       }

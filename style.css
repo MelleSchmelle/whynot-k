@@ -52,6 +52,26 @@ nav a:hover {
   opacity: 0.6;
 }
 
+/* Smartphone */
+@media (max-width: 700px) {
+  header {
+    padding: 10px 20px; /* kompakter */
+  }
+
+  header .logo {
+    height: 40px; /* etwas kleiner */
+  }
+
+  header nav ul {
+    gap: 15px;
+    font-size: 16px; /* Text etwas größer für Touch */
+  }
+}
+
+
+
+
+
 /* ===================== NAVIGATION DROPDOWN ===================== */
 .has-submenu {
   position: relative;
