@@ -24,21 +24,11 @@ header {
   z-index: 2000; /* hoch genug für Dropdown */
 }
 
-@font-face {
-  font-family: 'Covered By Your Grace';
-  src: url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff2') format('woff2'),
-       url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff') format('woff');
-  font-display: swap;
-}
-
-
-header::before {
-  content: "WHY NOT ?";
-  font-size: 1.5rem;
-  font-weight: normal;
-  letter-spacing: 2px;
-  color: #111;
-  font-family: 'Covered by your grace', cursive;
+.logo {
+  width: 120px;   /* gewünschte Größe */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 nav ul {

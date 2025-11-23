@@ -12,6 +12,7 @@
 <body class="aboutseite">
 
   <header>
+    <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
     <nav>
       <ul>
         <li><a href="../index.html">Work</a></li>
@@ -39,8 +40,8 @@
       <div class="two-columns">
         <div>
           <p>Hi, ich bin Michèle Killmaier und arbeite als 3D Artist.<br> 
-          Nach meinem Architekturstudium an der RWTH konnte ich in den  vergangenen Jahren vielfältige Erfahrungen sammeln – von Messe- und Eventarchitektur in der PR Agentur OSK, über hochwertige Innenausbauten im Luxussegment bis hin zu Büroprojekten und Flagshipstore beim bekannten Büro Lepel & Lepel. In all diesen Bereichen war 3D-Visualisierung ein zentrales Werkzeug, um komplexe Entwurfsideen anschaulich und atmosphärisch überzeugend zu vermitteln.<br> 
-          Ich arbeite sicher mit gängiger 3D-Software, Planungsprogramme der Architektur und der Adobe Creative Suite. Mein gutes Gespür für Komposition, Licht und Materialität hilft mir dabei, sowohl fotorealistische als auch stilisierte Darstellungen zu entwickeln. Technische Planunterlagen und CAD-Daten setze ich sicher in visuelle Konzepte um. Neben meiner gestalterischen Kompetenz schätzten frühere Projektpartner besonders meine strukturierte und zuverlässige Arbeitsweise – sei es bei selbstständigen Arbeiten oder in agilen, interdisziplinären Teams.</p>
+          Nach meinem Architekturstudium konnte ich in den vergangenen Jahren vielfältige Erfahrungen sammeln – von Messe- und Eventarchitektur in der PR Agentur OSK, über hochwertige Innenausbauten im Luxussegment bis hin zu Büroprojekten und Flagshipstore beim bekannten Büro Lepel & Lepel. In all diesen Bereichen war 3D-Visualisierung ein zentrales Werkzeug, um komplexe Entwurfsideen anschaulich und atmosphärisch überzeugend zu vermitteln.<br> 
+          Ich arbeite sicher mit gängiger 3D-Software, Planungsprogrammen und der Adobe Creative Suite. Mein gutes Gespür für Komposition, Licht und Materialität hilft mir dabei, sowohl fotorealistische als auch stilisierte Darstellungen zu entwickeln. Frühere Projektpartner schätzten zudem besonders meine strukturierte und zuverlässige Arbeitsweise – sei es bei selbstständigen Arbeiten oder in agilen, interdisziplinären Teams.</p>
           <p>Ich freue mich über neue Kontakte und einen spannenden Austausch!</p>
         </div>
         <div>
@@ -98,11 +99,11 @@
       </div>
     </div>
 
-    <div class="why-not">
-      <p>WHY NOT ?</p>
-    </div>
+
+    <img src="../assets/icons/WhyNot.svg" alt="why-not" class="why-not">
+    
     <div class="antwort hidden">
-      <p id="antwort-text"> possibilities  instead of limitations.<br>let's explore new avenues.</p>
+      <p id="antwort-text"> possibilities instead of limitations<br>let's explore new avenues</p>
     </div>
 
 
@@ -113,21 +114,29 @@
         <p class="git">get in touch</p>
 
         <div class="icons-contact">
-          <a href="mailto:michelekillmaier@outlook.de"><img src="../cv/logos-04.png" alt="mail" loading="lazy"></a>
+          <a href="mailto:info@michelekillmaier.de"><img src="../cv/logos-04.png" alt="mail" loading="lazy"></a>
           <a href="https://www.linkedin.com/in/michèle-k" target="_blank"><img src="../cv/logos-01.png" alt="linkedin" loading="lazy"></a>
           <a href="https://www.xing.com/profile/Michele_Killmaier" target="_blank"><img src="../cv/logos-02.png" alt="Xing" loading="lazy"></a>
           <a href="https://www.instagram.com/_why_not_killmaier/" target="_blank"><img src="../cv/logos-03.png" alt="instagram" loading="lazy"></a>
         </div>
       </div>
 
-      <!-- Kontaktformular -->
-      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
-        <!-- Honeypot  -->
-        <input type="text" name="website" autocomplete="off" tabindex="-1" style="display:none;">
+          <!-- Kontaktformular -->
+      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+         <!-- Web3Forms API Key -->
+         <input type="hidden" name="access_key" value="dab9a72d-8d80-497a-8497-48e211c29ffb">
+
+         <!-- Redirect -->
+         <input type="hidden" name="redirect" value="thankyou.html">
 
         <input type="text" name="name" placeholder="Name" required>
         <input type="email" name="email" placeholder="E-Mail" required> 
         <textarea name="message" placeholder="Nachricht" rows="5" required></textarea>
+
+        <!-- Honeypot  -->
+        <input type="text" name="website"  style="display:none;">
+        
+
         <button type="submit" class="form-btn">Senden</button>
       </form>
       
@@ -139,9 +148,9 @@
  
     <footer id="Contact">
     <div class="footer-links" role="navigation" aria-label="Footer navigation">
-      <a href="impressum/impressum.html">Impressum</a>
-      <a href="impressum/AGB.html">AGB</a>
-      <a href="impressum/Datenschutz.html">Datenschutz</a>
+      <a href="../impressum/impressum.html">Impressum</a>
+      <a href="../impressum/AGB.html">AGB</a>
+      <a href="../impressum/Datenschutz.html">Datenschutz</a>
     </div>
 
     <div class="footer-copy">© 2025 Michèle Killmaier</div>

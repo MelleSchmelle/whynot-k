@@ -24,22 +24,11 @@ header {
   z-index: 2000; /* hoch genug für Dropdown */
 }
 
-@font-face {
-  font-family: 'Covered By Your Grace';
-  src: url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff2') format('woff2'),
-       url('../fonts/Covered_By_Your_Grace/CoveredByYourGrace-Regular.woff') format('woff');
-  font-display: swap;
-}
-
-
-
-header::before {
-  content: "WHY NOT ?";
-  font-size: 1.5rem;
-  font-weight: normal;
-  letter-spacing: 2px;
-  color: #111;
-  font-family: 'Covered by your grace', cursive;
+.logo {
+  width: 120px;   /* gewünschte Größe */
+  height: auto;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 nav ul {
@@ -190,7 +179,8 @@ nav a:hover {
       font-size: 1rem;
       line-height: 1.6;
       color: #333;
-      text-align: left; /* optional für sauberen Blocksatz */
+      text-align: justify; /* optional für sauberen Blocksatz */
+    
     }
 
     /* Grid für zwei Spalten */
@@ -220,21 +210,19 @@ nav a:hover {
     /* why not */
     .why-not {
       margin-top: 180px;
-      text-align: center;
-      font-size: 6rem;
-      font-weight: normal;
-      letter-spacing: 2px;
-      color: #111;
-      font-family: 'Covered by your grace', cursive; /* handwritten Style */
-      width: 100%;                   /* Block nimmt volle Breite des Containers */
-      margin-bottom: -100px;
+      width: 300px;   /* gewünschte Größe */
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 5;          /* ← hebt es über normale Elemente */
     }
 
     /* antwort */
     .antwort {
       width: 100%;           /* volle Breite */
       text-align: center; /* zentrieren */
-      margin-top: 0;
+      margin-top: 50px;
       margin-bottom: 180px;
     }
 
@@ -283,7 +271,7 @@ nav a:hover {
     /* Jedes Item */
     .item {
       border-bottom: 1px solid rgba(0,0,0,0.1);
-      min-height: 7rem; /* einheitliche Blockhöhe, kann angepasst werden */
+      min-height: 7.5rem; /* einheitliche Blockhöhe, kann angepasst werden */
       display: flex;
       align-items: center; /* sorgt für zentrierte Inhalte (Oberthema/Details) */
       justify-content: center;
@@ -345,7 +333,6 @@ nav a:hover {
 
 
     
-/* ===================== Contact ===================== */
 /* ===================== Contact ===================== */
 
 .contacts {
@@ -430,8 +417,49 @@ nav a:hover {
   opacity: 0.8;
 }
 
+/* ===================== Responsive ===================== */
+@media (max-width: 640px) {
+  .contacts {
+    margin: 20px;
+    padding: 15px;
+  }
+}
 
 
+
+/*Antwort Email*/
+
+#antwortemail {
+  position: relative;
+  margin-top: 180px; /* Abstand unter fixed Header */
+  width: 100%;
+  padding: 6px 0 4px; /* kompakter Abstand oben/unten */
+  background: #f8f8f8;
+  text-align: center;
+  z-index: 900;
+  margin-bottom: 200px;
+}
+
+#antwortemail h1 {
+  margin: 0;
+  padding: 0;
+  font-family: garamond, serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: #111;
+  line-height: 1; /* kompakte Höhe */
+}
+
+    #antwortemail h2 {
+      font-size: 0.9rem;
+      font-weight: normal;
+      color: #333;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 30px;
+    }
 
 /* ===================== FOOTER ===================== */
 
