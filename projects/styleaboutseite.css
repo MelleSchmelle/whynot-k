@@ -149,7 +149,7 @@ nav a:hover {
 
     @media (max-width: 700px) {
   #work h1 {
-    font-size: clamp(2rem, 10vw, 2rem);
+    font-size: clamp(2.5rem, 10vw, 3rem);
     line-height: 1.05;
     hyphens: auto;       /* automatisches Trennen */
   }
