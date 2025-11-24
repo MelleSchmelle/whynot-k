@@ -64,50 +64,55 @@ nav a:hover {
   cursor: pointer;
 }
 
-
-
-/* Smartphone */
 @media (max-width: 700px) {
+  /* Header zu mobilem Flex-Layout */
   header {
-    padding: 10px 20px; /* kompakter */
+    display: flex;
+    justify-content: space-between; /* Logo links – Burger rechts */
+    align-items: center;
+    padding: 0 20px;
+    position: relative;
   }
 
-  header .logo {
-    height: 40px; /* etwas kleiner */
-  }
-
-  header nav ul {
-    gap: 10px;
-    font-size: 16px; /* Text etwas größer für Touch */
-  }
-
-
-  /* Burger anzeigen */
+  /* Burger-Button mobil sichtbar */
   .menu-toggle {
-    display: block;
+    display: block !important;  /* überschreibt evtl. Desktop-Einstellungen */
+    position: relative;
+    z-index: 2000;
+    cursor: pointer;
   }
 
-  /* Navigation ausblenden */
+  /* Navigation mobil ausgeklappt */
   nav {
     position: absolute;
-    top: 70px;
-    right: 20px;
+    top: 70px;              /* Höhe unter dem Header */
+    right: 0;
+    width: 100%;
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    display: none;
+    display: none;          /* erst sichtbar wenn .open gesetzt wird */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px 20px;
+    gap: 20px;
+    z-index: 1500;
   }
 
   nav.open {
-    display: block;
+    display: flex;
   }
 
   nav ul {
     flex-direction: column;
-    gap: 15px;
+    width: 100%;
+    gap: 18px;
   }
- }
+
+  nav ul li {
+    width: 100%;
+    text-align: left;
+  }
+}
+
 
 /* ===================== WORK SECTION ===================== */
 #work {
