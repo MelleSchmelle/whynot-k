@@ -147,6 +147,15 @@ nav a:hover {
     }
 
 
+    @media (max-width: 700px) {
+  #work h1 {
+    font-size: clamp(2.5rem, 10vw, 3rem);
+    line-height: 1.05;
+    hyphens: auto;       /* automatisches Trennen */
+  }
+}
+
+
 /* ===================== Bild Intro ===================== */
 
 :root{ /* Passe hier die Bildbreite an; margin-left berechnet 1/4 davon */
