@@ -54,42 +54,42 @@ nav a:hover {
 }
 
 
-
-/* --- Burger Button --- */
-.menu-toggle {
-  display: none;
-  font-size: 28px;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
 @media (max-width: 700px) {
-  /* Header zu mobilem Flex-Layout */
+
+  /* Header mobil */
   header {
+    position: fixed;            /* wiederherstellen, sonst verschiebt sich alles */
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 16px 20px;         /* leicht kompakter, aber balance bleibt */
     display: flex;
     justify-content: space-between; /* Logo links – Burger rechts */
     align-items: center;
-    padding: 0 20px;
-    position: relative;
-  }
-
-  /* Burger-Button mobil sichtbar */
-  .menu-toggle {
-    display: block !important;  /* überschreibt evtl. Desktop-Einstellungen */
-    position: relative;
+    background: #f8f8f8;
     z-index: 2000;
-    cursor: pointer;
   }
 
-  /* Navigation mobil ausgeklappt */
+  /* Burger-Icon */
+  .menu-toggle {
+    display: block !important;
+    cursor: pointer;
+    font-size: 32px;
+    color: #000 !important;     /* ← schwarze Linien */
+    background: none;
+    border: none;
+    margin-left: auto;          /* Schiebt Burger hart nach rechts */
+    z-index: 3000;              /* über Logo */
+  }
+
+  /* Navigation mobil */
   nav {
     position: absolute;
-    top: 70px;              /* Höhe unter dem Header */
+    top: 60px;
     right: 0;
     width: 100%;
-    background: white;
-    display: none;          /* erst sichtbar wenn .open gesetzt wird */
+    background: #fff;
+    display: none;
     flex-direction: column;
     align-items: flex-start;
     padding: 25px 20px;
@@ -112,6 +112,7 @@ nav a:hover {
     text-align: left;
   }
 }
+
 
 
 /* ===================== WORK SECTION ===================== */
