@@ -52,6 +52,19 @@ nav a:hover {
   opacity: 0.6;
 }
 
+
+
+/* --- Burger Button --- */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+
 /* Smartphone */
 @media (max-width: 700px) {
   header {
@@ -63,10 +76,37 @@ nav a:hover {
   }
 
   header nav ul {
-    gap: 15px;
+    gap: 10px;
     font-size: 16px; /* Text etwas größer für Touch */
   }
-}
+
+
+  /* Burger anzeigen */
+  .menu-toggle {
+    display: block;
+  }
+
+  /* Navigation ausblenden */
+  nav {
+    position: absolute;
+    top: 70px;
+    right: 20px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    display: none;
+  }
+
+  nav.open {
+    display: block;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+ }
 
 /* ===================== WORK SECTION ===================== */
 #work {
