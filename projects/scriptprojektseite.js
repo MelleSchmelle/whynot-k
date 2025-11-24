@@ -141,3 +141,17 @@ document.addEventListener("mousemove", (e) => {
 
   setInterval(nextSlide, 3000);
 });
+
+
+// Burgermenü -mobilansicht
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("header nav");
+
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("open");
+  });
+});
+
