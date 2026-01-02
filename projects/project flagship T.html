@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+
+
+
   <meta charset="UTF-8">
   <title>why not? Portfolio</title>
   <link rel="stylesheet" href="styleprojektseite.css">
@@ -10,6 +14,16 @@
 
 
 <body class="projektseite">
+<script>
+  const correctPassword = "TFH26";
+
+  const enteredPassword = prompt("Bitte Passwort eingeben:");
+
+  if (enteredPassword !== correctPassword) {
+    alert("Falsches Passwort");
+    window.location.href = "../index.html";
+  }
+</script>
 
   <header>
     <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
