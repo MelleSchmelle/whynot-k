@@ -1,179 +1,516 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>why not? Portfolio</title>
-  <link rel="stylesheet" href="styleaboutseite.css">
-  <script src="../script.js" defer></script>
-  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>why not? Portfolio – About</title>
+
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+
+  <!-- Fonts für den Kontaktblock (Playfair Display / Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <!-- Haupt-Stylesheet -->
+  <link rel="stylesheet" href="styleaboutseite.css">
+
+  <script src="../script.js" defer></script>
+
+  <style>
+    /* ===== Mitscrollender Rot-zu-Creme Verlauf + Grain ===== */
+    /* Der Verlauf liegt auf dem Block von "ABOUT ME" bis zu den Karten und
+       endet exakt dort, wo das Band beginnt – er scrollt mit, sodass es
+       immer aussieht, als ginge er vom festen Band aus. */
+    .grain-flow {
+      position: relative;
+      /* padding-top schiebt den Inhalt unter den fixed Header,
+         OHNE den Verlauf nach unten zu drücken (padding collabiert nicht,
+         margin schon). So füllt der Verlauf den Bereich bis ganz oben. */
+      padding-top: 60px;
+      background: linear-gradient(
+        to bottom,
+        #fbf9f6 0%,
+        #fbf9f6 12%,
+        #a95c6e 40%,
+        #6e2630 64%,
+        #2d1216 80%,
+        #2d1216 100%
+      );
+    }
+
+    /* #work braucht seinen margin-top nicht mehr – der Abstand liegt jetzt
+       am Wrapper. Sonst entsteht oben eine verlauffreie Lücke. */
+    body.aboutseite #work {
+      margin-top: 0;
+    }
+
+    /* Korn-Schicht über dem Verlauf (SVG-Rauschen als Data-URL) */
+    .grain-flow::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 150px 150px;
+    }
+
+    /* Inhalte über die Korn-Schicht heben */
+    .grain-flow > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Bereiche transparent schalten, damit der Verlauf durchscheint */
+    body.aboutseite header,
+    body.aboutseite #work,
+    body.aboutseite .pink-grain-bg,
+    body.aboutseite .dyllic-not-great {
+      background: transparent;
+    }
+
+    /* ===== Kontaktblock (vormals inline in HTML2) ===== */
+    .editorial-contact-block {
+      display: block;
+      width: 100%;
+      clear: both;
+      float: none;
+      padding: 48px 4%;
+      max-width: 1000px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+    }
+
+    /* ===== Beiger Grain für Kontakt + Footer (vollflächig) ===== */
+    /* Exakt dieselbe Korn-Auflösung wie der Verlauf (baseFrequency 0.85,
+       2 Oktaven, 150px – NICHT hochskaliert), füllt die ganze Breite
+       inklusive Seitenränder und Fußzeile. */
+    .contact-area {
+      position: relative;
+      background-color: #fbf9f6;   /* Creme/Beige */
+    }
+    .contact-area::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 150px 150px;
+    }
+    .contact-area > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 0.95;
+      color: #1c4fa2;
+      margin-bottom: 32px;
+      letter-spacing: -1px;
+      display: block;
+      width: 100%;
+    }
+
+    .arrow-svg {
+      display: inline-block;
+      width: 1.8em;
+      height: 1.8em;
+      vertical-align: -0.4em;
+      margin-left: -0.4em;
+      color: #1c4fa2;
+    }
+
+    .page-container {
+      width: 100%;
+      display: flex;
+      gap: 8%;
+    }
+
+    .sidebar { width: 35%; }
+
+    .sidebar-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #2c333f;
+      max-width: 300px;
+    }
+
+    .direct-contact { margin-top: 45px; }
+
+    .direct-contact .label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      color: #2c333f;
+      margin-bottom: 8px;
+    }
+
+    .email-link {
+      font-size: 0.95rem;
+      color: #2c333f;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .email-link:hover { border-bottom: 1px solid #2c333f; }
+
+    .content { width: 57%; }
+
+    .editorial-form { width: 100%; }
+
+    .form-section { margin-bottom: 26px; }
+
+    .question-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: #31416a;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+
+    .field-row {
+      display: flex;
+      gap: 40px;
+    }
+
+    .form-field { position: relative; }
+
+    .half-width { width: 50%; }
+    .full-width { width: 100%; }
+
+    .form-field input {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #6e7b9a;
+      padding: 8px 0 12px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b1325;
+      outline: none;
+    }
+
+    .form-field input::placeholder {
+      color: #c2d9ef;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      opacity: 1;
+    }
+
+    .form-field input:focus { border-bottom-color: #2d468f; }
+
+    /* Mehrzeiliges Nachrichtenfeld – gleiche Optik wie die Linien-Inputs */
+    .form-field textarea {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #0b1325;
+      padding: 8px 0 12px 0;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      color: #0b1325;
+      outline: none;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .form-field textarea::placeholder {
+      color: #c2d9ef;
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      font-weight: 500;
+      opacity: 1;
+    }
+
+    .form-field textarea:focus { border-bottom-color: #2d468f; }
+
+    .button-container {
+      margin-top: 32px;
+      text-align: left;
+    }
+
+    .submit-button {
+      background-color: #4f6abd;
+      color: #ffffff;
+      border: none;
+      padding: 14px 28px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      border-radius: 0.2rem;
+    }
+
+    .submit-button:hover { background-color: #002299; }
+
+    @media (max-width: 992px) {
+      .editorial-contact-block { padding: 40px 20px; }
+      .page-container { flex-direction: column; gap: 40px; }
+      .sidebar, .content { width: 100%; }
+      .main-title { font-size: 3.5rem; margin-bottom: 40px; }
+      .question-title { font-size: 1.8rem; }
+    }
+
+    @media (max-width: 480px) {
+      .main-title { font-size: 2.8rem; }
+      .field-row { flex-direction: column; gap: 25px; }
+      .half-width { width: 100%; }
+    }
+
+    /* Autofill-Hintergrund neutralisieren */
+    .form-field input:-webkit-autofill,
+    .form-field input:-webkit-autofill:hover,
+    .form-field input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #0b1325 !important;
+      box-shadow: 0 0 0px 1000px #fbf9f6 inset !important;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .form-field input:valid,
+    .form-field input:not(:placeholder-shown) {
+      background-color: transparent !important;
+    }
+  </style>
 </head>
 
 <body class="aboutseite">
 
   <header>
     <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
-   <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
 
     <nav>
       <ul>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
+        <li class="lang-switch-item">
+          <div class="lang-switch">
+            <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
+            <span class="lang-separator">|</span>
+            <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
+          </div>
+        </li>
+        <li><a href="../index.html">work</a></li>
+        <li><a href="about.html">about</a></li>
+        <li><a href="about.html#contact">contact</a></li>
       </ul>
     </nav>
   </header>
+
+  <div class="grain-flow">
 
   <section id="work">
     <h1>ABOUT ME</h1>
     <h2>3D Artist | M. SC. ARCHITECTURE</h2>
   </section>
 
-  <section class="about-me">
-    <div class="about-container">
-      <div class="about-image">
-        <img src="../projects/About me/MK Bild Kopie.jpg" alt="Portrait">
-      </div> 
-      <div class="about-intro">
-        <p class="Zitat">I am enthusiastic about developing new concepts, designing inspiring spaces and bringing innovative ideas to life with dedication. Exploring new avenues and finding creative solutions are a constant source of motivation for me.</p>
-      </div>
-    </div>
-    <div class="detail-text">
-      <div class="two-columns">
-        <div>
-          <p>Hi, ich bin Michèle Killmaier und arbeite als 3D Artist.<br> 
-          Nach meinem Architekturstudium konnte ich in den vergangenen Jahren vielfältige Erfahrungen sammeln – von Messe- und Eventarchitektur in der PR Agentur OSK, über hochwertige Innenausbauten im Luxussegment bis hin zu Büroprojekten und Flagshipstore beim bekannten Büro Lepel & Lepel. In all diesen Bereichen war 3D-Visualisierung ein zentrales Werkzeug, um komplexe Entwurfsideen anschaulich und atmosphärisch überzeugend zu vermitteln.<br> 
-          Ich arbeite sicher mit gängiger 3D-Software, Planungsprogrammen und der Adobe Creative Suite. Mein gutes Gespür für Komposition, Licht und Materialität hilft mir dabei, sowohl fotorealistische als auch stilisierte Darstellungen zu entwickeln. Frühere Projektpartner schätzten zudem besonders meine strukturierte und zuverlässige Arbeitsweise – sei es bei selbstständigen Arbeiten oder in agilen, interdisziplinären Teams.</p>
-          <p>Ich freue mich über neue Kontakte und einen spannenden Austausch!</p>
+  <section class="pink-grain-bg">
+    <section class="about-me">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="../projects/About me/MK Bild Kopie.jpg" alt="Portrait">
         </div>
-        <div>
-          <p>I am Michèle Killmaier and I am a 3D Artist. <br> 
-          After my study at the RWTH, I have gained a wide range of experience – from trade fair and event architecture at the PR agency OSK, to high-quality interior design in the luxury segment, to office projects and flagship stores at the well-known Lepel & Lepel office. In all these areas, 3D visualization was a key tool for communicating complex design ideas in a clear and atmospherically convincing way. <br>
-          I am proficient in common  3D software, architectural planning programs, and Adobe Creative Suite. My keen sense of composition, light, and materiality helps me develop both photorealistic and stylized representations. I confidently translate technical planning documents and CAD data into visual concepts. In addition to my design skills, previous project partners particularly appreciated my structured and reliable way of working—whether working independently or in agile, interdisciplinary teams.</p>
-          <p>I look forward to new contacts and exciting exchanges!</p>
+        <div class="about-intro">
+          <p class="Zitat" data-translate="Zitat_AboutMe">Mit großer Begeisterung schaffe ich Neues, gestalte kreative Räume und entwickle voller Hingabe innovative Ideen. Neue Herausforderungen zu wagen und sie zu meistern zeichnet meine Arbeitsweise aus.</p>
         </div>
       </div>
-    </div>
+      <div class="detail-text">
+        <p data-translate="text_AboutMe">Hi, ich bin Michèle Killmaier und arbeite als 3D Artist.<br>
+        Nach meinem Architekturstudium konnte ich in den vergangenen Jahren vielfältige Erfahrungen sammeln – von Messe- und Eventarchitektur in der PR Agentur OSK, über hochwertige Innenausbauten im Luxussegment bis hin zu Büroprojekten und Flagshipstore beim bekannten Büro Lepel &amp; Lepel. In all diesen Bereichen war 3D-Visualisierung ein zentrales Werkzeug, um komplexe Entwurfsideen anschaulich und atmosphärisch überzeugend zu vermitteln.<br>
+        Ich arbeite sicher mit gängiger 3D-Software, Planungsprogrammen und der Adobe Creative Suite. Mein gutes Gespür für Komposition, Licht und Materialität hilft mir dabei, sowohl fotorealistische als auch stilisierte Darstellungen zu entwickeln. Frühere Projektpartner schätzten zudem besonders meine strukturierte und zuverlässige Arbeitsweise – sei es bei selbstständigen Arbeiten oder in agilen, interdisziplinären Teams.<br>
+        Ich freue mich über neue Kontakte und einen spannenden Austausch!</p>
+      </div>
+    </section>
 
-    <div class="leistungen">
-      <div class="item">
-        <div class="content">
-          <div class="oberthema">Architecture</div>
-          <div class="details">
-            <p>Konzepte<br>
-            2D Planerstellung & Bearbeitung<br>
-            3D Modelieren<br> 
-            3D Visualisieren</p> 
-          </div>  
-        </div>
-      </div>
-      <div class="item">
-        <div class="content">
-          <div class="oberthema">Interior Design</div>
-          <div class="details">
-            <p>Konzepte<br>
-            2D Planerstellung & Bearbeitung<br>
-            3D Modelieren<br> 
-            3D Visualisieren</p> 
-          </div>  
-        </div>  
-      </div>
-      <div class="item">
-        <div class="content">
-          <div class="oberthema">3D Art</div>
-          <div class="details">
-            <p>Konzepte<br>
-            Modelieren<br> 
-            Visualisieren<br>
-            Animieren</p> 
+    <section class="creative-section">
+      <div class="cards-container">
+
+        <!-- Karte 1 -->
+        <div class="card card-1">
+          <span class="card-number">
+            <span class="char-0">0</span><span class="char-1">1</span>
+          </span>
+          <div class="card-content">
+            <h3 class="card-title" data-translate="text_grafik">GRAFIK DESIGN</h3>
+            <ul class="card-bullets">
+              <li>Brand Desing</li>
+              <li>Print Design</li>
+              <li>Web Design</li>
+            </ul>
           </div>
-        </div>  
+        </div>
+
+        <!-- Karte 2 -->
+        <div class="card card-2">
+          <span class="card-number"><span class="char-0">0</span><span class="char-2">2</span></span>
+          <div class="card-content">
+            <h3 class="card-title" data-translate="text_innenarch">INNEN ARCHITEKTUR</h3>
+            <ul class="card-bullets">
+              <li data-translate="text_innenarch_erklärung1">Konzept &amp; Entwurf</li>
+              <li data-translate="text_innenarch_erklärung2">Materialauswahl</li>
+              <li data-translate="text_innenarch_erklärung3">Lichtplanung</li>
+              <li data-translate="text_innenarch_erklärung4">2D Planerstellung &amp; Bearbeitung</li>
+              <li data-translate="text_innenarch_erklärung5">3D Visualisierung</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Karte 3 -->
+        <div class="card card-3">
+          <span class="card-number"><span class="char-0">0</span><span class="char-4">3</span></span>
+          <div class="card-content">
+            <h3 class="card-title">3D DESIGN</h3>
+            <ul class="card-bullets">
+              <li>Rendering</li>
+              <li>Animation</li>
+              <li data-translate="text_3D_erklärung1">Product Design</li>
+              <li data-translate="text_3D_erklärung2">Konzepte</li>
+              <li data-translate="text_3D_erklärung3">Modellieren</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Karte 4 -->
+        <div class="card card-4">
+          <span class="card-number"><span class="char-0">0</span><span class="char-4">4</span></span>
+          <div class="card-content">
+            <h3 class="card-title" data-translate="text_arch" >ARCHITEKTUR</h3>
+            <ul class="card-bullets">
+              <li data-translate="text_arch_erklärung1">Konzept &amp; Entwurf</li>
+              <li data-translate="text_arch_erklärung2">2D Planerstellung &amp; Bearbeitung</li>
+              <li data-translate="text_arch_erklärung3">3D Modellieren</li>
+              <li data-translate="text_arch_erklärung4">3D Visualisierung</li>
+              <li>BIM</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
-      <div class="item">
-        <div class="content">
-          <div class="oberthema">Graphics</div>
-          <div class="details">
-            <p>Konzepte<br>
-            Print & Druck<br>
-            Bildretouche</p> 
-          </div>  
+    </section>
+  </section>
+
+  <section class="dyllic-not-great">
+    <div class="marquee-wrapper">
+
+      <div class="marquee-line line-1">
+        <div class="track">
+          <span>get started</span>
+          <img src="../assets/icons/WhyNot-w.svg" class="marquee-logo" alt="Logo">
+          <span>be creative</span>
+          <img src="../assets/icons/WhyNot-w.svg" class="marquee-logo" alt="Logo">
+          <span>explore</span>
         </div>
       </div>
-    </div>
 
-
-    <img src="../assets/icons/WhyNot.svg" alt="why-not" class="why-not">
-    
-    <div class="antwort hidden">
-      <p id="antwort-text"> possibilities instead of limitations<br>let's explore new avenues</p>
-    </div>
-
-
-
-    <div class="contacts" id="contact">
-
-      <div class="contact-header">
-        <p class="git">get in touch</p>
-
-        <div class="icons-contact">
-          <a href="mailto:info@michelekillmaier.de"><img src="../cv/logos-04.png" alt="mail" loading="lazy"></a>
-          <a href="https://www.linkedin.com/in/michèle-k" target="_blank"><img src="../cv/logos-01.png" alt="linkedin" loading="lazy"></a>
-          <a href="https://www.xing.com/profile/Michele_Killmaier" target="_blank"><img src="../cv/logos-02.png" alt="Xing" loading="lazy"></a>
-          <a href="https://www.instagram.com/_why_not_killmaier/" target="_blank"><img src="../cv/logos-03.png" alt="instagram" loading="lazy"></a>
+      <div class="marquee-line line-2">
+        <div class="track">
+          <span>possibilities</span>
+          <span>no limitations</span>
+          <span>new avenues</span>
         </div>
       </div>
 
-          <!-- Kontaktformular -->
-      <form class="contact-form" action="https://api.web3forms.com/submit" method="POST">
-         <!-- Web3Forms API Key -->
-         <input type="hidden" name="access_key" value="dab9a72d-8d80-497a-8497-48e211c29ffb">
-
-         <!-- Redirect -->
-         <input type="hidden" name="redirect" value="thankyou.html">
-
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="email" name="email" placeholder="E-Mail" required> 
-        <textarea name="message" placeholder="Nachricht" rows="5" required></textarea>
-
-        <!-- Honeypot  -->
-        <input type="text" name="website"  style="display:none;">
-        
-
-        <button type="submit" class="form-btn">Senden</button>
-      </form>
-      
     </div>
   </section>
 
-<script>
-document.getElementById('contactForm').addEventListener('submit', async function(e) {
-    e.preventDefault(); // Standardformular verhindern
+  </div><!-- /.grain-flow -->
 
-    const form = e.target;
-    const data = new FormData(form);
-    
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: data,
-        });
-        const result = await response.json();
+  <div class="contact-area">
 
-        if(result.success) {
-            // Erfolgreich → thankyou.html
-            window.location.href = 'thankyou.html';
-        } else {
-            // Fehler → error.html
-            window.location.href = 'error.html';
-        }
-    } catch (error) {
-        window.location.href = 'error.html';
-    }
-});
-</script>
+  <!-- ===== Kontakt / Let's work together ===== -->
+  <section class="editorial-contact-block" id="contact">
 
- 
-    <footer id="Contact">
+    <h1 class="main-title">
+      Let’s work <br> together
+      <svg class="arrow-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="square">
+        <line x1="11" y1="11" x2="19" y2="19"></line>
+        <polyline points="11,19 19,19 19,11"></polyline>
+      </svg>
+    </h1>
+
+    <div class="page-container">
+
+      <div class="sidebar">
+        <div class="sidebar-text">
+          <p data-translate="text_contact">Bitte erzähl ein wenig über dich. Fülle dieses Formular aus, damit ich dich und deine Bedürfnisse besser kennenlernen kann. Ich bemühe mich, deine Anfrage innerhalb von 24 bis 48 Stunden zu beantworten.</p>
+
+          <div class="direct-contact">
+            <span class="label" data-translate="text_directcontact">ODER KONTAKTIERE MICH DIREKT:</span>
+            <a href="mailto:info@michelekillmaier.de" class="email-link">info@michelekillmaier.de</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <form action="https://api.web3forms.com/submit" method="POST" class="editorial-form">
+
+          <!-- Web3Forms API Key -->
+          <input type="hidden" name="access_key" value="dab9a72d-8d80-497a-8497-48e211c29ffb">
+
+          <!-- Weiterleitung nach erfolgreichem Absenden -->
+          <input type="hidden" name="redirect" value="thankyou.html">
+
+          <!-- Honeypot gegen Bots (für Menschen unsichtbar) -->
+          <input type="text" name="website" style="display:none;" tabindex="-1" autocomplete="off">
+
+          <div class="form-section">
+            <h2 class="question-title" data-translate="text_contact_name">Hello, mein Name ist</h2>
+            <div class="field-row">
+              <div class="form-field half-width">
+                <input type="text" id="firstname" name="firstname" required placeholder="FIRST NAME">
+              </div>
+              <div class="form-field half-width">
+                <input type="text" id="lastname" name="lastname" required placeholder="LAST NAME">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2 class="question-title" data-translate="text_contact_mail">Deine Email</h2>
+            <div class="form-field full-width">
+              <input type="email" id="email" name="email" required placeholder="EMAIL ADDRESS">
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2 class="question-title" data-translate="text_contact_organisation">Dein Unternehmen</h2>
+            <div class="form-field full-width">
+              <input type="text" id="orgname" name="orgname" required placeholder="ORGANIZATION NAME">
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h2 class="question-title" data-translate="text_contact_Problem">Das Problem, das es zu lösen gilt, ist</h2>
+            <div class="form-field full-width">
+              <textarea id="message" name="message" rows="4" placeholder="TELL US A LITTLE MORE..."></textarea>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <button type="submit" class="submit-button">TALK SOON!</button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer id="Contact">
     <div class="footer-links" role="navigation" aria-label="Footer navigation">
       <a href="../impressum/impressum.html">Impressum</a>
       <a href="../impressum/AGB.html">AGB</a>
@@ -183,9 +520,9 @@ document.getElementById('contactForm').addEventListener('submit', async function
     <div class="footer-copy">© 2025 Michèle Killmaier</div>
   </footer>
 
- 
-  <a class="back-link" href="../index.html">←</a>
+  </div><!-- /.contact-area -->
 
+  <a class="back-link" href="../index.html">←</a>
 
 </body>
 </html>

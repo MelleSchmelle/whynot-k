@@ -1,3 +1,44 @@
+/* ===================== SELBST-GEHOSTETE SCHRIFTEN ===================== */
+/* Pfade ggf. anpassen, falls dein fonts-Ordner woanders liegt.
+   font-display: swap = Text sofort sichtbar (Fallback-Font), dann Austausch. */
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/inter-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/inter-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/playfair-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('../assets/fonts/playfair-500.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Playfair Display';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../assets/fonts/playfair-400-italic.woff2') format('woff2');
+}
+
+
 /* ===================== RESET ===================== */
 * {
   box-sizing: border-box;
@@ -119,10 +160,49 @@ nav a:hover {
 
 
 
+
+/* ===================== languagessssssssss ===================== */
+.lang-switch-item {
+  display: flex;
+  align-items: center;
+}
+
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 65px;
+}
+
+.lang-link {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 300;   
+  color: #111;
+  opacity: 0.4;
+  transition: opacity 0.2s ease;
+  width: 22px;        
+  display: inline-block;
+  text-align: center;
+}
+
+.lang-link.active {
+  opacity: 1;
+  font-weight: 300; 
+  text-shadow: 0.5px 0 0 currentColor, -0.5px 0 0 currentColor;
+}
+
+.lang-separator {
+  font-size: 0.85rem;
+  opacity: 0.2;
+  cursor: default;
+  font-weight: 300;
+}
+
 /* ===================== WORK SECTION ===================== */
 #work {
   position: relative;
-  margin-top: 65px; /* Abstand unter fixed Header */
+  margin-top: 60px; /* Abstand unter fixed Header */
   width: 100%;
   padding: 6px 0 4px; /* kompakter Abstand oben/unten */
   background: #f8f8f8;
@@ -137,14 +217,14 @@ nav a:hover {
   font-size: clamp(5rem, 4vw, 3rem);
   font-weight: 300;
   letter-spacing: -0.02em;
-  color: #111;
+  color: #902549;
   line-height: 1; /* kompakte Höhe */
 }
 
     #work h2 {
       font-size: 0.9rem;
       font-weight: normal;
-      color: #333;
+      color: #6f4e59;
       margin: 0;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -162,13 +242,14 @@ nav a:hover {
 
 /* ===================== Bild Intro ===================== */
 
-:root{ /* Passe hier die Bildbreite an; margin-left berechnet 1/4 davon */
-     --img-w: 400px;
+:root{ /* Bildbreite. HINWEIS: Dieser Wert wird durch den fluiden
+          clamp()-Wert am Dateiende (Punkt 4) überschrieben. Dort anpassen! */
+     --img-w: 500px;
     } 
 
     /* Bild + Intro */
     .about-container {
-      margin-top: 80px; /* Höhe anpassen an die Header-Höhe */
+      margin-top: 120px; /* Höhe anpassen an die Header-Höhe */
       display: flex;
       align-items: flex-start; /* Text oben an Bildkante ausrichten */
       gap: 2rem;
@@ -188,14 +269,14 @@ nav a:hover {
     .about-image img {
       height: auto;
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       display:block;
     }
 
     .about-intro {
       flex: 1 1 auto; 
       /* Überlappung = -1/4 der Bildbreite */
-      margin-left: calc(-1 * (var(--img-w) / 4));; /* Schiebt den Text ca. 1/4 ins Bild */
+      margin-left: calc(-1 * (var(--img-w) / 4)); /* Schiebt den Text ca. 1/4 ins Bild */
       z-index: 2; /* Text über Bild */
       padding: 1.5rem 1.8rem;
       text-align:left; /* explizit linksbündig wie gewünscht */
@@ -204,18 +285,19 @@ nav a:hover {
 
      /* Dein Zitat / Text */
      .Zitat {
-      font-size: 1.6rem;         /* doppelt so groß */
+      font-size: 1.8rem;       /* Desktop: bewusst fester Wert (war gewünscht) */
       text-transform: uppercase; /* alles in CAPITALS */
       font-family: garamond;
       line-height: 1.5;
-      color: #e7335a;
+      color: #92284d;
       margin:0;
     }
 
 
     /* Responsive: auf kleinen Geräten rutscht der Text unter das Bild (keine Überlappung) */
     @media (max-width: 700px){
-      :root{ --img-w: 280px; } /* optional: kleinere Bildbasis auf Mobil */
+      /* --img-w wird NICHT mehr hier gesetzt: der fluide clamp()-Wert am
+         Dateiende (Punkt 4) deckt auch kleine Screens ab (Minimum 240px). */
       .about-container{
         flex-direction: column;
         align-items: center;
@@ -233,9 +315,7 @@ nav a:hover {
         border-radius:0;
       }
       .Zitat{
-        font-size: 1.05rem;
-        text-transform:none; /* optional: entferne uppercase auf sehr kleinen Geräten */
-        color:#e7335a;
+        font-size: 1.5rem;
         text-transform: uppercase;
       }
     }
@@ -247,30 +327,18 @@ nav a:hover {
 
     /* Detail-Text darunter */
     .detail-text {
-      max-width:1400px; /* gleiche max-Breite wie dein Container */
-      margin: 40px auto;
+      max-width:600px; /* gleiche max-Breite wie dein Container */
+      margin-top: -390px;
+      margin-left: 700px;
       padding: 0 1rem;
       font-family: "Calibri Light", "Calibri", sans-serif;
       font-size: 1rem;
       line-height: 1.6;
-      color: #333;
+      color: hsl(0, 0%, 100%);
       text-align: justify; /* optional für sauberen Blocksatz */
     
     }
 
-    /* Grid für zwei Spalten */
-    .two-columns {
-      display: grid;
-      grid-template-columns: 1fr 1fr; /* zwei gleich breite Spalten */
-      gap: 100px;
-    }
-
-    /* Absatz-Text */
-    .two-columns p {
-      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-      line-height: 1.6;
-      margin: 0 0 1em;
-    }
 
     /* Responsiv: auf kleinen Bildschirmen einspaltig */
     @media (max-width: 600px) {
@@ -293,120 +361,252 @@ nav a:hover {
       z-index: 5;          /* ← hebt es über normale Elemente */
     }
 
-    /* antwort */
-    .antwort {
-      width: 100%;           /* volle Breite */
-      text-align: center; /* zentrieren */
-      margin-top: 50px;
-      margin-bottom: 180px;
-    }
 
+/* ===================== Leistungen neu ===================== */
+/* --- BASIS LAYOUT --- */
+.creative-section {
+  padding: 150px 0;
+  background-color: transparent;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1600px;
+  position: relative;
+}
+
+/* --- KARTEN GRUNDSTYLING --- */
+.card {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  border-radius: 12px;
+  padding: 40px;
+  margin-left: -80px; /* Überlappung */
+  overflow: hidden; /* Schneidet die Zahl am Rand ab */
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+              box-shadow 0.6s ease, 
+              background-color 0.3s ease;
+}
+
+.card:first-child {
+  margin-left: 0;
+}
+
+/* --- HINTERGRUND-ZAHL (Bauhaus 93) --- */
+.card-number {
+  position: absolute;
+  top: 50%;
+  left: -45%; /* Schneidet die Zahl wie im Bild an */
+/* Vertikale Streckung um 10% für die gesamte Gruppe */
+  transform: translateY(-50%) scaleY(1.2);
+  font-family: 'Bauhaus 93', 'Arial Black', sans-serif;
+  font-size: 650px;
+  line-height: 1;
+  z-index: 1;
+  color: inherit; /* Nutzt die Textfarbe der Karte */
+  opacity: 0.15;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap; /* Verhindert Zeilenumbruch zwischen 0 und 1 */
+  display: flex; /* Erlaubt präzise Ausrichtung der Kinder */
+}
+
+/* NUR DIE NULL */
+.card-number .char-0 {
+  display: inline-block;
+}
+
+/* NUR DIE EINS - Hier ziehen wir sie nach links */
+.card-number .char-1 {
+  display: inline-block;
+  margin-left: -0.14em; /* Negativer Margin zieht nur die 1 näher an die 0 */
+  /* Falls die 1 durch die Schriftart schmaler wirkt, 
+     könnte man sie hier separat noch weiter skalieren: */
+  /* transform: scaleX(1.05); */
+}
+
+/* NUR DIE EINS - Hier ziehen wir sie nach links */
+.card-number .char-4 {
+  display: inline-block;
+  margin-left: -0.06em; /* Negativer Margin zieht nur die 1 näher an die 0 */
+  /* Falls die 1 durch die Schriftart schmaler wirkt, 
+     könnte man sie hier separat noch weiter skalieren: */
+  /* transform: scaleX(1.05); */
+}
+
+
+/* --- INHALT (Garamond & Calibri) --- */
+.card-content {
+  position: relative;
+  margin-top: -60px;
+  z-index: 2; /* Über der Zahl */
+  width: 100%;
+}
+
+.card-title {
+  font-family: 'Garamond', 'EB Garamond', serif;
+  font-size: 2.7rem;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  font-weight: normal;
+  letter-spacing: 1px;
+  /* Vertikale Streckung um 10% für die gesamte Gruppe */
+  transform: translateY(-50%) scaleY(1.2);
+}
+
+.card-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  opacity: 0; /* Unsichtbar im Ruhezustand */
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.card-bullets li {
+  font-family: 'Calibri', 'Segoe UI', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* --- INDIVIDUELLE FARBEN & NEIGUNG --- */
+.card-1 { background-color: #90a6d4; color: rgb(4, 25, 74); transform: rotate(-5deg) translateY(10px); z-index: 1; }
+.card-2 { background-color: #1a357b; color: rgb(179, 206, 237); transform: rotate(3deg) translateY(-15px); z-index: 2; }
+.card-3 { background-color: #731e3b; color: rgb(249, 214, 236); transform: rotate(-2deg) translateY(20px); z-index: 3; }
+.card-4 { background-color: #cfbfc3; color: rgb(103, 16, 58); transform: rotate(6deg) translateY(-5px); z-index: 4; }
+
+/* --- HOVER EFFEKT (MAGNIFICENT) --- */
+
+/* Die aktive Karte */
+.card:hover {
+  transform: rotate(0deg) scale(1.05) translateY(-20px) !important;
+  z-index: 20;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+}
+
+/* Text einblenden bei Hover */
+.card:hover .card-bullets {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Nachfolgende Karten rücken nach RECHTS */
+.card:hover ~ .card {
+  transform: translateX(180px) rotate(8deg);
+}
+
+/* Vorherige Karten rücken nach LINKS (benötigt :has Selektor) */
+.cards-container:has(.card:nth-child(2):hover) .card:nth-child(1),
+.cards-container:has(.card:nth-child(3):hover) .card:nth-child(1),
+.cards-container:has(.card:nth-child(3):hover) .card:nth-child(2),
+.cards-container:has(.card:nth-child(4):hover) .card:nth-child(1),
+.cards-container:has(.card:nth-child(4):hover) .card:nth-child(2),
+.cards-container:has(.card:nth-child(4):hover) .card:nth-child(3) {
+  transform: translateX(-180px) rotate(-8deg);
+}
     
-    /* Der Absatz selbst als inline-block zentriert darstellen */
-    .antwort p {
-      font-size: 1.6rem;         /* doppelt so groß */
-      font-family: sans-serif;
-      line-height: 1.5;
-      color: #e7335a;
-      margin:0;
-      display: inline-block;
-      white-space: pre-line; /* Zeilenumbrüche wie im HTML */
-    }
+/* ===================== Textband ===================== */
+.dyllic-not-great {
+  background-color: #2d1216; /* Der weinrote Hintergrund aus dem Bild */
+  padding: 100px 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.section-label {
+  color: #fff;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-bottom: 60px;
+  text-transform: uppercase;
+}
+
+.marquee-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: -3vw; /* Textzeilen rücken extrem nah zusammen */
+}
+
+.marquee-line {
+  display: flex;
+  white-space: nowrap;
+}
+
+.track {
+  display: flex;
+  animation: scroll-left 40s linear infinite;
+}
+
+/* Unterschiedliche Farben pro Zeile wie im Bild */
+.line-1 .track { color: #ed8a9e; animation-duration: 30s; } /* Rosa-Rot */
+.line-2 .track { color: #365196; animation-direction: reverse; animation-duration: 35s; } /* Oliv-Grün */
+
+.marquee-line span {
+  font-family: "Garamond", serif; /* Hier eine edle Serife einsetzen */
+  font-size: clamp(2.8rem, 8vw, 9rem); /* Mobile spürbar größer, Desktop wie bisher */
+  font-weight: 400;
+
+  padding: 0 40px;
+  letter-spacing: -2px;
+}
+
+/* Für das blaue Wort "Saying" im Bild */
+.line-2 span:nth-child(even) {
+  color: #a4c5e8; /* Hellblau */
+}
+
+@keyframes scroll-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-logo {
+  /* Da deine Schrift 12vw groß ist, setzen wir das Logo auf ca. 10vw */
+  height: clamp(3.5rem, 10vw, 11rem); 
+  width: auto;
   
-    /* einzelne Zeichen: starten unsichtbar und leicht verschoben */
-    .char {
-      opacity: 0;
-      display: inline-block;
-      transform: translateY(8px);
-      white-space: pre;           /* damit Spaces sichtbar bleiben */
-      will-change: opacity, transform;
-    }
-
-    /* Keyframe für das "hochfade" */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-
-
-
-    
-/* ===================== Leistungen ===================== */
-
-
-    /* Container */
-    .leistungen {
-      max-width: 1400px;
-      font-family: sans-serif;
-      margin: 20px auto;
-      border-top: 1px solid rgba(0,0,0,0.1); /* Linie oben für den ganzen Block */
-    }
-
-    /* Jedes Item */
-    .item {
-      border-bottom: 1px solid rgba(0,0,0,0.1);
-      min-height: 7.5rem; /* einheitliche Blockhöhe, kann angepasst werden */
-      display: flex;
-      align-items: center; /* sorgt für zentrierte Inhalte (Oberthema/Details) */
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Inhaltsschicht */
-    .content {
-      position: relative;
-      width: 100%;
-      display: flex;
-      align-items: center;   /* vertikale Mitte */
-      justify-content: flex-start; /* linksbündig */
-      padding: 0 1rem;
-    }
+  /* Verhindert, dass Flexbox das Bild platt drückt */
+  flex-shrink: 0; 
   
-    /* Beide Layer übereinander */
-    .oberthema,
-    .details {
-      position: absolute;
-      left: 1rem;
-      right: 1rem;
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      white-space: nowrap; /* verhindert Umbruch, falls gewünscht */
-    }
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4vw;
+  
+  /* Falls das Logo weiß ist und auf dem weinroten Grund nicht auffällt: */
+  /* filter: invert(1); */ 
+}
 
-    /* Startzustand */
-    .oberthema {
-      font-size: 2.2rem;
-      font-family: garamond;
-      text-transform: uppercase;
-      font-weight: 300;
-      opacity: 1;
-      transform: translateY(0);
-    }
+/* Entferne diesen Block aus deinem alten CSS, falls er noch drin ist, 
+   da er das <img> Tag stören könnte: */
+/* .track svg { ... } */
 
-    .details {
-      opacity: 0;
-      transform: translateY(20px);
-      text-align: left;
-      line-height: 1.6;
-      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
-      font-family: "Calibri Light", "Calibri", sans-serif;
- 
-    }
- 
-    /* Hover-Effekt: Details einblenden, Oberthema ausblenden */
-    .item:hover .oberthema {
-      opacity: 0;
-      transform: translateY(-20px);
-    }
+/* Fix für Safari/Firefox, damit das SVG nicht auf 0px kollabiert */
+svg.marquee-logo:not(:root) {
+  overflow: hidden;
+}
 
-    .item:hover .details {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-
+/* Falls du ein direktes <svg> Tag nutzt statt eines <img> */
+.track svg {
+  height: 0.8em;
+  width: auto;
+  fill: currentColor; /* Das SVG übernimmt die Farbe der Textzeile (z.B. Rosa oder Blau) */
+  vertical-align: middle;
+  margin: 0 40px;
+}
     
 /* ===================== Contact ===================== */
 
@@ -637,4 +837,235 @@ nav a:hover {
   /* Hand-Cursor vollständig deaktivieren */
 a, button, [role="button"], .project, .project-info, .work-categories a, .submenu li a {
   cursor: none !important;
+}
+
+/* Doppel-Cursor-Fix: Auf der About-Seite gilt der Custom-Kreis-Cursor
+   konsequent auf ALLEN Elementen (auch Inputs, Textarea, Links, Logo),
+   damit nie zusätzlich der System-Cursor (Hand/Pfeil/I-Beam) erscheint. */
+body.aboutseite,
+body.aboutseite * {
+  cursor: none !important;
+}
+
+
+/* =================================================================
+   ABOUT-SEITE · RESPONSIVE & HEADER FIXES (abgekapselt)
+   Alle Regeln unten betreffen ausschließlich die About-Seite
+   (body.aboutseite) bzw. ergänzen bestehendes Verhalten.
+   Reihenfolge: zuletzt im File = höchste Priorität bei gleicher Spezifität.
+   ================================================================= */
+
+/* -----------------------------------------------------------------
+   PUNKT 1 · Header: Logo bleibt fix, Navigation scrollt mit weg
+   Der Header scrollt auf der About-Seite normal mit (position:absolute),
+   sodass die <nav> nach oben aus dem Bild läuft. Das Logo bleibt sichtbar,
+   weil per JS eine fixe Kopie (.logo-fixed) ins <body> eingefügt wird.
+   Das Original-Logo im Header wird ausgeblendet (Platzhalter bleibt).
+   ----------------------------------------------------------------- */
+
+/* Header scrollt mit. (Die Transparenz für den Grain-Verlauf wird in
+   about.html gesetzt, zusammen mit den übrigen Verlauf-Bereichen.) */
+body.aboutseite header {
+  position: absolute;        /* statt fixed → Navi scrollt weg */
+  top: 0;
+  left: 0;
+}
+
+/* Original-Logo im (mitscrollenden) Header ausblenden */
+body.aboutseite header .logo {
+  visibility: hidden;
+}
+
+/* Fixe Logo-Kopie (per JS eingefügt) bleibt oben links stehen */
+body.aboutseite .logo-fixed {
+  position: fixed;
+  top: 20px;
+  left: 25px;
+  width: 120px;
+  height: auto;
+  z-index: 3000;
+  visibility: visible;
+}
+
+/* Auf Mobile gilt weiterhin das Burgermenü: Header wieder fixed,
+   damit der Burger erreichbar bleibt, Extra-Logo aus, Original-Logo zeigen. */
+@media (max-width: 700px) {
+  body.aboutseite header {
+    position: fixed;
+  }
+  body.aboutseite .logo-fixed {
+    display: none;
+  }
+  body.aboutseite header .logo {
+    visibility: visible;
+    position: static;
+  }
+}
+
+
+/* -----------------------------------------------------------------
+   PUNKT 4 · Portrait früher & fließend mitskalieren
+   Statt eines harten Sprungs (500px → 280px erst bei 700px) skaliert
+   die Bildbreite jetzt kontinuierlich mit dem Viewport.
+   clamp(MIN, FLUID, MAX): nie kleiner als 240px, nie größer als 500px,
+   dazwischen ~38% der Viewportbreite.
+   ----------------------------------------------------------------- */
+:root {
+  --img-w: clamp(240px, 38vw, 500px);
+}
+
+/* Das Bild selbst darf seine starre max-width nicht überschreiten,
+   folgt aber jetzt der fluiden Variable. */
+body.aboutseite .about-image img {
+  max-width: 100%;
+}
+
+
+/* -----------------------------------------------------------------
+   PUNKT 2 · Detailtext auf Tablet/Mobile sauber unter das Bild
+   Im Desktop-Layout sitzt .detail-text per negativem margin
+   (margin-top:-390px; margin-left:700px) neben dem Bild.
+   Auf schmaleren Ansichten hebeln wir das aus, sodass der Text
+   in normalem Fluss UNTER dem Zitat/Bild steht und voll lesbar ist.
+   Breakpoint bei 992px (Tablet) angesetzt – früh genug, bevor es bricht.
+   ----------------------------------------------------------------- */
+/* Zwischenbereich Tablet quer (701–992px): Bild+Zitat überlappen noch
+   (Desktop-Layout), aber der Detailtext darf nicht mehr per festem
+   margin-left:700px / margin-top:-390px sitzen – sonst überlappt er das
+   Zitat (siehe Screenshot). Er rückt sauber unter den Bild/Zitat-Block. */
+@media (max-width: 992px) and (min-width: 701px) {
+  body.aboutseite .detail-text {
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 700px;
+    width: 100%;
+    text-align: left;
+    padding: 0 1.8rem;
+  }
+}
+
+/* Detailtext-Position auf Tablet/Mobile: greift erst, wenn die Container
+   tatsächlich stapeln (≤700px). Zwischen 700–992px bleibt die Desktop-
+   Überlappung erhalten, damit das Zitat übers Bild gemappt bleibt. */
+@media (max-width: 700px) {
+  body.aboutseite .detail-text {
+    margin-top: 1.5rem;      /* statt -390px */
+    margin-left: auto;       /* statt 700px */
+    margin-right: auto;
+    max-width: 600px;
+    width: 100%;
+    text-align: left;
+    padding: 0 1.8rem;       /* gleicher Seiten-Einzug wie das Zitat */
+  }
+  /* Zitat-Container auf denselben Einzug wie der Detailtext bringen */
+  body.aboutseite .about-intro {
+    padding: 0 1.8rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 600px;
+    width: 100%;
+  }
+}
+
+
+/* -----------------------------------------------------------------
+   PUNKT 3 · Karten responsiv: Verhältnis halten, dann untereinander
+   Desktop bleibt unverändert (fächernde Überlappung).
+   Phase A (≤1100px): Karten behalten ihr Seitenverhältnis (2:3),
+     skalieren über die Breite mit, Überlappung wird reduziert.
+   Phase B (≤760px): Fächer auflösen → Karten gerade untereinander,
+     zentriert, volle Lesbarkeit, Hover-Verschiebungen deaktiviert.
+   ----------------------------------------------------------------- */
+
+/* Phase A · mittlere Breiten: proportional skalieren */
+@media (max-width: 1100px) and (min-width: 761px) {
+  body.aboutseite .card {
+    width: clamp(220px, 26vw, 400px);
+    height: auto;            /* Höhe folgt dem Seitenverhältnis */
+    aspect-ratio: 2 / 3;     /* hält das ursprüngliche 400:600-Verhältnis */
+    margin-left: -50px;      /* weniger Überlappung auf kleinerem Raum */
+    padding: clamp(20px, 3vw, 40px);  /* Padding skaliert mit */
+  }
+  body.aboutseite .card:first-child {
+    margin-left: 0;
+  }
+  /* Titel darf an Leerzeichen umbrechen (z.B. "INTERIOR DESIGN"),
+     aber einzelne Wörter werden NICHT aufgebrochen – kurze Titel wie
+     "3D DESIGN" oder "GRAFICS" bleiben einzeilig. */
+  body.aboutseite .card-title {
+    font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+    white-space: normal;
+    overflow: visible;
+    margin-bottom: clamp(12px, 2vw, 25px);
+    transform: scaleY(1.2);
+  }
+  /* Padding kleiner, schafft mehr Textbreite */
+  body.aboutseite .card {
+    padding: clamp(16px, 2.5vw, 40px);
+  }
+  body.aboutseite .card-content {
+    margin-top: 0;
+  }
+}
+
+/* Phase B · schmale Ansichten: Karten untereinander */
+@media (max-width: 760px) {
+  body.aboutseite .creative-section {
+    padding: 80px 0;
+  }
+  body.aboutseite .cards-container {
+    flex-direction: column;  /* untereinander */
+    align-items: center;
+    gap: 28px;
+  }
+  body.aboutseite .card {
+    width: min(85vw, 360px);
+    height: auto;
+    aspect-ratio: 2 / 3;     /* ursprüngliches Verhältnis beibehalten */
+    margin-left: 0;          /* keine Überlappung mehr */
+    transform: none !important;   /* Fächer-Neigung & Hover-Shift aus */
+    rotate: 0deg;
+  }
+  /* Bullets dauerhaft sichtbar, da Hover auf Touch nicht zuverlässig ist */
+  body.aboutseite .card-bullets {
+    opacity: 1;
+    transform: none;
+  }
+  /* Titel in gestapelter Ansicht: Umbruch nur an Leerzeichen */
+  body.aboutseite .card-title {
+    font-size: clamp(1.8rem, 7vw, 2.7rem);
+    white-space: normal;
+    overflow: visible;
+    transform: scaleY(1.2);
+  }
+  body.aboutseite .card-content {
+    margin-top: 0;
+  }
+  /* Hover-Nachbar-Verschiebungen auf Mobile deaktivieren */
+  body.aboutseite .card:hover ~ .card,
+  body.aboutseite .cards-container:has(.card:hover) .card {
+    transform: none !important;
+  }
+}
+
+/* -----------------------------------------------------------------
+   LOGO-WECHSEL beim Scrollen: hell auf dunklem Grund, dunkel auf hellem.
+   Das fixe Logo bekommt per JS die Klasse .logo-on-dark, sobald es über
+   einer dunklen Zone (Verlauf-unten / Band) schwebt. Der Filter blendet
+   dank transition weich über.
+   ----------------------------------------------------------------- */
+body.aboutseite .logo-fixed {
+  /* Weicher Übergang zwischen den Zuständen */
+  transition: filter 0.45s ease;
+}
+
+/* Heller Grund (Default): Logo bleibt im Originalzustand (dunkel) */
+body.aboutseite .logo-fixed {
+  filter: none;
+}
+
+/* Dunkler Grund: Logo wird hell (invertiert) */
+body.aboutseite .logo-fixed.logo-on-dark {
+  filter: invert(1) brightness(1.8);
 }

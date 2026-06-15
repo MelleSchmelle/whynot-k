@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grain-Verlauf Vorschau</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; background:#fbf9f6; color:#0b1325; }
+
+  /* ===== Der zu testende Bereich ===== */
+  .top-area {
+    background:#fbf9f6;
+    padding:90px 0 0; text-align:center;
+  }
+  .top-area h1 {
+    font-family:Garamond,serif; font-size:4rem; font-weight:300; color:#111;
+  }
+  .top-area h2 {
+    font-size:0.9rem; text-transform:uppercase; letter-spacing:1px; color:#333; margin-top:8px;
+  }
+
+  .demo-header {
+    position:fixed; top:0; left:0; width:100%;
+    padding:20px 25px; display:flex; justify-content:space-between; align-items:center;
+    background:transparent; z-index:2000;
+  }
+  .demo-header .logo { font-family:Garamond,serif; font-size:1.4rem; font-weight:600; }
+  .demo-header nav { display:flex; gap:30px; font-size:0.85rem; }
+
+  .grain-bg {
+    position:relative;
+    background:linear-gradient(
+      to bottom,
+      #fbf9f6 0%,
+      #fbf9f6 var(--creme-stop),
+      #b56074 55%,
+      #6e2630 80%,
+      var(--red) 100%
+    );
+  }
+  .grain-bg::before {
+    content:"";
+    position:absolute; inset:0;
+    pointer-events:none; z-index:0;
+    opacity:var(--grain-opacity);
+    mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size:var(--grain-size) var(--grain-size);
+  }
+  .grain-bg > * { position:relative; z-index:1; }
+
+  /* Demo-Inhalt (steht für deine Karten) */
+  .demo-content {
+    display:flex; gap:24px; justify-content:center;
+    padding:120px 40px 80px; flex-wrap:wrap;
+  }
+  .demo-card {
+    width:220px; height:340px; border-radius:12px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.1);
+    display:flex; align-items:flex-end; padding:24px;
+    font-family:Garamond,serif; font-size:1.6rem; color:#fff;
+  }
+  .demo-card:nth-child(1){ background:#90a6d4; color:#04194a; }
+  .demo-card:nth-child(2){ background:#0a2e9a; color:#b3ceed; }
+  .demo-card:nth-child(3){ background:#902549; color:#f9d6ec; }
+  .demo-card:nth-child(4){ background:#d9bac2; color:#860a46; }
+
+  /* Der rote Streifen darunter */
+  .stripe {
+    background:#2d1216; padding:80px 0; text-align:center;
+    color:#ed8a9e; font-family:Garamond,serif; font-size:6vw;
+  }
+
+  /* ===== Bedienpanel ===== */
+  .panel {
+    position:fixed; top:16px; right:16px; z-index:99;
+    background:rgba(255,255,255,0.95); backdrop-filter:blur(8px);
+    border:1px solid #ddd; border-radius:12px; padding:18px 20px;
+    width:260px; box-shadow:0 8px 24px rgba(0,0,0,0.12);
+    font-size:0.8rem;
+  }
+  .panel h3 { font-size:0.85rem; margin-bottom:14px; letter-spacing:0.5px; }
+  .panel label { display:block; margin:14px 0 4px; font-weight:500; }
+  .panel input[type=range]{ width:100%; }
+  .panel .val { float:right; color:#0033cc; font-variant-numeric:tabular-nums; }
+  .swatches { display:flex; gap:8px; margin-top:6px; }
+  .sw { width:32px; height:32px; border-radius:6px; cursor:pointer; border:2px solid transparent; }
+  .sw.active { border-color:#0b1325; }
+</style>
+</head>
+<body style="--red:#2d1216; --creme-stop:22%; --grain-opacity:0.55; --grain-size:160px;">
+
+  <div class="demo-header">
+    <span class="logo">why not?</span>
+    <nav><span>work</span><span>about</span><span>contact</span></nav>
+  </div>
+
+  <div class="panel">
+    <h3>GRAIN-VERLAUF JUSTIEREN</h3>
+
+    <label>Korn-Stärke <span class="val" id="vOp">0.55</span></label>
+    <input type="range" id="op" min="0" max="1" step="0.05" value="0.55">
+
+    <label>Korn-Größe <span class="val" id="vSz">160px</span></label>
+    <input type="range" id="sz" min="60" max="300" step="10" value="160">
+
+    <label>Creme-Anteil oben <span class="val" id="vCr">22%</span></label>
+    <input type="range" id="cr" min="0" max="60" step="2" value="22">
+
+    <label>Rotton am Streifen</label>
+    <div class="swatches">
+      <div class="sw active" style="background:#2d1216" data-c="#2d1216" title="Weinrot (Streifen)"></div>
+      <div class="sw" style="background:#e7335a" data-c="#e7335a" title="Rosé-Rot"></div>
+      <div class="sw" style="background:#a51445" data-c="#a51445" title="Dunkelrosé"></div>
+    </div>
+  </div>
+
+  <div class="grain-bg">
+    <div class="top-area">
+      <h1>ABOUT ME</h1>
+      <h2>3D Artist | M. SC. Architecture</h2>
+    </div>
+    <div class="demo-content">
+      <div class="demo-card">GRAFICS</div>
+      <div class="demo-card">INTERIOR</div>
+      <div class="demo-card">3D DESIGN</div>
+      <div class="demo-card">ARCHITECTURE</div>
+    </div>
+  </div>
+
+  <div class="stripe">let's explore</div>
+
+<script>
+  const root = document.body.style;
+  const bind = (id, varName, suffix='') => {
+    const el = document.getElementById(id);
+    const out = document.getElementById('v'+id.charAt(0).toUpperCase()+id.slice(1));
+    el.addEventListener('input', () => {
+      const v = suffix ? el.value+suffix : el.value;
+      root.setProperty(varName, v);
+      out.textContent = v;
+    });
+  };
+  bind('op','--grain-opacity');
+  bind('sz','--grain-size','px');
+  bind('cr','--creme-stop','%');
+
+  document.querySelectorAll('.sw').forEach(sw => {
+    sw.addEventListener('click', () => {
+      document.querySelectorAll('.sw').forEach(s=>s.classList.remove('active'));
+      sw.classList.add('active');
+      root.setProperty('--red', sw.dataset.c);
+    });
+  });
+</script>
+</body>
+</html>

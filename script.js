@@ -110,6 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+
+
+
 // Burgermenü -mobilansicht
 document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.querySelector(".menu-toggle");
@@ -123,7 +127,34 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+/* =================================================================
+   ABOUT-SEITE · PUNKT 1: Logo fix halten, Navi mitscrollen lassen
+   Der Header scrollt auf der About-Seite normal mit (siehe CSS:
+   position:absolute). Damit das Logo trotzdem oben links fixiert
+   bleibt, fügen wir EINMALIG eine fixe Kopie des Logos ein.
+   Greift nur auf <body class="aboutseite"> und nicht auf Mobile.
+   ================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.body.classList.contains("aboutseite")) return;
 
+  const headerLogo = document.querySelector("header .logo");
+  if (!headerLogo) return;
+
+  // Nicht doppelt einfügen (z. B. bei Re-Init)
+  if (document.querySelector(".logo-fixed")) return;
+
+  // Fixe Logo-Kopie erstellen
+  const fixedLogo = headerLogo.cloneNode(true);
+  fixedLogo.classList.remove("logo");
+  fixedLogo.classList.add("logo-fixed");
+  fixedLogo.setAttribute("aria-hidden", "false");
+
+  // Optional: Klick aufs Logo führt nach oben / zur Startseite
+  const link = document.createElement("a");
+  link.href = "../index.html";
+  link.appendChild(fixedLogo);
+  document.body.appendChild(link);
+});
 
 
 /*about Seite*/
@@ -330,3 +361,106 @@ document.addEventListener("mousemove", (e) => {
   // Wenn jemand Tastatur verwendet (Tab), darf der visuelle Fokus nicht verloren gehen.
   // Wir ändern deshalb niemals outline/focus-styles global.
 })();
+
+
+// Funktion zum Laden der JSON-Sprachdatei und Aktualisieren der Texte
+async function changeLanguage(lang) {
+    try {
+        const fileLang = lang === 'en' ? 'eng' : 'de';
+        const response = await fetch(`lang_${fileLang}.json`); 
+        
+        if (!response.ok) throw new Error(`Sprachdatei lang_${fileLang}.json konnte nicht geladen werden.`);
+        const translations = await response.json();
+
+        // Alle Elemente mit dem Attribut "data-translate" übersetzen
+        document.querySelectorAll('[data-translate]').forEach(element => {
+            const key = element.getAttribute('data-translate');
+            if (translations[key]) {
+                element.innerHTML = translations[key]; // Ermöglicht <br> Absätze
+            }
+        });
+
+        // CSS-Klassen für die Buttons anpassen (nur wenn die Buttons existieren!)
+        const btnDe = document.getElementById('btn-de');
+        const btnEn = document.getElementById('btn-en');
+        
+        if (btnDe && btnEn) {
+            btnDe.classList.toggle('active', lang === 'de');
+            btnEn.classList.toggle('active', lang === 'en');
+        }
+        
+        // Sprach-Attribut im HTML-Tag für SEO aktualisieren
+        document.documentElement.lang = lang;
+
+    } catch (error) {
+        console.error("Fehler beim Sprachwechsel:", error);
+    }
+}
+
+// Event-Listener sicher einrichten (Prüft vorher, ob die Buttons im HTML existieren)
+document.addEventListener('DOMContentLoaded', () => {
+    const btnDe = document.getElementById('btn-de');
+    const btnEn = document.getElementById('btn-en');
+
+    if (btnDe) {
+        btnDe.addEventListener('click', (e) => {
+            e.preventDefault();
+            changeLanguage('de');
+        });
+    }
+
+    if (btnEn) {
+        btnEn.addEventListener('click', (e) => {
+            e.preventDefault();
+            changeLanguage('en');
+        });
+    }
+});
+
+
+
+
+/* =================================================================
+   LOGO-WECHSEL beim Scrollen (hell/dunkel je nach Hintergrund)
+   Prüft bei jedem Scroll, ob das fixe Logo über einer als "dunkel"
+   markierten Zone schwebt, und schaltet die Klasse .logo-on-dark.
+   Dunkle Zonen: der untere Teil des Verlaufs + das Band.
+   ================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.body.classList.contains("aboutseite")) return;
+
+  const logo = document.querySelector(".logo-fixed");
+  if (!logo) return;
+
+  // Elemente, deren Bereich als "dunkel" gilt
+  const band = document.querySelector(".dyllic-not-great");
+  const grain = document.querySelector(".grain-flow");
+
+  function updateLogo() {
+    // Mittelpunkt des Logos (vertikal) als Messpunkt
+    const logoRect = logo.getBoundingClientRect();
+    const logoY = logoRect.top + logoRect.height / 2;
+
+    let onDark = false;
+
+    // Das Band ist komplett dunkel
+    if (band) {
+      const b = band.getBoundingClientRect();
+      if (logoY >= b.top && logoY <= b.bottom) onDark = true;
+    }
+
+    // Der Verlauf wird nach UNTEN hin dunkel: nur die untere Hälfte zählt
+    if (grain) {
+      const g = grain.getBoundingClientRect();
+      const darkStart = g.top + g.height * 0.38; // ab ~38% (berechnet aus den Verlaufsstops) wird's dunkel genug
+      if (logoY >= darkStart && logoY <= g.bottom) onDark = true;
+    }
+
+    logo.classList.toggle("logo-on-dark", onDark);
+  }
+
+  // Bei Scroll & Resize aktualisieren (passive für flüssiges Scrollen)
+  window.addEventListener("scroll", updateLogo, { passive: true });
+  window.addEventListener("resize", updateLogo);
+  updateLogo(); // initial
+});

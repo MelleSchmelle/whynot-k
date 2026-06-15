@@ -1,29 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>why not? Portfolio</title>
+  <title>Composition No.1 – Entwurf & 3D | why not? Portfolio</title>
   <link rel="stylesheet" href="styleprojektseite.css">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Composition No.1 – Zwei Akte des Seins. Digitale Stillleben rund um den Küchentisch. Entwurf & 3D, 2026.">
 <style>
+
+
+/* ===================== WORK SECTION ===================== */
+/* ===================== HEADER ===================== */
+
+nav a {
+    color: #ffffff;
+}
+
+@media (max-width: 700px) {
+  /* Header mobil */
+  header {
+    background: #512b28;
+  }
+
+  /* Burger-Icon */
+  .menu-toggle {
+    color: #ffffff !important;
+  }
+  /* Navigation mobil */
+  nav {
+    background: #512b28;
+  }
+}
+
+  #work {
+    background: #512b28;
+  }
+
+  #work h1 {
+    color: #efeaec;
+  }
+
+  #work h2 {
+    color: #947474;
+  }
+
+   /* Bilder bekommen den braunen Hintergrund als Rahmen. Abstände
+      kommen einheitlich aus dem globalen System – KEIN eigenes
+      padding, das die Konsistenz brechen würde. */
    .image-row2 {
-     
-     margin-top: 40px;
-  
+     background: #512b28;
+   }
+
+    .section-light-bottom {
+      background:#512b28;
+      overflow: hidden; /* Dies stoppt das Margin-Collapsing */
     }
+
+   body.projektseite .detail-text {
+      color: #efeaec;
+    }
+
+      #Contact .footer-links a {
+    color: #efeaec;
+  }
+
+  #Contact .footer-copy {
+    color: #ffffff;
+  }
+
+    /* Back-Link-Pfeil erbt jetzt seine Farbe (currentColor) */
+  .back-link {
+    color: #ffffff;
+    z-index: 3000;               /* sicher über allem */
+  }
+  .back-link .arrow-svg {
+    stroke: currentColor;        /* überschreibt evtl. globales stroke:#333 */
+  }
   </style>
 
 </head>
 
 <body class="projektseite">
-
+ <section class="section-light-bottom">
   <header>
-    <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
-    
-    <nav>
+    <img src="../assets/icons/WhyNot-w.svg" alt="why not? – zur Startseite" class="logo">
+    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
+
+    <nav id="main-nav">
       <ul>
+        <li class="lang-switch-item">
+          <div class="lang-switch">
+            <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
+            <span class="lang-separator">|</span>
+            <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
+          </div>
+        </li>
         <li><a href="../index.html">Work</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="about.html#contact">Contact</a></li>
@@ -33,44 +105,49 @@
 
   <section id="work">
     <h1>COMPOSITION No.1</h1>
-    <h2>Entwurf & 3D | 2026</h2>
+    <h2 data-translate="text_comp1">Entwurf & 3D | 2026</h2>
   </section>
 
 
-  <div class="page-wrapper2">
+  <div class="page-wrapper">
     <div class="image-row2">
-    <img src="../projects/products/Composition No. 1/Composition1.jpg" alt="Biagio Bild 1" loading="lazy">
-    <img src="../projects/products/Composition No. 1/Composition2.jpg" alt="Biagio Bild 2" loading="lazy">
-  </div>
+      <img src="../projects/products/Composition No. 1/Composition1.jpg" alt="Stillleben auf Silber-Travertin mit Gläsern und Speisen" loading="lazy">
+      <img src="../projects/products/Composition No. 1/Composition2.jpg" alt="Stillleben auf Mangoholz mit Zimtschnecke und frischen Blumen" loading="lazy">
+    </div>
 
 
  <section class="detail-text">
    <div class="text-columns3">
         <!-- Intro nimmt 2 Spalten -->
     <div class="text-block intro">
-       <p class="intro">Zwei Akte des Seins - Eine digitale Hommage an die haptischen Momente des Lebens.</p>
+       <p class="intro" data-translate="text_comp1_intro">Zwei Akte des Seins - Eine digitale Hommage an die haptischen Momente des Lebens.</p>
     </div>
 
        <!-- Normale Textblöcke -->
     <div class="text-block block1">
-      <p>Der Küchentisch ist weit mehr als eine bloße Oberfläche, er ist das pulsierende Zentrum der Begegnung, ein stiller Zeuge unserer täglichen Rituale. In dieser Serie wird der Tisch zur Bühne einer flüchtigen Momentaufnahme. Inspiriert von der Tradition klassischer Stillleben, fangen diese Kompositionen die Schönheit des Unaufgeregten ein und halten inne, bevor der Moment im Fluss des Alltags wieder vergeht.</p>
-    </div> 
-    <div class="text-block block2"> 
-      <p>No.1 - Hier trifft die zeitlose Beständigkeit von Silber-Travertin auf die Fragilität des Augenblicks. Das Spiel von Licht und Schatten auf und durch kristallklare Gläser und ihren Inhalt und die haptische Ehrlichkeit des Essens erzählen von einem Innehalten. <br>
-      No.2 - Die Wärme vertrauter Stunden und süßer Zusammenkunft. Die tiefe Maserung von Mangoholz, der goldene Schimmer einer Zimtschnecke und das zarte  
+      <p data-translate="text_comp1_block1">Der Küchentisch ist weit mehr als eine bloße Oberfläche, er ist das pulsierende Zentrum der Begegnung, ein stiller Zeuge unserer täglichen Rituale. In dieser Serie wird der Tisch zur Bühne einer flüchtigen Momentaufnahme. Inspiriert von der Tradition klassischer Stillleben, fangen diese Kompositionen die Schönheit des Unaufgeregten ein und halten inne, bevor der Moment im Fluss des Alltags wieder vergeht.</p>
+    </div>
+    <div class="text-block block2">
+      <p data-translate="text_comp1_block2">No.1 - Hier trifft die zeitlose Beständigkeit von Silber-Travertin auf die Fragilität des Augenblicks. Das Spiel von Licht und Schatten auf und durch kristallklare Gläser und ihren Inhalt und die haptische Ehrlichkeit des Essens erzählen von einem Innehalten. <br>
+      No.2 - Die Wärme vertrauter Stunden und süßer Zusammenkunft. Die tiefe Maserung von Mangoholz, der goldene Schimmer einer Zimtschnecke und das zarte
       </p>
     </div>
     <div class="text-block block3">
-      <p>Erblühen frischer Blumen rahmen das tägliche Ritual des Kaffeetrinkens ein.<br>
+      <p data-translate="text_comp1_block3">Erblühen frischer Blumen rahmen das tägliche Ritual des Kaffeetrinkens ein.<br>
         Ein weiches Schattenspiel hüllt die Szene in eine Nostalgie, die uns an die kostbaren Augenblicke erinnert.</p>
-      <br>
-      <p>Tools: 3Ds Max & Arnold</p>
+      <p class="tools">Tools: 3Ds Max & Arnold</p>
     </div>
   </div>
   </section>
 </div>
 
-  <a class="back-link" href="../index.html">←</a>
+
+  <a class="back-link" href="../index.html" aria-label="Zurück zur Übersicht">
+    <svg class="arrow-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="11" y1="11" x2="19" y2="19"></line>
+      <polyline points="11,19 19,19 19,11"></polyline>
+    </svg>
+  </a>
 
   <footer id="Contact">
     <div class="footer-links" role="navigation" aria-label="Footer navigation">
@@ -81,7 +158,7 @@
 
     <div class="footer-copy">© 2025 Michèle Killmaier</div>
   </footer>
-
+ </section>
   <script src="scriptprojektseite.js"></script>
 </body>
 </html>
