@@ -15,9 +15,9 @@
   }
 
   @media (max-width: 700px) {
-  /* Header mobil */
+  /* Header mobil – transparent (global), kein eigener Hintergrund */
   header {
-    background: #79a5c1;
+    background: transparent;
   }
 
   /* Burger-Icon */
@@ -52,7 +52,7 @@
 
   /* Back-Link-Pfeil erbt jetzt seine Farbe (currentColor) */
   .back-link {
-    color: #ffffff;
+    color: #37516a;
     z-index: 3000;               /* sicher über allem */
   }
   .back-link .arrow-svg {
@@ -90,10 +90,11 @@
     z-index: 1;
   }
 
+
   .lang-link {
     color: #f0f0f0;
   }
-  </style>
+    </style>
 
 </head>
 
@@ -107,7 +108,7 @@
         <li class="lang-switch-item">
           <div class="lang-switch">
             <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
-            <span class="lang-separator">|</span>
+            <span class="lang-separator"></span>
             <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
           </div>
         </li>

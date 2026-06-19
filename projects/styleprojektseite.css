@@ -61,9 +61,11 @@ nav a:hover {
 
 @media (max-width: 700px) {
 
-  /* Header mobil – transparent, damit der Hintergrund durchscheint */
+  /* Header mobil – transparent UND rollt komplett mit weg
+     (position: absolute statt fixed → Logo + Burger scrollen nach
+     oben aus dem Bild). */
   header {
-    position: fixed;            /* wiederherstellen, sonst verschiebt sich alles */
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
