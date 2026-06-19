@@ -61,7 +61,7 @@ nav a:hover {
 
 @media (max-width: 700px) {
 
-  /* Header mobil */
+  /* Header mobil – transparent, damit der Hintergrund durchscheint */
   header {
     position: fixed;            /* wiederherstellen, sonst verschiebt sich alles */
     top: 0;
@@ -71,21 +71,23 @@ nav a:hover {
     display: flex;
     justify-content: space-between; /* Logo links – Burger rechts */
     align-items: center;
-    background: #f8f8f8;
+    background: transparent;
     z-index: 2000;
   }
 
-  /* Burger-Icon */
+  /* Burger-Icon – Farbe wird per .header-on-dark gesteuert (s.u.) */
   .menu-toggle {
     display: block !important;
     cursor: pointer;
     font-size: 32px;
-    color: #000 !important;     /* schwarze Linien */
+    color: #000;
     background: none;
     border: none;
     margin-left: auto;          /* Schiebt Burger hart nach rechts */
     z-index: 3000;              /* über Logo */
   }
+
+  /* Geöffnetes Menü bekommt eigenen Hintergrund (s. nav.open) */
 
   /* Navigation mobil */
   nav {
@@ -1033,4 +1035,105 @@ a, button, [role="button"], .project, .project-info, .work-categories a, .submen
 }
 .slider.slider--1-1 {
   aspect-ratio: 1 / 1;
+}
+
+
+/* =================================================================
+   HEADER TRANSPARENT · LOGO & BURGER RESPONSIV (hell/dunkel)
+   Der Header ist transparent. Per JS wird body.header-on-dark
+   gesetzt, sobald der Header über einer dunklen Zone liegt.
+   Default (heller Grund): Logo & Burger & Nav dunkel.
+   Dunkler Grund: Logo & Burger & Nav hell.
+   ================================================================= */
+
+/* sanfter Übergang */
+.logo,
+.menu-toggle,
+nav a,
+.lang-link,
+.lang-separator {
+  transition: color 0.3s ease, filter 0.3s ease;
+}
+
+/* Default: dunkles Logo (Original), dunkler Burger */
+.menu-toggle {
+  color: #111;
+}
+
+/* Über dunklem Hintergrund: Logo aufhellen, Burger & Nav weiß */
+body.header-on-dark .logo {
+  filter: brightness(0) invert(1);
+}
+body.header-on-dark .menu-toggle {
+  color: #fff;
+}
+body.header-on-dark nav a,
+body.header-on-dark .lang-link,
+body.header-on-dark .lang-separator {
+  color: #fff;
+}
+
+/* Mobiles Klappmenü: eigener Hintergrund, damit die Links lesbar
+   bleiben (unabhängig vom transparenten Header). */
+@media (max-width: 700px) {
+  nav.open {
+    background: #f8f8f8;
+  }
+  /* Im offenen Menü auf hellem Grund immer dunkle Links – auch wenn
+     der Header gerade als "on-dark" markiert ist. */
+  body.header-on-dark nav.open a,
+  body.header-on-dark nav.open .lang-link,
+  body.header-on-dark nav.open .lang-separator {
+    color: #111;
+  }
+}
+
+
+/* =================================================================
+   SPRACHUMSCHALTER · ohne Strich, aktive Sprache FETT
+   Der Trenn-Strich entfällt. Aktive Sprache = fett, inaktive = dünn.
+   Beim Wechsel tauschen die Gewichte automatisch (über .active).
+   ================================================================= */
+
+/* Trenner ausblenden */
+.lang-separator {
+  display: none;
+}
+
+/* etwas Luft zwischen den beiden Sprachen statt Strich */
+.lang-switch {
+  gap: 10px;
+}
+
+/* Basis: beide Sprachen dünn, volle Deckkraft (kein Ausgrauen mehr) */
+.lang-link {
+  font-weight: 300;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* Aktive Sprache: fett */
+.lang-link.active {
+  font-weight: 700;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* =================================================================
+   SLIDER DOTS · größere Tap-Fläche auf Touch
+   Die Punkte selbst bleiben klein, bekommen aber per padding eine
+   größere unsichtbare Tap-Zone, damit sie am Handy gut treffbar sind.
+   ================================================================= */
+@media (max-width: 700px) {
+  .slider__dots {
+    bottom: 16px;
+    gap: 6px;
+  }
+  .slider__dot {
+    width: 10px;
+    height: 10px;
+    /* unsichtbare Vergrößerung der Trefferzone */
+    box-shadow: 0 0 0 8px transparent;
+    background-clip: padding-box;
+  }
 }

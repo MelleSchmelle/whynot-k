@@ -1069,3 +1069,80 @@ body.aboutseite .logo-fixed {
 body.aboutseite .logo-fixed.logo-on-dark {
   filter: invert(1) brightness(1.8);
 }
+
+/* =================================================================
+   ABOUT · ERGÄNZUNGEN (ans ENDE von styleaboutseite.css einfügen)
+   1) Karten-Scroll-Reveal auf Mobile
+   2) Sprachumschalter ohne Strich, aktive Sprache fett
+   ================================================================= */
+
+
+/* -----------------------------------------------------------------
+   1) KARTEN · SCROLL-REVEAL (nur Touch / schmale Ansicht ≤760px)
+   Auf Mobile gibt es kein Hover. Stattdessen klappen die Bullets
+   sanft auf, sobald die Karte beim Scrollen in den Sichtbereich
+   kommt. Die Klasse .in-view wird per JS gesetzt (siehe
+   about-ergaenzungen.js / IntersectionObserver).
+   Desktop (>760px) bleibt unverändert beim Hover-Verhalten.
+   ----------------------------------------------------------------- */
+@media (max-width: 760px) {
+
+  /* Ausgangszustand: Karte etwas gedämpft, Bullets eingeklappt.
+     (überschreibt das bisherige "Bullets dauerhaft sichtbar") */
+  body.aboutseite .card-bullets {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+  }
+
+  /* Karte leicht angehoben & abgedunkelt, bis sie "dran" ist */
+  body.aboutseite .card {
+    opacity: 0.82;
+    transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.5s ease;
+  }
+
+  /* Sichtbar-Zustand: Karte voll da, Bullets aufgeklappt */
+  body.aboutseite .card.in-view {
+    opacity: 1;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+  body.aboutseite .card.in-view .card-bullets {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Titel der aktiven Karte einen Tick hervorheben */
+  body.aboutseite .card.in-view .card-title {
+    transform: scaleY(1.2);
+  }
+}
+
+
+/* -----------------------------------------------------------------
+   2) SPRACHUMSCHALTER · ohne Strich, aktive Sprache FETT
+   Identisch zur Projektseite, damit beide Bereiche gleich aussehen.
+   ----------------------------------------------------------------- */
+
+/* Trenner ausblenden */
+body.aboutseite .lang-separator {
+  display: none;
+}
+
+/* etwas Luft statt Strich */
+body.aboutseite .lang-switch {
+  gap: 10px;
+}
+
+/* Basis: beide dünn, volle Deckkraft (kein Ausgrauen) */
+body.aboutseite .lang-link {
+  font-weight: 300;
+  opacity: 1;
+  text-shadow: none;
+}
+
+/* Aktive Sprache: fett */
+body.aboutseite .lang-link.active {
+  font-weight: 700;
+  opacity: 1;
+  text-shadow: none;
+}

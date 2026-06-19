@@ -241,6 +241,33 @@ document.addEventListener("DOMContentLoaded", () => {
     slider.addEventListener('focusin', stopAutoplay);
     slider.addEventListener('focusout', startAutoplay);
 
+    // Touch-Swipe (Mobile): horizontal wischen blättert die Bilder.
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touching = false;
+
+    slider.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touching = true;
+      stopAutoplay();
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+      if (!touching) return;
+      touching = false;
+      const touch = e.changedTouches[0];
+      const dx = touch.clientX - touchStartX;
+      const dy = touch.clientY - touchStartY;
+      // Nur als Swipe werten, wenn überwiegend horizontal und deutlich
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) next();
+        else prev();
+      }
+      startAutoplay();
+    }, { passive: true });
+
     render();
     startAutoplay();
   }
@@ -331,4 +358,74 @@ document.addEventListener('DOMContentLoaded', () => {
     try { saved = localStorage.getItem('lang') || 'de'; } catch (e) { /* ignore */ }
     changeLanguage(saved);
   }
+});
+
+
+/* =================================================================
+   HEADER LOGO/BURGER · hell auf dunkel, dunkel auf hell
+   Generisch für ALLE Projektseiten. Misst beim Scrollen, welche
+   Hintergrundfarbe direkt unter dem Header-Mittelpunkt liegt, und
+   schaltet body.header-on-dark, wenn dieser Bereich dunkel ist.
+   Funktioniert unabhängig davon, ob die Seite dunkle Sections hat:
+   helle Seiten bleiben einfach immer "hell".
+   ================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  const header = document.querySelector("header");
+  if (!header) return;
+
+  // Opt-out: Seiten mit eigenem, fein abgestimmtem Logo-Script
+  // (z. B. Pearl, Metamorphose) setzen data-own-logo-switch am <body>
+  // und werden hier übersprungen, damit sich die Scripts nicht
+  // gegenseitig überschreiben.
+  if (document.body.hasAttribute("data-own-logo-switch")) return;
+  // sowie das About-Band (falls vorhanden). Die Erkennung läuft über
+  // die tatsächlich berechnete Hintergrundfarbe – robust gegen
+  // unterschiedliche Verläufe.
+  const darkSelectors = [
+    ".section-dark",
+    ".section-light-bottom",
+    ".dyllic-not-great"
+  ];
+  const darkZones = Array.from(
+    document.querySelectorAll(darkSelectors.join(","))
+  );
+
+  // Hilfsfunktion: ist eine Farbe "dunkel"? (Luminanz < Schwelle)
+  function isDarkColor(rgbString) {
+    const m = rgbString.match(/\d+(\.\d+)?/g);
+    if (!m || m.length < 3) return false;
+    const [r, g, b, a] = m.map(Number);
+    if (a !== undefined && a === 0) return false; // transparent => nicht dunkel
+    // relative Luminanz (sRGB)
+    const lum = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+    return lum < 0.5;
+  }
+
+  function updateHeader() {
+    const headerBottom = header.getBoundingClientRect().bottom;
+    const probeY = headerBottom - 4; // knapp unter der Header-Unterkante
+    let onDark = false;
+
+    for (const zone of darkZones) {
+      const r = zone.getBoundingClientRect();
+      if (probeY >= r.top && probeY <= r.bottom) {
+        // Bei Verläufen ist die berechnete Farbe der Startwert; deshalb
+        // zusätzlich: liegt der Messpunkt im unteren Drittel der Zone,
+        // gilt sie als dunkel (Verlauf wird nach unten dunkler).
+        const bg = getComputedStyle(zone).backgroundColor;
+        const hasGradient = getComputedStyle(zone).backgroundImage !== "none";
+        const inLowerPart = probeY >= r.top + r.height * 0.5;
+        if (isDarkColor(bg) || (hasGradient && inLowerPart)) {
+          onDark = true;
+          break;
+        }
+      }
+    }
+
+    document.body.classList.toggle("header-on-dark", onDark);
+  }
+
+  window.addEventListener("scroll", updateHeader, { passive: true });
+  window.addEventListener("resize", updateHeader);
+  updateHeader(); // initial
 });

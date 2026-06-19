@@ -22,48 +22,57 @@ function updateSlider() {
   slides.style.transform = `translateX(${-index * 100}%)`;
 }
 
+/* =================================================================
+   
+   - Das Masonry-Layout wird SOFORT gebaut (die width/height-Angaben
+     der Bilder liefern die Proportionen), nicht erst wenn ALLE Bilder
+     geladen sind. Dadurch erscheint die Seite sofort sortiert.
+   - Jedes nachladende (lazy) Bild/Video löst ein gezieltes Re-Layout
+     aus – die Kacheln rücken sauber nach, sobald ihr Bild da ist.
+   - Resize wird "entprellt" (debounced), damit es flüssig bleibt.
+   ================================================================= */
+
 //filter Projekte hauptseite//
 document.addEventListener("DOMContentLoaded", () => {
   const filterLinks = document.querySelectorAll(".work-categories a, .submenu a");
   const projects = [...document.querySelectorAll(".project")];
   const container = document.querySelector(".project-list");
+  if (!container) return;
 
   function getColumnCount() {
-  const w = window.innerWidth;
-  if (w < 700) return 1;       // Smartphone
-  if (w < 1000) return 2;      // Tablet
-  return 3;                    // Desktop
+    const w = window.innerWidth;
+    if (w < 700) return 1;       // Smartphone
+    if (w < 1000) return 2;      // Tablet
+    return 3;                    // Desktop
   }
 
- function layoutMasonry() {
-  const visibleProjects = projects.filter(p => p.style.display !== "none");
-  const style = getComputedStyle(container);
-  const paddingLeft = parseFloat(style.paddingLeft);
-  const paddingRight = parseFloat(style.paddingRight);
+  function layoutMasonry() {
+    const visibleProjects = projects.filter(p => p.style.display !== "none");
+    const style = getComputedStyle(container);
+    const paddingLeft = parseFloat(style.paddingLeft);
+    const paddingRight = parseFloat(style.paddingRight);
 
-  const containerWidth = container.clientWidth - paddingLeft - paddingRight;
+    const containerWidth = container.clientWidth - paddingLeft - paddingRight;
 
+    const columnCount = getColumnCount();
+    const gap = 20;
 
-  const columnCount = getColumnCount();
-  const gap = 20;
+    const colWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
+    const colHeights = Array(columnCount).fill(0);
 
-  const colWidth = (containerWidth - (columnCount - 1) * gap) / columnCount;
-  const colHeights = Array(columnCount).fill(0);
+    visibleProjects.forEach((p, i) => {
+      const col = i % columnCount;       // feste Reihenfolge statt "kürzeste Spalte"
+      const x = paddingLeft + col * (colWidth + gap);
+      const y = colHeights[col];
 
-  visibleProjects.forEach((p, i) => {
-    const col = i % columnCount;       // feste Reihenfolge statt "kürzeste Spalte"
-    const x = paddingLeft + col * (colWidth + gap);
-    const y = colHeights[col];
+      p.style.width = colWidth + "px";
+      p.style.transform = `translate(${x}px, ${y}px)`;
 
-    p.style.width = colWidth + "px";
-    p.style.transform = `translate(${x}px, ${y}px)`;
+      colHeights[col] += p.offsetHeight + gap;
+    });
 
-    colHeights[col] += p.offsetHeight + gap;
-  });
-
-  container.style.height = Math.max(...colHeights) + "px";
-}
-
+    container.style.height = Math.max(...colHeights, 0) + "px";
+  }
 
   // Filter
   filterLinks.forEach(link => {
@@ -83,33 +92,39 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  window.addEventListener("resize", layoutMasonry);
+  // Resize entprellen (debounce) → flüssiger
+  let resizeTimer = null;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(layoutMasonry, 120);
+  });
 
-  // 🔑 Layout erst nach dem Laden aller Bilder/Videos
+  // 1) SOFORT layouten – dank width/height an den <img> stimmen die
+  //    Proportionen schon, bevor die Bilddaten geladen sind. Die Seite
+  //    erscheint also unmittelbar fertig sortiert (kein Warten).
+  layoutMasonry();
+
+  // 2) Jedes Medium, das später fertig lädt (lazy), stößt ein gezieltes
+  //    Re-Layout an, damit die Kacheln exakt nachrücken.
   const media = document.querySelectorAll(".project img, .project video");
-  let loaded = 0;
-
   media.forEach(el => {
-    if (el.complete || el.readyState >= 3) {
-      loaded++;
-      if (loaded === media.length) layoutMasonry();
-    } else {
-      el.addEventListener("load", () => {
-        loaded++;
-        if (loaded === media.length) layoutMasonry();
-      });
-      el.addEventListener("loadeddata", () => {
-        loaded++;
-        if (loaded === media.length) layoutMasonry();
-      });
+    const done = () => layoutMasonry();
+    if (el.tagName === "IMG") {
+      if (!el.complete) {
+        el.addEventListener("load", done, { once: true });
+        el.addEventListener("error", done, { once: true });
+      }
+    } else { // VIDEO
+      if (el.readyState < 1) {
+        el.addEventListener("loadedmetadata", done, { once: true });
+        el.addEventListener("error", done, { once: true });
+      }
     }
   });
 
-  // Falls keine Medien vorhanden → sofort
-  if (media.length === 0) layoutMasonry();
+  // 3) Sicherheitsnetz: nach vollständigem Laden der Seite nochmal.
+  window.addEventListener("load", layoutMasonry);
 });
-
-
 
 
 
@@ -464,3 +479,73 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("resize", updateLogo);
   updateLogo(); // initial
 });
+
+
+
+/* =================================================================
+   ABOUT · KARTEN SCROLL-REVEAL (Mobile)
+   Setzt die Klasse .in-view auf jede Karte, sobald sie beim Scrollen
+   in den Sichtbereich kommt. Greift nur auf schmalen Ansichten
+   (≤760px), wo es kein Hover gibt. Auf Desktop bleibt das
+   Hover-Verhalten unangetastet.
+
+   Einbinden: ans Ende von script.js kopieren ODER als eigene Datei
+   <script src="about-ergaenzungen.js"></script> NACH script.js laden.
+   ================================================================= */
+document.addEventListener("DOMContentLoaded", () => {
+  if (!document.body.classList.contains("aboutseite")) return;
+
+  const cards = Array.from(document.querySelectorAll(".card"));
+  if (!cards.length) return;
+
+  // Nur auf schmalen Ansichten aktiv (dort kein Hover verfügbar).
+  const mq = window.matchMedia("(max-width: 760px)");
+
+  let observer = null;
+
+  function enableReveal() {
+    if (observer) return;
+    if (!("IntersectionObserver" in window)) {
+      // Fallback: einfach alle sichtbar schalten
+      cards.forEach((c) => c.classList.add("in-view"));
+      return;
+    }
+    observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // Beim Eintreten aufklappen; beim Verlassen wieder schließen,
+          // damit der Effekt beim Hoch-/Runterscrollen wiederholbar ist.
+          entry.target.classList.toggle("in-view", entry.isIntersecting);
+        });
+      },
+      {
+        // Karte gilt als "dran", wenn sie etwa mittig im Viewport steht
+        threshold: 0.35,
+        rootMargin: "0px 0px -10% 0px",
+      }
+    );
+    cards.forEach((c) => observer.observe(c));
+  }
+
+  function disableReveal() {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+    // Auf Desktop keine erzwungene Klasse – Hover übernimmt
+    cards.forEach((c) => c.classList.remove("in-view"));
+  }
+
+  function apply(e) {
+    if (e.matches) enableReveal();
+    else disableReveal();
+  }
+
+  // initial + bei Breitenwechsel
+  apply(mq);
+  // addEventListener('change') ist moderner Standard; Fallback addListener
+  if (mq.addEventListener) mq.addEventListener("change", apply);
+  else if (mq.addListener) mq.addListener(apply);
+});
+
+
