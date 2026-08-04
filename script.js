@@ -80,13 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const filter = link.dataset.filter;
 
-      projects.forEach(p => {
-        if (!filter || filter === "all" || p.dataset.category === filter) {
-          p.style.display = "block";
-        } else {
-          p.style.display = "none";
-        }
-      });
+   projects.forEach(p => {
+  const categories = p.dataset.category.split(" ");
+  if (!filter || filter === "all" || categories.includes(filter)) {
+    p.style.display = "block";
+  } else {
+    p.style.display = "none";
+  }
+});
 
       layoutMasonry();
     });
