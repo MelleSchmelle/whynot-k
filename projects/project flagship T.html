@@ -1,188 +1,307 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-reveal="peek">
 <head>
   <meta charset="UTF-8">
-  <title>Flagship Store – Interior | why not? Portfolio</title>
-  <link rel="stylesheet" href="styleprojektseite.css">
-  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Flagship Store – Entwurf bis Fertigstellung | why not? Portfolio</title>
+  <meta name="description" content="Flagship Store in Hamburg – fluide Formen zitieren das Wasser der Hafenstadt. Entwurf bis Fertigstellung, Büro Lepel &amp; Lepel.">
 
-   <style>
-    /* Slider und Text fluchten: der page-wrapper2 stellt die 20px
-       seitlich. Deshalb hier das doppelte Padding von text-columns3
-       und image-row neutralisieren (nur auf dieser Seite). */
-    .page-wrapper2 .text-columns3 { padding-left: 0; padding-right: 0; }
-    .page-wrapper2 .image-row { padding-left: 0; padding-right: 0; }
+  <!-- Open Graph für Link-Vorschauen -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Flagship Store – Entwurf bis Fertigstellung | why not? Portfolio">
+  <meta property="og:description" content="Waterkant – fluide Formen zitieren das umgebende Wasser der Hafenstadt.">
+  <meta property="og:image" content="../projects/interior/tfh/TFH6.jpg">
+
+  <link rel="stylesheet" href="projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <script src="vt-start.js?v=4"></script>
+
+  <!-- Passwortschutz: Seite erst nach Eingabe sichtbar (pro Browser-Sitzung einmal).
+       Hinweis: Schutz nur im Browser – kein echter Zugriffsschutz für die Dateien.
+       Passwort ändern: SHA-256-Wert des neuen Passworts bei PW_HASH eintragen. -->
+  <script>
+    var PW_HASH = "2d5020b9f4cd2acc706cd0cf754aa11d49edf7c47b96fb5ef2aee9e842fbc2bd", PW_KEY = "wn-pw-tfh";
+    try { if (sessionStorage.getItem(PW_KEY) !== PW_HASH) document.documentElement.classList.add("pw-lock"); }
+    catch (e) { document.documentElement.classList.add("pw-lock"); }
+  </script>
+  <style>
+    .pw { display: none; }
+    html.pw-lock, html.pw-lock body { overflow: hidden; }
+    html.pw-lock .pw { display: grid; place-items: center; position: fixed; inset: 0; z-index: 3000; padding: 16px; }
+    .pw-backdrop { position: absolute; inset: 0; background: rgba(27, 27, 25, .35); -webkit-backdrop-filter: blur(36px) saturate(1.1); backdrop-filter: blur(36px) saturate(1.1); }
+    .pw-card {
+      position: relative; width: min(440px, 100%);
+      padding: clamp(26px, 4vw, 40px);
+      border-radius: clamp(14px, 1.7vw, 22px);
+      background: rgba(248, 244, 244, .76);
+      -webkit-backdrop-filter: blur(30px) saturate(1.3); backdrop-filter: blur(30px) saturate(1.3);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .6) inset, 0 40px 80px -30px rgba(20, 10, 14, .55);
+      color: #1b1b19; font-family: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif; font-size: 15px; line-height: 1.5;
+      animation: pwIn .7s cubic-bezier(.16, 1, .3, 1) both;
+    }
+    @keyframes pwIn { from { opacity: 0; transform: translateY(18px); } }
+    .pw-title { margin: 0 0 10px; font-family: "Bodoni Moda", "Bodoni 72", Didot, serif; font-weight: 400; font-variation-settings: "opsz" 18; font-size: clamp(30px, 3.4vw, 42px); line-height: .95; letter-spacing: -.01em; text-transform: uppercase; }
+    .pw-text { margin: 0 0 22px; font-size: .88rem; color: #4a4744; }
+    .pw-form { display: flex; flex-direction: column; gap: 12px; margin: 0; }
+    .pw-input {
+      display: block; width: 100%; height: 48px; margin: 0; padding: 0 20px; box-sizing: border-box;
+      border: 1px solid rgba(255, 255, 255, .85); border-radius: 999px; background: rgba(255, 255, 255, .55);
+      box-shadow: 0 8px 20px -14px rgba(30, 10, 14, .35), inset 0 1px 0 rgba(255, 255, 255, .8);
+      font: 500 .95rem/1.3 "Inter", system-ui, sans-serif; color: #1b1b19; outline: none;
+      transition: background-color .25s, box-shadow .25s;
+    }
+    .pw-input:focus { background: rgba(255, 255, 255, .9); box-shadow: 0 0 0 3px rgba(115, 30, 59, .18), 0 8px 20px -14px rgba(30, 10, 14, .35); }
+    .pw-input::placeholder { color: rgba(27, 27, 25, .5); }
+    .pw-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+    .pw-btn { appearance: none; height: 46px; padding: 0 24px; border: 0; border-radius: 999px; background: #1b1b19; color: #fff; font: 500 .9rem/1 "Inter", system-ui, sans-serif; letter-spacing: .3px; transition: background-color .25s; }
+    .pw-btn:hover { background: #731e3b; }
+    .pw-back { font-size: .85rem; color: #1b1b19; text-decoration: none; border-bottom: 1px solid rgba(27, 27, 25, .3); }
+    .pw-back:hover { border-bottom-color: #1b1b19; }
+    .pw-err { min-height: 1.4em; margin: 0; font-size: .82rem; color: #a3133f; }
+    .pw-card.is-wrong { animation: pwShake .4s cubic-bezier(.36, .07, .19, .97); }
+    @keyframes pwShake { 20%, 60% { transform: translateX(-8px); } 40%, 80% { transform: translateX(8px); } }
+    .pw-card.is-out { opacity: 0; transform: scale(.97); transition: opacity .35s, transform .35s; }
+    html.pw-open .pw-backdrop { opacity: 0; transition: opacity .5s; }
+    @media (prefers-reduced-motion: reduce) { .pw-card, .pw-card.is-wrong { animation: none; } }
   </style>
 </head>
 
+<!-- Projektfarben: Hintergrund (--pj-bg), Titel (--pj-accent), Text (--pj-ink) -->
+<body>
 
-<body class="projektseite">
-<script>
-  const correctPassword = "TFH26";
+  <!-- Passwortabfrage -->
+  <div class="pw" role="dialog" aria-modal="true" aria-labelledby="pw-title">
+    <div class="pw-backdrop"></div>
+    <div class="pw-card">
+      <h2 class="pw-title" id="pw-title" data-translate="pw_title">Geschützter Bereich</h2>
+      <p class="pw-text" data-translate="pw_text">Dieses Projekt ist passwortgeschützt. Bitte gib das Passwort ein, das du erhalten hast.</p>
+      <form class="pw-form" novalidate>
+        <input class="pw-input" id="pw-input" type="password" aria-label="Passwort" autocomplete="current-password" placeholder="Passwort eingeben" required>
+        <p class="pw-err" role="alert" aria-live="assertive"></p>
+        <div class="pw-row">
+          <button class="pw-btn" type="submit" data-translate="pw_open">Projekt öffnen</button>
+          <a class="pw-back" href="../index.html" data-translate="pw_back">Zurück zur Startseite</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <script>
+  (function () {
+    var root = document.documentElement;
+    if (!root.classList.contains('pw-lock')) return;
+    var box = document.querySelector('.pw'), card = box.querySelector('.pw-card'), form = box.querySelector('form'),
+        input = box.querySelector('#pw-input'), err = box.querySelector('.pw-err');
+    var main = document.querySelector('main'), hdr = document.querySelector('.hdr');
+    [main, hdr, document.querySelector('.foot')].forEach(function (n) { if (n) n.inert = true; });
+    setTimeout(function () { input.focus(); }, 120);
+    function hash(s) {
+      if (!window.crypto || !crypto.subtle) return Promise.reject();
+      return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(function (b) {
+        return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      });
+    }
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      hash(input.value.trim()).then(function (h) {
+        if (h !== PW_HASH) throw 0;
+        try { sessionStorage.setItem(PW_KEY, PW_HASH); } catch (x) {}
+        [main, hdr, document.querySelector('.foot')].forEach(function (n) { if (n) n.inert = false; });
+        card.classList.add('is-out'); root.classList.add('pw-open');
+        setTimeout(function () { root.classList.remove('pw-lock', 'pw-open'); box.remove();
+          window.dispatchEvent(new Event('resize'));   // Galerie & Reveals neu vermessen
+        }, 500);
+      }).catch(function () {
+        err.textContent = 'Das Passwort stimmt nicht. Bitte versuche es noch einmal.';
+        card.classList.remove('is-wrong'); void card.offsetWidth; card.classList.add('is-wrong');
+        input.select();
+      });
+    });
+  })();
+  </script>
 
-  const enteredPassword = prompt("Bitte Passwort eingeben:");
-
-  if (enteredPassword !== correctPassword) {
-    alert("Falsches Passwort");
-    window.location.href = "../index.html";
-  }
-</script>
-
-  <header>
-    <img src="../assets/icons/WhyNot.svg" alt="why not? – zur Startseite" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
-
-    <nav id="main-nav">
-      <ul>
-        <li class="lang-switch-item">
-          <div class="lang-switch">
-            <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
-            <span class="lang-separator"></span>
-            <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
-          </div>
-        </li>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html" class="is-current">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-  <section id="work">
-    <h1>FLAGSHIP STORE</h1>
-    <h2 data-translate="text_tfh">Entwurf bis Fertigstellung | 2023</h2>
-  </section>
+  <main>
+    <!-- Hinweis: Galeriebilder ohne Maßangaben werden sofort geladen, damit die Scrollstrecke stimmt.
+         Mit width/height am <img> könnten sie wieder „lazy“ laden. -->
+    <!-- Erster Bildschirm: Titel + Galerie (bleibt beim Scrollen stehen) -->
+    <section class="pj-stage" aria-labelledby="pj-title">
+      <div class="pj-sticky">
+        <div class="pj-head">
+          <h1 class="pj-title is-long" id="pj-title">Flagship Store</h1>
+          <dl class="pj-meta">
+            <div><dt>Jahr</dt><dd>2022</dd></div>
+            <div><dt>Kategorie</dt><dd>Interior</dd></div>
+            <div><dt>Leistung</dt><dd>Entwurf bis Fertigstellung</dd></div>
+            <div><dt>Büro</dt><dd>Lepel &amp; Lepel</dd></div>
+            <div><dt>Fotos</dt><dd>HGEsch</dd></div>
+          </dl>
+        </div>
 
+        <!-- Galerie: Reihenfolge frei wählbar. Das erste Bild ist das Ziel
+             des Übergangs – am besten dasselbe Bild wie die Kachel. -->
+        <div class="pj-gal" aria-label="Projektbilder">
+          <div class="pj-track">
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH6.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH6.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH6.jpg"
+                     alt="Containerblech und regionale Grafiken im Store" width="2500" height="1667" decoding="async" fetchpriority="high">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH1.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH1.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH1.jpg"
+                     alt="Flagship Store – Innenraum mit wellenförmiger Deckeninstallation" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH2.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH2.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH2.jpg"
+                     alt="Spiegelflächen imitieren die Wasseroptik der Hafenstadt" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH3.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH3.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH3.jpg"
+                     alt="Magenta-Treppe mit transluzenten Seitenführungen" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH4.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH4.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH4.jpg"
+                     alt="Welcome-Counter mit lebendigen Lichtspielen" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH5.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH5.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH5.jpg"
+                     alt="Deckenbegrünung im zentralen Welcome-Bereich" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH7.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH7.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH7.jpg"
+                     alt="Von Hamburg inspirierte Kaffeebar im Store" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH8.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH8.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH8.jpg"
+                     alt="Geschossübergreifende Schaufensterflächen des Eckgebäudes" decoding="async" loading="eager">
+              </picture>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/tfh/TFH9.avif" type="image/avif">
+                <source srcset="../projects/interior/tfh/TFH9.webp" type="image/webp">
+                <img src="../projects/interior/tfh/TFH9.jpg"
+                     alt="Multifunktionaler Meeting- und Eventbereich im Obergeschoss" decoding="async" loading="eager">
+              </picture>
+            </figure>
+          </div>
+        </div>
 
-  <div class="page-wrapper2" style="margin-top: 40px;">
-  <div class="slider slider--3-2 slider--fade" data-autoplay="5000">
-    <div class="slides">
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH1.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH1.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH1.jpg" alt="Flagship Store – Innenraum mit wellenförmiger Deckeninstallation" decoding="async" fetchpriority="high">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH2.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH2.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH2.jpg" alt="Spiegelflächen imitieren die Wasseroptik der Hafenstadt" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH3.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH3.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH3.jpg" alt="Magenta-Treppe mit transluzenten Seitenführungen" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH4.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH4.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH4.jpg" alt="Welcome-Counter mit lebendigen Lichtspielen" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH5.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH5.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH5.jpg" alt="Deckenbegrünung im zentralen Welcome-Bereich" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH6.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH6.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH6.jpg" alt="Containerblech und regionale Grafiken im Store" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH7.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH7.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH7.jpg" alt="Von Hamburg inspirierte Kaffeebar im Store" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH8.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH8.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH8.jpg" alt="Geschossübergreifende Schaufensterflächen des Eckgebäudes" loading="lazy" decoding="async">
-         </picture>
-       </div>
-       <div class="slide">
-         <picture>
-           <source srcset="../projects/interior/tfh/TFH9.avif" type="image/avif">
-           <source srcset="../projects/interior/tfh/TFH9.webp" type="image/webp">
-           <img src="../projects/interior/tfh/TFH9.jpg" alt="Multifunktionaler Meeting- und Eventbereich im Obergeschoss" loading="lazy" decoding="async">
-         </picture>
-       </div>
-    </div>
-    <button class="prev" aria-label="Vorheriges Bild">&#10094;</button>
-    <button class="next" aria-label="Nächstes Bild">&#10095;</button>
-  </div>
+        <div class="pj-ui" aria-hidden="true">
+          <span class="pj-count"><b>01</b> / <span class="pj-total">09</span></span>
+          <span class="pj-bar"><i></i></span>
+        </div>
+      </div>
+    </section>
 
- <section class="detail-text" >
-   <div class="text-columns3">
-        <!-- Intro nimmt 2 Spalten -->
-    <div class="text-block intro">
-       <p class="intro" data-translate="text_tfh_intro">Waterkant - Fluide Formen zitieren das umgebende Wasser der Hafenstadt und treffen im neuen Store auf die klaren Kanten der Bestandsarchitektur.</p>
-    </div>
+    <!-- Grundrisse -->
+    <section class="st-seq" aria-label="Grundrisse">
+      <div class="st-row">
+        <figure class="st-fig is-plan">
+          <img src="../projects/interior/tfh/TFH10.png" alt="Grundriss Erdgeschoss" decoding="async" loading="lazy">
+        </figure>
+        <figure class="st-fig is-plan">
+          <img src="../projects/interior/tfh/TFH11.png" alt="Grundriss Obergeschoss" decoding="async" loading="lazy">
+        </figure>
+      </div>
+    </section>
 
-       <!-- Normale Textblöcke -->
-    <div class="text-block block1" >
-      <p data-translate="text_tfh_block1">Die wellenförmige Deckeninstallation zieht fast schwebend ihre Bahnen durch den Raum und unterstützt die Zonierung und den Bewegungsfluss sowie sie auch ein natürliches Gegengewicht zur abgetreppten Raumform schafft.<br>
+    <!-- Projekttext -->
+    <section class="pj-text">
+      <p class="pj-intro rv-lines" data-translate="text_tfh_intro">Waterkant - Fluide Formen zitieren das umgebende Wasser der Hafenstadt und treffen im neuen Store auf die klaren Kanten der Bestandsarchitektur.</p>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_tfh_block1">Die wellenförmige Deckeninstallation zieht fast schwebend ihre Bahnen durch den Raum und unterstützt die Zonierung und den Bewegungsfluss sowie sie auch ein natürliches Gegengewicht zur abgetreppten Raumform schafft.<br>
       Spiegelflächen als Highlight imitieren die Wasseroptik und reflektieren Licht und Umfeld. Regional gestaltete Grafiken und spezielle Materialien wie Containerblech holen das Stadtbild unverwechselbar ins Innere und lassen Marke und Standort ineinanderfließen. Über die großzügigen geschossübergreifenden Schaufensterflächen des Eckgebäudes
       wird die Innenarchitektur auch nach außen hin sichtbar und erlebbar und macht den Store zum Flagship Store.<br>
       Die „klare Hülle“ als Konstante des Telekom Retail Designs rahmt den gesamten Innenraum mit schwarzen Decken und Wänden und bringt die Magenta Markenwelt zum Leuchten.
       </p>
-    </div>
-    <div class="text-block block2">
-      <p data-translate="text_tfh_block2">Spektakulär: Die neu geplante Treppe, die ganz in Magenta strahlt und durch transluzente Seitenführungen die Marke nach innen und außen transportiert. Als zentrales Element gibt sie dem Welcome-Counter eine dramatische Kulisse, die das Thema des Wassers über lebendige Lichtspiele subtil inszeniert.<br>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_tfh_block2">Spektakulär: Die neu geplante Treppe, die ganz in Magenta strahlt und durch transluzente Seitenführungen die Marke nach innen und außen transportiert. Als zentrales Element gibt sie dem Welcome-Counter eine dramatische Kulisse, die das Thema des Wassers über lebendige Lichtspiele subtil inszeniert.<br>
       Green Magenta - In Hamburger Flagship Store wird auch das Thema Nachhaltigkeit zu einem Teil der Erlebniswelt. Das Shop-Konzert setzt bewusst auf Nachhaltigkeit und Umweltbewusstsein, etwa durch den Einsatz von recycelten und Cradle to Cradle zertifizierten Materialien. Eine Deckenbegrünung highlightet bewusst den zentralen Welcome-Bereich im Erdgeschoss und unterstützt Atmosphäre und Raumklima. Die Hängepflanzen sind schon von außen sichtbar und verbinden im Innenraum optisch die Geschosse.</p>
-    </div>
-    <div class="text-block block3">
-      <p data-translate="text_tfh_block3">Lebendige Erlebniswelt - Die lebendige Innenarchitektur und visionäre Ideen für eine unverwechselbare Inszenierung von Marke, Produkten, Service und Beratung setzen an der „Waterkant“ ein klares Statement. Und zeigen, was zukunftsfähiges Retail Design kann – und können muss. Aber auch die Möglichkeit Im Obergeschoss Workshops und Events stattfinden zu lassen macht den Shop beliebt. Eine von Hamburg inspirierte Kaffeebar lädt zum verweilen ein. Seien es die Mövenleuchten, die Containerwand oder die Tapete mit Lokalen Motiven, im Store wird das Thema Hamburg wiederholt subtil aufgegriffen. Zusätzlich lässt sich der Meetingraum zum Eventbereich öffnen und multifunktional nutzen.<br><br>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_tfh_block3">Lebendige Erlebniswelt - Die lebendige Innenarchitektur und visionäre Ideen für eine unverwechselbare Inszenierung von Marke, Produkten, Service und Beratung setzen an der „Waterkant“ ein klares Statement. Und zeigen, was zukunftsfähiges Retail Design kann – und können muss. Aber auch die Möglichkeit Im Obergeschoss Workshops und Events stattfinden zu lassen macht den Shop beliebt. Eine von Hamburg inspirierte Kaffeebar lädt zum verweilen ein. Seien es die Mövenleuchten, die Containerwand oder die Tapete mit Lokalen Motiven, im Store wird das Thema Hamburg wiederholt subtil aufgegriffen. Zusätzlich lässt sich der Meetingraum zum Eventbereich öffnen und multifunktional nutzen.<br><br>
       Büro: Lepel & Lepel<br><br>
       Fotos: HGEsch</p>
-    </div>
-  </div>
-  </section>
+      </div>
+    </section>
 
+    <!-- Nächstes Projekt (Reihenfolge wie auf der Startseite) -->
+    <a class="pj-next" href="project pearl.html">
+      <span class="pj-next-l">
+        <small class="rv-fade">Nächstes Projekt</small>
+        <span class="pj-next-t rv-lines">Graphics for Pearl</span>
+      </span>
+      <span class="pj-next-img rv-fade">
+        <picture>
+          <source srcset="../projects/grafics/pearl/Pearl_4.avif" type="image/avif">
+          <source srcset="../projects/grafics/pearl/Pearl_4.webp" type="image/webp">
+          <img src="../projects/grafics/pearl/Pearl_4.jpg"
+               alt=""
+               width="2000" height="2500" decoding="async" loading="lazy">
+        </picture>
+      </span>
+    </a>
+  </main>
 
-
-  <!-- BILDER nebeneinander -->
-  <div class="image-row">
-    <img src="../projects/interior/tfh/TFH10.png" alt="Grundriss Erdgeschoss" loading="lazy">
-    <img src="../projects/interior/tfh/TFH11.png" alt="Grundriss Obergeschoss" loading="lazy">
-  </div>
-
-</div>
-
-
-
-  <a class="back-link" href="../index.html" aria-label="Zurück zur Übersicht">
-    <svg class="arrow-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="11" y1="11" x2="19" y2="19"></line>
-      <polyline points="11,19 19,19 19,11"></polyline>
-    </svg>
-  </a>
-
-
-<footer id="Contact">
-  <div class="footer-links" role="navigation" aria-label="Footer navigation">
+  <footer class="foot">
     <a href="../impressum/impressum.html">Impressum</a>
-      <a href="../impressum/AGB.html">AGB</a>
-      <a href="../impressum/Datenschutz.html">Datenschutz</a>
-  </div>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
 
-  <div class="footer-copy">© 2025 Michèle Killmaier</div>
-</footer>
-
-  <script src="scriptprojektseite.js"></script>
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
 </body>
 </html>

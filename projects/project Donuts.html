@@ -1,177 +1,95 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-reveal="peek">
 <head>
   <meta charset="UTF-8">
-  <title>Donut Hommage – 3D & Animation | why not? Portfolio</title>
-  <link rel="stylesheet" href="styleprojektseite.css">
-  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Donut Hommage – 3D &amp; Animation | why not? Portfolio</title>
   <meta name="description" content="Donut Hommage – 3D-Animation einer Süßspeise mit Sprinkles und Glasur. Erstellt mit Blender, 2025.">
 
-  <style>
+  <!-- Open Graph für Link-Vorschauen -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Donut Hommage – 3D &amp; Animation | why not? Portfolio">
+  <meta property="og:image" content="../projects/products/donuts/poster.jpg">
+  <meta property="og:description" content="Donuts, Sprinkles &amp; Glasur – eine Hommage an die Süßspeise.">
 
-  nav a {
-    color: #ffffff;
-  }
-
-  @media (max-width: 700px) {
-  /* Header mobil – transparent (global), kein eigener Hintergrund */
-  header {
-    background: transparent;
-  }
-
-  /* Burger-Icon */
-  .menu-toggle {
-    color: #ffffff !important;
-  }
-  /* Navigation mobil */
-  nav {
-    background: #79a5c1;
-  }
-  }
-
-
-  #work h1 {
-    color: #efeaec;
-    background: transparent;
-  }
-
-  #work h2 {
-    color: #345286;
-  }
-
-  .section-light-bottom {
-    position: relative;          /* Bezugspunkt für die Grain-Schicht */
-    background:#aed4ec;
-    overflow: hidden; /* Dies stoppt das Margin-Collapsing */
-  }
-
-  body.projektseite .detail-text {
-    color: #efeaec;
-  }
-
-  /* Back-Link-Pfeil erbt jetzt seine Farbe (currentColor) */
-  .back-link {
-    color: #37516a;
-    z-index: 3000;               /* sicher über allem */
-  }
-  .back-link .arrow-svg {
-    stroke: currentColor;        /* überschreibt evtl. globales stroke:#333 */
-  }
-
-  #Contact .footer-links a {
-    color: #c1d1f0;
-  }
-
-  #Contact .footer-copy {
-    color: #c1d1f0;
-  }
-
-
-  /* ---- GRAIN: identische Körnung & Dichte wie About-Seite ----
-     baseFrequency 0.85, background-size 150px, opacity 0.5 bleiben
-     gleich. mix-blend-mode: multiply rechnet automatisch mit dem
-     Hintergrund → zum HG passende Körnung. */
-  .section-light-bottom::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.5;
-    mix-blend-mode: multiply;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 150px 150px;
-  }
-
-  /* Inhalte über die Korn-Schicht heben */
-  .section-light-bottom > * {
-    position: relative;
-    z-index: 1;
-  }
-
-
-  .lang-link {
-    color: #f0f0f0;
-  }
-    </style>
-
+  <link rel="stylesheet" href="projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <script src="vt-start.js?v=4"></script>
 </head>
 
-<body class="projektseite">
+<!-- Projektfarben: Hintergrund (--pj-bg), Titel (--pj-accent), Text (--pj-ink) -->
+<body style="--pj-bg:#9fa49f; --pj-accent:#efeaec; --pj-ink:#1d2c4a">
 
-  <header>
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
-    <img src="../assets/icons/WhyNot-w.svg" alt="why not? – zur Startseite" class="logo">
-    <nav id="main-nav">
-      <ul>
-        <li class="lang-switch-item">
-          <div class="lang-switch">
-            <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
-            <span class="lang-separator"></span>
-            <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
-          </div>
-        </li>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html" class="is-current">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-<section class="section-light-bottom">
-  <section id="work">
-    <h1>DONUT HOMMAGE</h1>
-    <h2>3D & Animation | 2025</h2>
-  </section>
+  <main>
+    <!-- Erster Bildschirm: Titel, Video, daneben die Einleitung -->
+    <section class="st-open" aria-labelledby="pj-title">
+      <div class="pj-head">
+        <h1 class="pj-title is-long" id="pj-title">Donut Hommage</h1>
+        <dl class="pj-meta">
+          <div><dt>Jahr</dt><dd>2025</dd></div>
+          <div><dt>Kategorie</dt><dd>Produkt</dd></div>
+          <div><dt>Leistung</dt><dd>3D &amp; Animation</dd></div>
+          <div><dt>Tools</dt><dd>Blender</dd></div>
+        </dl>
+      </div>
 
-
-  <div class="page-wrapper">
-    <div class="video-block">
-      <video autoplay muted loop playsinline>
-        <source src="../projects/products/donuts/0001-0180.mp4" type="video/mp4">
-      </video>
-    </div>
-
-     <!-- TEXT -->
-    <section class="detail-text">
-      <div class="text-columns3">
-        <!-- Intro nimmt 2 Spalten -->
-        <div class="text-block intro"> <p class="intro"  data-translate="text_donuts">
-          Donuts, Sprinkles & Glasur - Eine Hommage an die Süßspeise.</p>
-        </div>
-
-         <!-- leer block -->
-        <div class="text-block block1">
-          <p>
-           Tools: Blender
-          </p>
+      <div class="st-hero is-wide">
+        <figure class="st-fig">
+          <!-- data-fly: Ziel des Übergangs von der Startseite -->
+          <video data-fly autoplay muted loop playsinline preload="auto" width="1920" height="1080" aria-label="Animation: Donuts mit Sprinkles und Glasur">
+            <source src="../projects/products/donuts/0001-0180.mp4" type="video/mp4">
+          </video>
+        </figure>
+        <div class="st-lead">
+          <p class="pj-intro rv-lines" data-translate="text_donuts">Donuts, Sprinkles & Glasur - Eine Hommage an die Süßspeise.</p>
         </div>
       </div>
     </section>
-  </div>
 
-<footer id="Contact">
-  <div class="footer-links" role="navigation" aria-label="Footer navigation">
+
+    <!-- Nächstes Projekt (Reihenfolge wie auf der Startseite) -->
+    <a class="pj-next" href="project biagio.html">
+      <span class="pj-next-l">
+        <small class="rv-fade">Nächstes Projekt</small>
+        <span class="pj-next-t rv-lines">Biagio</span>
+      </span>
+      <span class="pj-next-img rv-fade">
+        <video autoplay muted loop playsinline preload="metadata">
+          <source src="../projects/products/biagio/0001-0101.mp4" type="video/mp4">
+        </video>
+      </span>
+    </a>
+  </main>
+
+  <footer class="foot">
     <a href="../impressum/impressum.html">Impressum</a>
-      <a href="../impressum/AGB.html">AGB</a>
-      <a href="../impressum/Datenschutz.html">Datenschutz</a>
-  </div>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
 
-  <div class="footer-copy">© 2025 Michèle Killmaier</div>
-</footer>
-</section>
-
-  <!-- Back-Link AUSSERHALB der Grain-Section, damit position:fixed
-       nicht vom Stacking-Context der Section beeinflusst wird -->
-  <a class="back-link" href="../index.html" aria-label="Zurück zur Übersicht">
-    <svg class="arrow-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="11" y1="11" x2="19" y2="19"></line>
-      <polyline points="11,19 19,19 19,11"></polyline>
-    </svg>
-  </a>
-
-  <script src="scriptprojektseite.js"></script>
-
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
 </body>
 </html>

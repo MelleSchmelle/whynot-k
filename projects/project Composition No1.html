@@ -1,164 +1,123 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" data-reveal="peek">
 <head>
   <meta charset="UTF-8">
-  <title>Composition No.1 – Entwurf & 3D | why not? Portfolio</title>
-  <link rel="stylesheet" href="styleprojektseite.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Composition No.1 – Entwurf &amp; 3D | why not? Portfolio</title>
+  <meta name="description" content="Composition No.1 – Zwei Akte des Seins. Digitale Stillleben rund um den Küchentisch. Entwurf &amp; 3D, 2026.">
+
+  <!-- Open Graph für Link-Vorschauen -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Composition No.1 – Entwurf &amp; 3D | why not? Portfolio">
+  <meta property="og:description" content="Zwei Akte des Seins - Eine digitale Hommage an die haptischen Momente des Lebens.">
+  <meta property="og:image" content="../projects/products/Composition No. 1/Composition2.jpg">
+
+  <link rel="stylesheet" href="projekt.css?v=30">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Composition No.1 – Zwei Akte des Seins. Digitale Stillleben rund um den Küchentisch. Entwurf & 3D, 2026.">
-<style>
-
-
-/* ===================== WORK SECTION ===================== */
-/* ===================== HEADER ===================== */
-
-nav a {
-    color: #ffffff;
-}
-
-@media (max-width: 700px) {
-  /* Header mobil – transparent (global), kein eigener Hintergrund */
-  header {
-    background: transparent;
-  }
-
-  /* Burger-Icon */
-  .menu-toggle {
-    color: #ffffff !important;
-  }
-  /* Navigation mobil */
-  nav {
-    background: #512b28;
-  }
-}
-
-  #work {
-    background: #512b28;
-  }
-
-  #work h1 {
-    color: #efeaec;
-  }
-
-  #work h2 {
-    color: #947474;
-  }
-
-   /* Bilder bekommen den braunen Hintergrund als Rahmen. Abstände
-      kommen einheitlich aus dem globalen System – KEIN eigenes
-      padding, das die Konsistenz brechen würde. */
-   .image-row2 {
-     background: #512b28;
-   }
-
-    .section-light-bottom {
-      background:#512b28;
-      overflow: hidden; /* Dies stoppt das Margin-Collapsing */
-    }
-
-   body.projektseite .detail-text {
-      color: #efeaec;
-    }
-
-      #Contact .footer-links a {
-    color: #efeaec;
-  }
-
-  #Contact .footer-copy {
-    color: #ffffff;
-  }
-
-    /* Back-Link-Pfeil erbt jetzt seine Farbe (currentColor) */
-  .back-link {
-    color: #ffffff;
-    z-index: 3000;               /* sicher über allem */
-  }
-  .back-link .arrow-svg {
-    stroke: currentColor;        /* überschreibt evtl. globales stroke:#333 */
-  }
-  </style>
-
+  <script src="vt-start.js?v=4"></script>
 </head>
 
-<body class="projektseite">
- <section class="section-light-bottom">
-  <header>
-    <img src="../assets/icons/WhyNot-w.svg" alt="why not? – zur Startseite" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
+<!-- Projektfarben: Hintergrund (--pj-bg), Titel (--pj-accent), Text (--pj-ink) -->
+<body style="--pj-bg:#512b28; --pj-accent:#efeaec; --pj-ink:#efeaec">
 
-    <nav id="main-nav">
-      <ul>
-        <li class="lang-switch-item">
-          <div class="lang-switch">
-            <a href="#" id="btn-de" class="lang-link active" data-text="DE">de</a>
-            <span class="lang-separator"></span>
-            <a href="#" id="btn-en" class="lang-link" data-text="EN">en</a>
-          </div>
-        </li>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html" class="is-current">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-  <section id="work">
-    <h1>COMPOSITION No.1</h1>
-    <h2 data-translate="text_comp1">Entwurf & 3D | 2026</h2>
-  </section>
+  <main>
+    <!-- Erster Bildschirm: Titel + Galerie (bleibt beim Scrollen stehen) -->
+    <section class="pj-stage" aria-labelledby="pj-title">
+      <div class="pj-sticky">
+        <div class="pj-head">
+          <h1 class="pj-title is-long" id="pj-title">Composition No. 1</h1>
+          <dl class="pj-meta">
+            <div><dt>Jahr</dt><dd>2026</dd></div>
+            <div><dt>Kategorie</dt><dd>Produkt</dd></div>
+            <div><dt>Leistung</dt><dd>Entwurf &amp; 3D</dd></div>
+            <div><dt>Tools</dt><dd>3ds Max &amp; Arnold</dd></div>
+          </dl>
+        </div>
 
+        <!-- Galerie: Reihenfolge frei wählbar. Das erste Bild ist das Ziel
+             des Übergangs – am besten dasselbe Bild wie die Kachel. -->
+        <div class="pj-gal" aria-label="Projektbilder">
+          <div class="pj-track">
+            <figure class="pj-item">
+              <img src="../projects/products/Composition No. 1/Composition2.jpg" alt="Stillleben auf Mangoholz mit Zimtschnecke und frischen Blumen" width="2000" height="2500" decoding="async" fetchpriority="high">
+            </figure>
+            <figure class="pj-item">
+              <img src="../projects/products/Composition No. 1/Composition1.jpg" alt="Stillleben auf Silber-Travertin mit Gläsern und Speisen" decoding="async">
+            </figure>
+          </div>
+        </div>
 
-  <div class="page-wrapper">
-    <div class="image-row2">
-      <img src="../projects/products/Composition No. 1/Composition1.jpg" alt="Stillleben auf Silber-Travertin mit Gläsern und Speisen" loading="lazy">
-      <img src="../projects/products/Composition No. 1/Composition2.jpg" alt="Stillleben auf Mangoholz mit Zimtschnecke und frischen Blumen" loading="lazy">
-    </div>
+        <div class="pj-ui" aria-hidden="true">
+          <span class="pj-count"><b>01</b> / <span class="pj-total">02</span></span>
+          <span class="pj-bar"><i></i></span>
+        </div>
+      </div>
+    </section>
 
-
- <section class="detail-text">
-   <div class="text-columns3">
-        <!-- Intro nimmt 2 Spalten -->
-    <div class="text-block intro">
-       <p class="intro" data-translate="text_comp1_intro">Zwei Akte des Seins - Eine digitale Hommage an die haptischen Momente des Lebens.</p>
-    </div>
-
-       <!-- Normale Textblöcke -->
-    <div class="text-block block1">
-      <p data-translate="text_comp1_block1">Der Küchentisch ist weit mehr als eine bloße Oberfläche, er ist das pulsierende Zentrum der Begegnung, ein stiller Zeuge unserer täglichen Rituale. In dieser Serie wird der Tisch zur Bühne einer flüchtigen Momentaufnahme. Inspiriert von der Tradition klassischer Stillleben, fangen diese Kompositionen die Schönheit des Unaufgeregten ein und halten inne, bevor der Moment im Fluss des Alltags wieder vergeht.</p>
-    </div>
-    <div class="text-block block2">
-      <p data-translate="text_comp1_block2">No.1 - Hier trifft die zeitlose Beständigkeit von Silber-Travertin auf die Fragilität des Augenblicks. Das Spiel von Licht und Schatten auf und durch kristallklare Gläser und ihren Inhalt und die haptische Ehrlichkeit des Essens erzählen von einem Innehalten. <br>
-      No.2 - Die Wärme vertrauter Stunden und süßer Zusammenkunft. Die tiefe Maserung von Mangoholz, der goldene Schimmer einer Zimtschnecke und das zarte
-      </p>
-    </div>
-    <div class="text-block block3">
-      <p data-translate="text_comp1_block3">Erblühen frischer Blumen rahmen das tägliche Ritual des Kaffeetrinkens ein.<br>
+    <!-- Projekttext -->
+    <section class="pj-text">
+      <p class="pj-intro rv-lines" data-translate="text_comp1_intro">Zwei Akte des Seins - Eine digitale Hommage an die haptischen Momente des Lebens.</p>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_comp1_block1">Der Küchentisch ist weit mehr als eine bloße Oberfläche, er ist das pulsierende Zentrum der Begegnung, ein stiller Zeuge unserer täglichen Rituale. In dieser Serie wird der Tisch zur Bühne einer flüchtigen Momentaufnahme. Inspiriert von der Tradition klassischer Stillleben, fangen diese Kompositionen die Schönheit des Unaufgeregten ein und halten inne, bevor der Moment im Fluss des Alltags wieder vergeht.</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_comp1_block2">No.1 - Hier trifft die zeitlose Beständigkeit von Silber-Travertin auf die Fragilität des Augenblicks. Das Spiel von Licht und Schatten auf und durch kristallklare Gläser und ihren Inhalt und die haptische Ehrlichkeit des Essens erzählen von einem Innehalten. <br/>
+      No.2 - Die Wärme vertrauter Stunden und süßer Zusammenkunft. Die tiefe Maserung von Mangoholz, der goldene Schimmer einer Zimtschnecke und das zarte</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="text_comp1_block3">Erblühen frischer Blumen rahmen das tägliche Ritual des Kaffeetrinkens ein.<br/>
         Ein weiches Schattenspiel hüllt die Szene in eine Nostalgie, die uns an die kostbaren Augenblicke erinnert.</p>
-      <p class="tools">Tools: 3Ds Max & Arnold</p>
-    </div>
-  </div>
-  </section>
-</div>
+        <p class="pj-tools">Tools: 3Ds Max & Arnold</p>
+      </div>
+    </section>
 
+    <!-- Nächstes Projekt (Reihenfolge wie auf der Startseite) -->
+    <a class="pj-next" href="project flagship T.html">
+      <span class="pj-next-l">
+        <small class="rv-fade">Nächstes Projekt</small>
+        <span class="pj-next-t rv-lines">Flagship Store</span>
+      </span>
+      <span class="pj-next-img rv-fade">
+        <picture>
+          <source srcset="../projects/interior/tfh/TFH6.avif" type="image/avif">
+          <source srcset="../projects/interior/tfh/TFH6.webp" type="image/webp">
+          <img src="../projects/interior/tfh/TFH6.jpg"
+               alt=""
+               width="2500" height="1667" decoding="async" loading="lazy">
+        </picture>
+      </span>
+    </a>
+  </main>
 
-  <a class="back-link" href="../index.html" aria-label="Zurück zur Übersicht">
-    <svg class="arrow-svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="11" y1="11" x2="19" y2="19"></line>
-      <polyline points="11,19 19,19 19,11"></polyline>
-    </svg>
-  </a>
-
-  <footer id="Contact">
-    <div class="footer-links" role="navigation" aria-label="Footer navigation">
-      <a href="../impressum/impressum.html">Impressum</a>
-      <a href="../impressum/AGB.html">AGB</a>
-      <a href="../impressum/Datenschutz.html">Datenschutz</a>
-    </div>
-
-    <div class="footer-copy">© 2025 Michèle Killmaier</div>
+  <footer class="foot">
+    <a href="../impressum/impressum.html">Impressum</a>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
   </footer>
- </section>
-  <script src="scriptprojektseite.js"></script>
+
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
 </body>
 </html>

@@ -1,139 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>why not? Portfolio</title>
-  <link rel="stylesheet" href="../style.css" />
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>AGB | why not? Portfolio</title>
+  <meta name="description" content="Allgemeine Geschäftsbedingungen von Michèle Killmaier – 3D-Visualisierung, Planung und Design.">
+
+  <link rel="stylesheet" href="../projects/projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <style>
+    /* Rechtstexte: Titel wie Projektseiten, Abschnitte zweispaltig (Überschrift | Text) */
+    .lg { padding: calc(var(--hdr-h, 76px) + clamp(28px, 6vh, 72px)) var(--in) clamp(64px, 10vh, 120px); }
+    .lg .pj-title { margin-bottom: clamp(36px, 7vh, 80px); max-width: 14em; hyphens: manual; }
+    .lg-sec {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px clamp(24px, 4vw, 64px);
+      padding: clamp(18px, 3vh, 28px) 0; border-top: 1px solid var(--pj-rule);
+      max-width: 1180px;
+    }
+    .lg-sec h2 {
+      margin: 0; font-family: var(--serif); font-weight: 400; font-variation-settings: "opsz" var(--opsz);
+      font-size: clamp(17px, 1.3vw, 21px); line-height: 1.2; letter-spacing: .01em; text-transform: uppercase; color: var(--ink);
+    }
+    .lg-sec p { margin: 0; font-size: .95rem; line-height: 1.7; color: var(--ink); hyphens: auto; overflow-wrap: anywhere; text-wrap: pretty; }
+    .lg-sec a { border-bottom: 1px solid var(--pj-rule); }
+    .lg-sec a:hover { border-bottom-color: currentColor; }
+    .foot a[aria-current] { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 759px) { .lg-sec { grid-template-columns: 1fr; } }
+  </style>
 </head>
 
-<body class="impressum">
-  <header>
-    <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="../projects/about.html">About</a></li>
-        <li><a href="../projects/about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+<body>
+
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html">Work</a>
+          <a href="../projects/about.html">About</a>
+          <a href="../projects/about.html#contact">Contact</a>
+        </nav>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-  <section id="agb">
-    <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
-  </section>
+  <main class="lg">
+    <h1 class="pj-title is-long">Allgemeine Geschäfts&shy;bedingungen</h1>
+      <section class="lg-sec">
+        <h2>1. Geltungsbereich</h2>
+        <p>Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, Leistungen und Angebote von Michèle Killmaier - freie 3D Artistin (im Folgenden: „Auftragnehmer“) über kreative Dienstleistungen wie 3D Modellieren & Visualisieren, 2D/3D Planungen und Konzeption im Bereich Architektur/Innenarchitektur und verwandte Designleistungen.<br>
+ Abweichende Geschäftsbedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Auftragnehmer stimmt ihrer Geltung ausdrücklich schriftlich zu.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>2. Vertragsgegenstand</h2>
+        <p>Der Auftragnehmer erbringt gestalterische Dienstleistungen im Bereich: 3D-Visualisierungen, Renderings und Animationen, Konzeption und Planung von Innenarchitekturprojekten, Unterstützung bei architektonischen Projekten und Visualisierungen. Die konkreten Leistungen ergeben sich aus dem jeweiligen Angebot oder Vertrag.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>3. Vertragsschluss</h2>
+        <p>Ein Vertrag kommt zustande, wenn der Auftraggeber das Angebot des Auftragnehmers schriftlich, per E-Mail oder durch schlüssiges Verhalten annimmt. Angebote sind freibleibend und unverbindlich, sofern nichts anderes angegeben ist.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>4. Vergütung</h2>
+        <p>Die Vergütung richtet sich nach dem im Angebot festgelegten Honorar (z. B. Stundensatz oder Pauschale). Preise verstehen sich netto zzgl. gesetzlicher Umsatzsteuer, sofern diese anfällt. Teilleistungen dürfen anteilig abgerechnet werden. Zahlungen sind ohne Abzug innerhalb von 14 Tagen nach Rechnungsstellung fällig.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>5. Mitwirkungspflichten des Auftraggebers</h2>
+        <p>Der Auftraggeber verpflichtet sich, alle zur Durchführung des Projekts erforderlichen Informationen, Daten, Pläne und Unterlagen rechtzeitig und vollständig zur Verfügung zu stellen. Verzögerungen aufgrund verspäteter Mitwirkung verlängern die vereinbarte Leistungsfrist entsprechend.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>6. Nutzungsrechte</h2>
+        <p>Der Auftraggeber erhält ein einfaches Nutzungsrecht an den Arbeitsergebnissen ausschließlich für den vertraglich vereinbarten Zweck.<br>
+ Eine Weitergabe, Vervielfältigung oder anderweitige Nutzung über den vereinbarten Zweck hinaus bedarf der vorherigen schriftlichen Zustimmung des Auftragnehmers.<br>
+ Die Rechteübertragung erfolgt erst nach vollständiger Bezahlung.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>7. Leistungszeit, Abnahme und Änderungen</h2>
+        <p>Liefer- und Leistungsfristen sind nur verbindlich, wenn sie ausdrücklich schriftlich vereinbart wurden.<br>
+ Der Auftraggeber ist verpflichtet, die erbrachten Leistungen unverzüglich zu prüfen und innerhalb von 7 Tagen schriftlich abzunehmen oder Mängel mitzuteilen.<br>
+ Änderungswünsche nach Abnahme werden gesondert berechnet.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>8. Urheberrechte</h2>
+        <p>Der Auftragnehmer bleibt Urheber der erbrachten Leistungen gemäß §13 UrhG. Der Auftragnehmer darf auf oder neben dem Werk als Urheber genannt werden. Der Auftragnehmer behält sich vor, entstandene Arbeiten im Rahmen seiner Eigenwerbung (z. B. Website, Social Media, Portfolio) zu präsentieren, sofern keine Vertraulichkeit vereinbart wurde.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>9. Vertraulichkeit</h2>
+        <p>Der Auftragnehmer verpflichtet sich, alle im Rahmen der Zusammenarbeit bekannt gewordenen vertraulichen Informationen und Unterlagen des Auftraggebers geheim zu halten und nicht an Dritte weiterzugeben.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>10. Digitale Lieferung</h2>
+        <p>Alle Leistungen des Auftragnehmers werden in der Regel in digitaler Form (z. B. Bilddateien, 3D-Modelle, Pläne, PDFs) per E-Mail, Cloud-Link oder Datentransfer bereitgestellt. Nach Bereitstellung der Dateien gilt die Leistung als erbracht. Der Auftraggeber ist dafür verantwortlich, die digitalen Dateien unverzüglich nach Erhalt zu sichern und zu prüfen. Eine physische Lieferung (z. B. Ausdrucke, Datenträger) erfolgt nur nach gesonderter Vereinbarung und wird zusätzlich berechnet.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>11. Haftung</h2>
+        <p>Der Auftragnehmer haftet nur für Vorsatz und grobe Fahrlässigkeit. Für Inhalte, Daten oder Materialien, die vom Auftraggeber geliefert werden, übernimmt der Auftragnehmer keine Haftung, insbesondere nicht für etwaige Schutzrechtsverletzungen Dritter. Der Auftraggeber ist verpflichtet, die gelieferten Arbeiten vor Veröffentlichung zu prüfen und etwaige Mängel unverzüglich zu melden.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>12. Rücktritt / Projektabbruch</h2>
+        <p>Wird ein Projekt vorzeitig abgebrochen, sind die bis dahin erbrachten Leistungen in voller Höhe zu vergüten.<br>
+ Bereits begonnene, aber noch nicht fertiggestellte Leistungen werden anteilig berechnet.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>13. Schlussbestimmungen</h2>
+        <p>Es gilt das Recht der Bundesrepublik Deutschland. Gerichtsstand ist – soweit gesetzlich zulässig – der Sitz des Auftragnehmers. Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.</p>
+      </section>
+  </main>
 
- <section class="agb-textbreite">
-    <div class="agb-überschrift2">
-      1. Geltungsbereich
-    </div>
-      <div class="agb-inhalt">
-        Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge, Leistungen und Angebote von Michèle Killmaier - freie 3D Artistin (im Folgenden: „Auftragnehmer“) über kreative Dienstleistungen wie 3D Modellieren & Visualisieren, 2D/3D Planungen und Konzeption im Bereich Architektur/Innenarchitektur und verwandte Designleistungen.<br>
-        Abweichende Geschäftsbedingungen des Auftraggebers werden nicht anerkannt, es sei denn, der Auftragnehmer stimmt ihrer Geltung ausdrücklich schriftlich zu.
-      </div>
-    <div class="agb-überschrift2">
-      2. Vertragsgegenstand
-    </div>
-      <div class="agb-inhalt">
-        Der Auftragnehmer erbringt gestalterische Dienstleistungen im Bereich: 3D-Visualisierungen, Renderings und Animationen, Konzeption und Planung von Innenarchitekturprojekten, Unterstützung bei architektonischen Projekten und Visualisierungen. Die konkreten Leistungen ergeben sich aus dem jeweiligen Angebot oder Vertrag.
-      </div> 
-    <div class="agb-überschrift2">
-      3. Vertragsschluss
-    </div>
-      <div class="agb-inhalt">
-        Ein Vertrag kommt zustande, wenn der Auftraggeber das Angebot des Auftragnehmers schriftlich oder per E-Mail annimmt oder durch schlüssiges Verhalten zustande. Angebote sind freibleibend und unverbindlich, sofern nichts anderes angegeben ist.
-      </div> 
-    <div class="agb-überschrift2">
-      4. Vergütung 
-    </div>
-      <div class="agb-inhalt">
-        Die Vergütung richtet sich nach dem im Angebot festgelegten Honorar (z. B. Stundensatz oder Pauschale). Preise verstehen sich netto zzgl. gesetzlicher Umsatzsteuer, sofern diese anfällt. Teilleistungen dürfen anteilig abgerechnet werden. Zahlungen sind ohne Abzug innerhalb von 14 Tagen nach Rechnungsstellung fällig.
-      </div>     
-    <div class="agb-überschrift2">
-      5. Mitwirkungspflichten des Auftraggebers
-    </div>
-      <div class="agb-inhalt">
-        Der Auftraggeber verpflichtet sich, alle zur Durchführung des Projekts erforderlichen Informationen, Daten, Pläne und Unterlagen rechtzeitig und vollständig zur Verfügung zu stellen. Verzögerungen aufgrund verspäteter Mitwirkung verlängern die vereinbarte Leistungsfrist entsprechend.
-      </div> 
-    <div class="agb-überschrift2">
-      6. Nutzungsrechte
-    </div>
-      <div class="agb-inhalt">
-        Der Auftraggeber erhält ein einfaches Nutzungsrecht an den Arbeitsergebnissen ausschließlich für den vertraglich vereinbarten Zweck. <br>
-        Eine Weitergabe, Vervielfältigung oder anderweitige Nutzung über den vereinbarten Zweck hinaus bedarf der vorherigen schriftlichen Zustimmung des Auftragnehmers. <br>
-        Die Rechteübertragung erfolgt erst nach vollständiger Bezahlung.
-      </div> 
-    <div class="agb-überschrift2">
-      7. Leistungszeit, Abnahme und Änderungen 
-    </div>
-      <div class="agb-inhalt">
-        Liefer- und Leistungsfristen sind nur verbindlich, wenn sie ausdrücklich schriftlich vereinbart wurden. <br>
-        Der Auftraggeber ist verpflichtet, die erbrachten Leistungen unverzüglich zu prüfen und innerhalb von 7 Tagen schriftlich abzunehmen oder Mängel mitzuteilen. <br>
-        Änderungswünsche nach Abnahme werden gesondert berechnet.
-      </div> 
-    <div class="agb-überschrift2">
-      8. Urheberrechte
-    </div>
-      <div class="agb-inhalt">
-        Der Auftragnehmer bleibt Urheber der erbrachten Leistungen gemäß §13 UrhG. Der Auftragnehmer darf auf oder neben dem Werk als Urheber genannt werden. Der Auftragnehmer behält sich vor,  entstandene Arbeiten im Rahmen seiner Eigenwerbung (z.B. Website, Social Media, Portfolio) zu präsentieren, sofern keine Vertraulichkeit vereinbart wurde.
-      </div> 
-    <div class="agb-überschrift2">
-      9. Vertraulichkeit
-    </div>
-      <div class="agb-inhalt">
-        Der Auftragnehmer verpflichtet sich, alle im Rahmen der Zusammenarbeit bekannt gewordenen vertraulichen Informationen und Unterlagen des Auftraggebers geheim zu halten und nicht an Dritte weiterzugeben.
-      </div> 
-
-    <div class="agb-überschrift2">
-      10. Digitale Lieferung
-    </div>
-      <div class="agb-inhalt">
-        Alle Leistungen des Auftragnehmers werden in der Regel in digitaler Form (z. B. Bilddateien, 3D-Modelle, Pläne, PDFs) per E-Mail, Cloud-Link oder Datentransfer bereitgestellt.
-        Nach Bereitstellung der Dateien gilt die Leistung als erbracht.
-        Der Auftraggeber ist dafür verantwortlich, die digitalen Dateien unverzüglich nach Erhalt zu sichern und zu prüfen.
-        Eine physische Lieferung (z. B. Ausdrucke, Datenträger) erfolgt nur nach gesonderter Vereinbarung und wird zusätzlich berechnet.
-      </div> 
-    <div class="agb-überschrift2">
-      11. Haftung
-    </div>
-      <div class="agb-inhalt">
-        Der Auftragnehmer haftet nur für Vorsatz und grobe Fahrlässigkeit.
-        Für Inhalte, Daten oder Materialien, die vom Auftraggeber geliefert werden, übernimmt der Auftragnehmer keine Haftung, insbesondere nicht für etwaige Schutzrechtsverletzungen Dritter.
-        Der Auftraggeber ist verpflichtet, die gelieferten Arbeiten vor Veröffentlichung zu prüfen und etwaige Mängel unverzüglich zu melden.
-      </div> 
-    <div class="agb-überschrift2">
-      12. Rücktritt / Projektabbruch
-    </div>
-      <div class="agb-inhalt">
-        Wird ein Projekt vorzeitig abgebrochen, sind die bis dahin erbrachten Leistungen in voller Höhe zu vergüten. <br>
-        Bereits begonnene, aber noch nicht fertiggestellte Leistungen werden anteilig berechnet.
-      </div> 
-
-    <div class="agb-überschrift2">
-      14. Schlussbestimmungen
-    </div>
-      <div class="agb-inhalt">
-        Es gilt das Recht der Bundesrepublik Deutschland.
-        Gerichtsstand ist – soweit gesetzlich zulässig – der Sitz des Auftragnehmers.
-        Sollten einzelne Bestimmungen dieser AGB ganz oder teilweise unwirksam sein, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt.
-      </div> 
- </section>
-
-<footer id="Contact">
-  <div class="footer-links" role="navigation" aria-label="Footer navigation">
+  <footer class="foot">
     <a href="impressum.html">Impressum</a>
-    <a href="AGB.html">AGB</a>
+    <a href="AGB.html" aria-current="page">AGB</a>
     <a href="Datenschutz.html">Datenschutz</a>
-  </div>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
 
-  <div class="footer-copy">© 2025 Michèle Killmaier</div>
-</footer>
-
-
-  <a class="back-link" href="../index.html">←</a>
-
-  <script src="../script.js"></script>
+  <script src="../projects/projekt.js?v=30"></script>
+  <script src="../projects/contact.js?v=2" defer></script>
+  <script src="../projects/cursor.js?v=1" defer></script>
 </body>
 </html>

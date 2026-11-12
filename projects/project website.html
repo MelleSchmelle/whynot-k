@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="de" data-reveal="peek">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Portfolio-Website – Webdesign | why not? Portfolio</title>
+  <meta name="description" content="why not? – Konzept, Gestaltung und Umsetzung der eigenen Portfolio-Website: bewegtes Bildmosaik, Projektseiten mit Scroll-Galerie, Spielkarten für die Leistungen. 2026.">
+
+  <!-- Open Graph für Link-Vorschauen -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Portfolio-Website – Webdesign | why not? Portfolio">
+  <meta property="og:description" content="Die eigene Portfolio-Website – vom Konzept bis zur Umsetzung.">
+  <meta property="og:image" content="../assets/about/Spielkarte.png">
+
+  <link rel="stylesheet" href="projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <script src="vt-start.js?v=4"></script>
+  <style>
+    /* =================================================================
+       WEBSITE-MOCKUP: Die Website läuft live in Geräterahmen.
+       Browserfenster = Startseite (Desktop), drei Telefone = Handy-Ansichten.
+       Die Rahmen zeigen die echten Seiten (iframe), verkleinert. Die
+       Handys scrollen langsam von selbst, solange sie sichtbar sind.
+       ================================================================= */
+    /* Browserfenster = Galeriebild (pj-item): Höhe aus der Galerie, Breite aus dem Format */
+    .pj-item.wm-browser {
+      --bar: 34px;
+      display: flex; flex-direction: column;
+      aspect-ratio: 1440 / 934;
+      background: #fff;
+      box-shadow: 0 0 0 1px rgba(25, 42, 102, .10), 0 30px 60px -36px rgba(25, 42, 102, .55);
+    }
+    .wm-bar {
+      flex: none; display: flex; align-items: center; gap: 7px;
+      height: var(--bar); padding: 0 14px;
+      background: #f3f5f9; border-bottom: 1px solid rgba(25, 42, 102, .08);
+    }
+    .wm-bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(25, 42, 102, .16); }
+    .wm-bar span {
+      flex: 0 1 340px; margin: 0 auto; transform: translateX(-24px);
+      height: 22px; line-height: 22px; border-radius: 999px;
+      background: #fff; text-align: center;
+      font-size: .68rem; letter-spacing: .3px; color: rgba(25, 42, 102, .55);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .wm-cap {
+      position: absolute; left: 12px; bottom: 12px; z-index: 2;
+      padding: 5px 10px; border-radius: 999px;
+      font-size: .62rem; letter-spacing: .14em; text-transform: uppercase;
+      color: #fff; background: rgba(25, 42, 102, .55);
+      -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); pointer-events: none;
+    }
+
+    /* Bildschirmfläche: feste Innengröße, per JS auf die Rahmengröße skaliert */
+    .wm-screen { position: relative; overflow: hidden; background: #ecebe7; }
+    .wm-browser .wm-screen { flex: 1; min-height: 0; --vw: 1440px; }
+    .wm-screen iframe {
+      position: absolute; left: 0; top: 0; border: 0; display: block;
+      width: var(--vw); height: var(--ih, var(--vh));
+      transform: scale(var(--s, .5)); transform-origin: 0 0;
+      pointer-events: none;                    /* nur zeigen, nicht bedienen */
+    }
+
+    /* Telefone */
+    .wm-phones {
+      display: flex; justify-content: center; align-items: flex-start;
+      gap: clamp(20px, 4vw, 72px);
+      padding: clamp(90px, 16vh, 200px) var(--in) 0;
+    }
+    .wm-phone { margin: 0; width: min(24vw, 300px); flex: none; }
+    .wm-phone:nth-child(2) { margin-top: clamp(30px, 6vw, 90px); }   /* leicht versetzt, wie ausgelegt */
+    .wm-device {
+      padding: 9px; border-radius: 40px;
+      background: #192a66;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 40px 70px -36px rgba(25, 42, 102, .6);
+    }
+    .wm-phone .wm-screen { --vw: 390px; --vh: 844px; aspect-ratio: 390 / 844; border-radius: 31px; }
+    .wm-phone figcaption {
+      margin-top: 16px; text-align: center;
+      font-size: .72rem; letter-spacing: .8px; text-transform: uppercase; color: var(--pj-muted);
+    }
+
+    @media (max-width: 759px), (max-height: 519px) {
+      .pj-item.wm-browser { --bar: 26px; width: 100%; height: auto; }   /* Handy: Fenster untereinander, volle Breite */
+      .pj-gal .pj-track { width: 100%; }
+      .wm-bar span { display: none; }
+      .wm-phones {
+        justify-content: flex-start; gap: 18px; padding-top: 56px;
+        overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+      }
+      .wm-phones::-webkit-scrollbar { display: none; }
+      .wm-phone { width: 68vw; scroll-snap-align: center; }
+      .wm-phone:nth-child(2) { margin-top: 0; }
+    }
+  </style>
+</head>
+
+<!-- Projektfarben: Hintergrund (--pj-bg), Titel (--pj-accent), Text (--pj-ink) – Ton der Spielkarten -->
+<body style="--pj-bg:#d8e3ef; --pj-accent:#192a66; --pj-ink:#192a66">
+
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html" class="is-current">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Erster Bildschirm: Titel + drei Browserfenster als Galerie (läuft beim Scrollen seitlich durch) -->
+    <section class="pj-stage" aria-labelledby="pj-title">
+      <div class="pj-sticky">
+        <div class="pj-head">
+          <h1 class="pj-title is-long" id="pj-title">Portfolio-Website</h1>
+          <dl class="pj-meta">
+            <!-- PLATZHALTER: Angaben prüfen -->
+            <div><dt>Jahr</dt><dd>2026</dd></div>
+            <div><dt>Kategorie</dt><dd>Grafik</dd></div>
+            <div><dt>Leistung</dt><dd>Konzept, Webdesign &amp; Umsetzung</dd></div>
+            <div><dt>Tools</dt><dd>Claude AI, HTML, CSS &amp; JavaScript</dd></div>
+          </dl>
+        </div>
+
+
+        <div class="pj-gal" aria-label="Die Website im Browser">
+          <div class="pj-track">
+            <figure class="pj-item wm-browser">
+              <div class="wm-bar" aria-hidden="true"><i></i><i></i><i></i><span>michelekillmaier.de</span></div>
+              <div class="wm-screen">
+                <iframe src="../index.html" title="Startseite im Browser" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <figcaption class="wm-cap">Startseite</figcaption>
+            </figure>
+            <figure class="pj-item wm-browser">
+              <div class="wm-bar" aria-hidden="true"><i></i><i></i><i></i><span>michelekillmaier.de/projects/kitchen</span></div>
+              <div class="wm-screen">
+                <iframe data-src="project kitchen.html" data-scroll title="Projektseite im Browser" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <figcaption class="wm-cap" data-translate="web_cap_project">Projektseite</figcaption>
+            </figure>
+            <figure class="pj-item wm-browser">
+              <div class="wm-bar" aria-hidden="true"><i></i><i></i><i></i><span>michelekillmaier.de/about</span></div>
+              <div class="wm-screen">
+                <iframe data-src="about.html" data-scroll title="About-Seite im Browser" tabindex="-1" aria-hidden="true"></iframe>
+              </div>
+              <figcaption class="wm-cap">About</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pj-ui" aria-hidden="true">
+          <span class="pj-count"><b>01</b> / <span class="pj-total">03</span></span>
+          <span class="pj-bar"><i></i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Handy-Ansichten: scrollen langsam von selbst -->
+    <section class="wm-phones" aria-label="Die Website auf dem Handy">
+      <figure class="wm-phone">
+        <div class="wm-device"><div class="wm-screen">
+          <iframe data-src="../index.html" title="Startseite auf dem Handy" tabindex="-1" aria-hidden="true"></iframe>
+        </div></div>
+        <figcaption>Startseite</figcaption>
+      </figure>
+      <figure class="wm-phone">
+        <div class="wm-device"><div class="wm-screen">
+          <iframe data-src="project kitchen.html" data-scroll title="Projektseite auf dem Handy" tabindex="-1" aria-hidden="true"></iframe>
+        </div></div>
+        <figcaption data-translate="web_cap_project">Projektseite</figcaption>
+      </figure>
+      <figure class="wm-phone">
+        <div class="wm-device"><div class="wm-screen">
+          <iframe data-src="about.html" data-scroll title="About-Seite auf dem Handy" tabindex="-1" aria-hidden="true"></iframe>
+        </div></div>
+        <figcaption>About</figcaption>
+      </figure>
+    </section>
+
+    <!-- Projekttext -->
+    <section class="pj-text">
+      <p class="pj-intro rv-lines" data-translate="web_intro">why not? – eine Portfolio-Website, die sich anfühlt wie das Durchblättern eines Skizzenbuchs.</p>
+      <div class="pj-col rv-fade">
+        <p data-translate="web_block1">Im Mittelpunkt des Konzepts steht die Idee, Projekte nicht einfach zu präsentieren, sondern sie erlebbar zu machen. Dafür entstand eine klare, wiedererkennbare Gestaltung, die sich konsequent durch alle Seiten zieht und auf kleinen wie großen Bildschirmen gleichermaßen funktioniert.</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="web_block2">Die Startseite zeigt ein langsam bewegtes Bildmosaik, in verschiedene Kategorien filterbar. Jedes Projekt lässt sich über einen fließenden Bildübergang öffnen, die Galerien der Projekte bewegen sich beim Scrollen horizontal durch die Bildwelten. Diese und weitere Funktionen lassen die Website selbst zum gestalterischen Erlebnis werden – spielerisch in der Interaktion, klar in der Struktur und konsequent auf die Arbeiten ausgerichtet.</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="web_block3">Technisch bewusst unabhängig umgesetzt: ohne Baukasten und Framework, mit handgeschriebenem HTML, CSS und JavaScript. Zweisprachig, mit selbst gehosteten Schriften und ohne Tracking. Das Ergebnis ist eine schnelle, reduzierte und eigenständige Website.</p>
+        <p class="pj-tools">Tools: Claude AI, HTML, CSS &amp; JavaScript</p>
+      </div>
+    </section>
+
+    <!-- Nächstes Projekt (Reihenfolge wie auf der Startseite) -->
+    <a class="pj-next" href="project torno.html">
+      <span class="pj-next-l">
+        <small class="rv-fade">Nächstes Projekt</small>
+        <span class="pj-next-t rv-lines">Composition No. 2</span>
+      </span>
+      <span class="pj-next-img rv-fade">
+        <picture>
+          <source srcset="../projects/products/plus halle/Plus Halle Compostion.avif" type="image/avif">
+          <source srcset="../projects/products/plus halle/Plus Halle Compostion.webp" type="image/webp">
+          <img src="../projects/products/plus halle/Plus Halle Compostion.jpg"
+               alt=""
+               width="2000" height="2500" decoding="async" loading="lazy">
+        </picture>
+      </span>
+    </a>
+  </main>
+
+  <footer class="foot">
+    <a href="../impressum/impressum.html">Impressum</a>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
+
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
+  <script>
+  /* =================================================================
+     MOCKUP-STEUERUNG
+     1  Bildschirminhalt (iframe) auf Rahmengröße skalieren
+     2  Fenster erst laden, wenn sie in Sicht kommen
+     3  Projekt- und About-Ansicht scrollen langsam von selbst
+     (Die Galerie selbst steuert projekt.js wie auf allen Projektseiten.)
+     ================================================================= */
+  (function () {
+    var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 1 — skalieren: Breite füllt den Rahmen, Höhe wird passend verlängert
+    var screens = Array.prototype.slice.call(document.querySelectorAll('.wm-screen'));
+    function scaleAll() {
+      screens.forEach(function (sc) {
+        var vw = parseFloat(getComputedStyle(sc).getPropertyValue('--vw')) || 1440;
+        var s = sc.clientWidth / vw;
+        if (!s) return;
+        sc.style.setProperty('--s', s.toFixed(4));
+        sc.style.setProperty('--ih', Math.ceil(sc.clientHeight / s) + 'px');
+      });
+    }
+    if ('ResizeObserver' in window) {
+      var ro = new ResizeObserver(scaleAll);
+      screens.forEach(function (sc) { ro.observe(sc); });
+    }
+    addEventListener('resize', scaleAll);
+    addEventListener('load', scaleAll);
+    scaleAll();
+
+    // 2 — laden bei Sicht
+    var frames = Array.prototype.slice.call(document.querySelectorAll('.wm-screen iframe'));
+    var live = new Set();
+    function load(f) {
+      if (!f.getAttribute('src')) f.src = f.getAttribute('data-src');
+      if (!f.__wired) {
+        f.__wired = true;
+        f.addEventListener('load', function () { f.__y = 0; f.__t0 = performance.now() + 1800; });   // kurz stehen lassen
+      }
+    }
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) {
+        es.forEach(function (e) {
+          if (e.isIntersecting) { load(e.target); live.add(e.target); } else live.delete(e.target);
+        });
+      }, { rootMargin: '200px' });
+      frames.forEach(function (f) { io.observe(f); });
+    } else frames.forEach(load);
+
+    // 3 — automatisch scrollen (nur bei gleicher Domain, also über Live Server / online)
+    if (REDUCE) return;
+    var last = performance.now();
+    function tick(now) {
+      var dt = Math.min(.05, (now - last) / 1000); last = now;
+      live.forEach(function (f) {
+        if (!f.hasAttribute('data-scroll') || !f.__t0 || now < f.__t0) return;
+        try {
+          var w = f.contentWindow, d = w.document.documentElement;
+          var max = d.scrollHeight - w.innerHeight;
+          if (max <= 0) return;
+          var speed = f.closest('.wm-phone') ? 70 : 160;     // px/s in der jeweiligen Seite
+          f.__y = (f.__y || 0) + speed * dt;
+          if (f.__y >= max) {                               // unten: kurz warten, dann von vorn
+            w.scrollTo(0, max); f.__y = 0; f.__t0 = now + 2600;
+            setTimeout(function () { try { w.scrollTo(0, 0); } catch (e) {} }, 2200);
+            return;
+          }
+          w.scrollTo(0, f.__y);
+        } catch (e) { f.removeAttribute('data-scroll'); }   // andere Domain / file:// – dann ohne Scrollen
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  })();
+  </script>
+</body>
+</html>

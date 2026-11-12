@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="de" data-reveal="peek">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Walk-in Closet – Entwurf &amp; 3D | why not? Portfolio</title>
+  <meta name="description" content="Walk-in Closet – begehbarer Kleiderschrank mit Bogenfolge, Rosétönen und Wandgrafik. Entwurf &amp; 3D.">
+
+  <!-- Open Graph für Link-Vorschauen -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Walk-in Closet – Entwurf &amp; 3D | why not? Portfolio">
+  <meta property="og:description" content="Begehbarer Kleiderschrank mit Bogenfolge, Rosétönen und Wandgrafik.">
+  <meta property="og:image" content="../projects/interior/walk in closet/walkincloset_P2.jpg">
+
+  <link rel="stylesheet" href="projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <script src="vt-start.js?v=4"></script>
+</head>
+
+<!-- Projektfarben: Hintergrund (--pj-bg), Titel (--pj-accent), Text (--pj-ink) -->
+<body style="--pj-bg:#ead9d6; --pj-accent:#6e2232; --pj-ink:#5a2430">
+
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html" class="is-current">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Erster Bildschirm: Titel + Galerie (bleibt beim Scrollen stehen) -->
+    <section class="pj-stage" aria-labelledby="pj-title">
+      <div class="pj-sticky">
+        <div class="pj-head">
+          <h1 class="pj-title is-long" id="pj-title">Walk-in Closet</h1>
+          <dl class="pj-meta">
+            <!-- PLATZHALTER: Angaben prüfen -->
+            <div><dt>Jahr</dt><dd>2026</dd></div>
+            <div><dt>Kategorie</dt><dd>Interior · AI</dd></div>
+            <div><dt>Leistung</dt><dd>Entwurf &amp; 3D</dd></div>
+            <div><dt>Tools</dt><dd>SketchUp</dd></div>
+          </dl>
+        </div>
+
+        <!-- Galerie: Reihenfolge frei wählbar. Das erste Bild ist das Ziel
+             des Übergangs – am besten dasselbe Bild wie die Kachel. -->
+        <div class="pj-gal" aria-label="Projektbilder">
+          <div class="pj-track">
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/walk in closet/walkincloset_P2.avif" type="image/avif">
+                <source srcset="../projects/interior/walk in closet/walkincloset_P2.webp" type="image/webp">
+                <img src="../projects/interior/walk in closet/walkincloset_P2.jpg"
+                   alt="KI-generiert: Ankleide in Rosétönen mit Bogenfenster und Polsterbank"
+                   width="1952" height="2176" decoding="async" fetchpriority="high">
+              </picture>
+              <figcaption class="pj-tag" data-translate="ki_note">KI-generiert</figcaption>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/walk in closet/walkincloset_P3.avif" type="image/avif">
+                <source srcset="../projects/interior/walk in closet/walkincloset_P3.webp" type="image/webp">
+                <img src="../projects/interior/walk in closet/walkincloset_P3.jpg"
+                   alt="KI-generiert: Blick durch die Bogenfolge des begehbaren Kleiderschranks"
+                   width="1616" height="1936" decoding="async" loading="lazy">
+              </picture>
+              <figcaption class="pj-tag" data-translate="ki_note">KI-generiert</figcaption>
+            </figure>
+            <figure class="pj-item">
+              <picture>
+                <source srcset="../projects/interior/walk in closet/walkincloset_P1.avif" type="image/avif">
+                <source srcset="../projects/interior/walk in closet/walkincloset_P1.webp" type="image/webp">
+                <img src="../projects/interior/walk in closet/walkincloset_P1.jpg"
+                   alt="KI-generiert: Offene Regale mit Wandgrafik aus Kranichflügeln"
+                   width="1872" height="2240" decoding="async" loading="lazy">
+              </picture>
+              <figcaption class="pj-tag" data-translate="ki_note">KI-generiert</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <div class="pj-ui" aria-hidden="true">
+          <span class="pj-count"><b>01</b> / <span class="pj-total">03</span></span>
+          <span class="pj-bar"><i></i></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vergleich: links SketchUp-Modell, rechts Rendering – Regler ziehen -->
+    <section class="st-cmp-wrap" aria-label="Vergleich Modell und Rendering">
+      <figure class="st-cmp" style="--frame-ar:.8347" tabindex="0" role="slider" aria-label="Vergleich SketchUp-Modell und Rendering" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" data-start="50">
+        <img class="st-cmp-a" src="../projects/interior/walk in closet/Screenshot-skp.png" alt="Arbeitsstand im SketchUp-Modell" width="1081" height="1302" decoding="async" loading="lazy">
+        <picture>
+          <source srcset="../projects/interior/walk in closet/walkincloset_P3.avif" type="image/avif">
+          <source srcset="../projects/interior/walk in closet/walkincloset_P3.webp" type="image/webp">
+          <img class="st-cmp-b" src="../projects/interior/walk in closet/walkincloset_P3.jpg" alt="KI-generiertes Rendering derselben Ansicht" width="1616" height="1936" decoding="async" loading="lazy">
+        </picture>
+        <span class="st-cmp-tag is-a">SketchUp</span>
+        <span class="st-cmp-tag is-b" data-translate="ki_note">KI-generiert</span>
+        <span class="st-cmp-line" aria-hidden="true"></span>
+        <span class="st-cmp-grip" aria-hidden="true">Modell <i>⟷</i> Bild</span>
+      </figure>
+    </section>
+
+    <!-- Projekttext -->
+    <section class="pj-text">
+      <p class="pj-intro rv-lines" data-translate="closet_intro">Walk-in-Closet in einer Altbauvilla – mehr als nur Stauraum.</p>
+      <div class="pj-col rv-fade">
+        <p data-translate="closet_block1">Die Gestaltung der Ankleide versteht sich als architektonischer Eingriff, der weit über die reine Stauraumplanung hinausgeht. Halboffene Bögen bilden das zentrale Gestaltungselement: Sie gliedern den Raum und definieren zugleich die Grundstruktur der Ankleide.</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="closet_block2">Auf der einen Seite Weiß, auf der anderen zartes Pastellrosa – ein harmonisches Wechselspiel, das dem Raum eine sanfte Struktur und Tiefe verleiht.<br>
+          Zwischen den Bögen setzen Kraniche als Tapetenmotiv einen bewussten Kontrast. Grafisch reduziert in Schwarz-Weiß gehalten, bringen sie eine klare, fast illustrative Note in die ansonsten sanfte Farbgestaltung und erzeugen eine besondere Spannung.</p>
+      </div>
+      <div class="pj-col rv-fade">
+        <p data-translate="closet_block3">Die Spiegelwand erweitert den Raum optisch, lenkt das Licht tiefer in die Ankleide und erfüllt zugleich ihre praktische Funktion. Durch die Spiegelung vervielfältigen sich auch die Bögen – das architektonische Motiv wird aufgegriffen und konsequent weitergeführt.</p>
+        <p class="pj-tools">Tools: SketchUp</p>
+      </div>
+    </section>
+
+    <!-- Nächstes Projekt (Reihenfolge wie auf der Startseite) -->
+    <a class="pj-next" href="project Composition No1.html">
+      <span class="pj-next-l">
+        <small class="rv-fade">Nächstes Projekt</small>
+        <span class="pj-next-t rv-lines">Composition No. 1</span>
+      </span>
+      <span class="pj-next-img rv-fade">
+        <picture>
+          <source srcset="../projects/products/Composition No. 1/Composition2.avif" type="image/avif">
+          <source srcset="../projects/products/Composition No. 1/Composition2.webp" type="image/webp">
+          <img src="../projects/products/Composition No. 1/Composition2.jpg"
+               alt=""
+               width="2000" height="2500" decoding="async" loading="lazy">
+        </picture>
+      </span>
+    </a>
+  </main>
+
+  <footer class="foot">
+    <a href="../impressum/impressum.html">Impressum</a>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
+
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
+</body>
+</html>

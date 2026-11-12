@@ -1,135 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>why not? Portfolio</title>
-  <link rel="stylesheet" href="../style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Datenschutz | why not? Portfolio</title>
+  <meta name="description" content="Datenschutzerklärung der Website why not? von Michèle Killmaier.">
+
+  <link rel="stylesheet" href="../projects/projekt.css?v=30">
+  <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
+  <style>
+    /* Rechtstexte: Titel wie Projektseiten, Abschnitte zweispaltig (Überschrift | Text) */
+    .lg { padding: calc(var(--hdr-h, 76px) + clamp(28px, 6vh, 72px)) var(--in) clamp(64px, 10vh, 120px); }
+    .lg .pj-title { margin-bottom: clamp(36px, 7vh, 80px); max-width: 14em; hyphens: manual; }
+    .lg-sec {
+      display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: 8px clamp(24px, 4vw, 64px);
+      padding: clamp(18px, 3vh, 28px) 0; border-top: 1px solid var(--pj-rule);
+      max-width: 1180px;
+    }
+    .lg-sec h2 {
+      margin: 0; font-family: var(--serif); font-weight: 400; font-variation-settings: "opsz" var(--opsz);
+      font-size: clamp(17px, 1.3vw, 21px); line-height: 1.2; letter-spacing: .01em; text-transform: uppercase; color: var(--ink);
+    }
+    .lg-sec p { margin: 0; font-size: .95rem; line-height: 1.7; color: var(--ink); hyphens: auto; overflow-wrap: anywhere; text-wrap: pretty; }
+    .lg-sec a { border-bottom: 1px solid var(--pj-rule); }
+    .lg-sec a:hover { border-bottom-color: currentColor; }
+    .foot a[aria-current] { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 759px) { .lg-sec { grid-template-columns: 1fr; } }
+  </style>
 </head>
 
-<body class="impressum">
-  <header>
-    <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
-    <nav>
-      <ul>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="../projects/about.html">About</a></li>
-        <li><a href="../projects/about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+<body>
+
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html">Work</a>
+          <a href="../projects/about.html">About</a>
+          <a href="../projects/about.html#contact">Contact</a>
+        </nav>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-  <section id="agb">
-    <h1>DATENSCHUTZ</h1>
-  </section>
+  <main class="lg">
+    <h1 class="pj-title is-long">Datenschutz</h1>
+      <section class="lg-sec">
+        <h2>Datenschutzerklärung</h2>
+        <p>Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Nachfolgend informiere ich Sie gemäß Art. 13 und Art. 14 der Datenschutz-Grundverordnung (DSGVO) über die Art, den Umfang und den Zweck der Erhebung und Verarbeitung personenbezogener Daten auf dieser Website.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>1. Hosting</h2>
+        <p>Diese Website wird bei einem deutschen oder europäischen Hostinganbieter betrieben. Der Hostinganbieter erhebt in der Regel folgende Daten, die automatisch in sogenannten Server-Logfiles gespeichert werden: IP-Adresse, Datum und Uhrzeit der Anfrage, Browsertyp und -version, Verwendetes Betriebssystem, Referrer-URL. Diese Daten dienen der technischen Überwachung, Sicherheit und Optimierung des Webservers und werden in der Regel nach wenigen Tagen automatisch gelöscht.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>2. Kontaktaufnahme</h2>
+        <p>Wenn Sie mich per E-Mail oder via Kontaktformular kontaktieren, werden Ihre Angaben zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter. Die Rechtsgrundlage für die Verarbeitung dieser Daten ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen). Die Daten werden so lange gespeichert, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist. Zwingende gesetzliche Bestimmungen - insbesondere gesetzliche Aufbewahrungsfristen - bleiben unberührt.<br>
+ Kontaktformular: Wenn Sie unser Kontaktformular auf der Webseite ausfüllen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) an den Drittanbieter Web3Forms übermittelt. Dieser Dienst leitet die Nachricht anschließend an unsere E-Mail-Adresse weiter. Web3Forms speichert Ihre Daten nicht dauerhaft und verwendet sie ausschließlich zur Übermittlung Ihrer Nachricht. Die Verarbeitung Ihrer Daten erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO oder unseres berechtigten Interesses an der Kontaktaufnahme (Art. 6 Abs. 1 lit. f DSGVO). Nach Übermittlung der Nachricht werden Ihre Daten auf den Web3Forms-Servern nur kurzfristig gespeichert, bis die E-Mail zugestellt wurde. Auf unseren Servern werden keine Daten gespeichert. Sie haben jederzeit das Recht, Auskunft über die bei uns gespeicherten personenbezogenen Daten zu erhalten, deren Berichtigung oder Löschung zu verlangen.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>3. Auftragsverarbeitung</h2>
+        <p>Zur Bereitstellung dieser Website nutze ich ggf. Dienstleister (z. B. Hosting, E-Mail), mit denen ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO geschlossen wurde.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>4. Cookies, Browser&shy;speicher &amp; Analyse-Tools</h2>
+        <p>Auf dieser Website werden keine Cookies und keine Webanalyse-Tools wie Google Analytics eingesetzt. Es erfolgt kein Tracking Ihres Nutzungsverhaltens.<br>
+          Für einzelne Funktionen legt die Website kleine Einträge im Speicher Ihres Browsers ab (Local Storage bzw. Session Storage): die gewählte Sprache (Deutsch/Englisch), Position und Vorschaubild für den Bildübergang von der Startseite zur Projektseite sowie die Freischaltung passwortgeschützter Projekte für die laufende Sitzung. Diese Einträge bleiben auf Ihrem Gerät, werden nicht an mich übertragen und enthalten keine Angaben zu Ihrer Person. Sie sind für die von Ihnen genutzten Funktionen unbedingt erforderlich (§ 25 Abs. 2 Nr. 2 TDDDG). Sie können sie jederzeit über die Einstellungen Ihres Browsers löschen.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>5. Einbindung von externen Inhalten</h2>
+        <p>Diese Website verwendet keine extern eingebetteten Inhalte (wie Google Fonts oder YouTube), die automatisch personenbezogene Daten übertragen. Sollte sich das ändern, wird die Datenschutzerklärung entsprechend angepasst.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>6. Ihre Rechte als betroffene Person</h2>
+        <p>Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen: Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen. Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.<br>
+ Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten, von ihrer Speicherung abgesehen, nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>7. Datensicherheit</h2>
+        <p>Ich verwende technische und organisatorische Sicherheitsmaßnahmen, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder den unbefugten Zugriff Dritter zu schützen.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>8. Änderungen dieser Datenschutzerklärung</h2>
+        <p>Ich behalte mir vor, diese Datenschutzerklärung anzupassen, um sie an aktuelle rechtliche Anforderungen oder Änderungen meiner Leistungen anzupassen.</p>
+      </section>
+      <section class="lg-sec">
+        <h2>9. Nutzungsrechte & Lizenzen</h2>
+        <p>Die im Rahmen von Kundenaufträgen erstellten gestalterischen Leistungen (z. B. Visualisierungen, Designs, Konzepten) unterliegen dem Urheberrecht. Der Kunde erhält, sofern vertraglich nichts anderes geregelt wurde, ein einfaches Nutzungsrecht zur Verwendung in dem vereinbarten Umfang und Kontext (z. B. Kampagne, Website, Printprodukt).<br>
+ Eine darüber hinausgehende Nutzung (z. B. Bearbeitung, Weitergabe an Dritte, Nachnutzung in anderen Medien oder Kampagnen) ist nur mit schriftlicher Zustimmung des Urhebers gestattet und kann eine zusätzliche Lizenzgebühr erfordern.<br>
+ Die vollständigen Nutzungsbedingungen sind in den Allgemeinen Geschäftsbedingungen (AGB) geregelt.<br>
+ Stand: November 2026</p>
+      </section>
+      <section class="lg-sec">
+        <h2>Kontakt</h2>
+        <p>Für weitere Fragen zum Thema Datenschutz können Sie sich an mich wenden. Nutzen Sie das Kontaktformular oder die nachfolgenden Kontaktdaten Michèle Killmaier, Heinsbergstraße 10, 50674 Köln, Deutschland, <a href="mailto:info@michelekillmaier.de">info@michelekillmaier.de</a>.</p>
+      </section>
+  </main>
 
- <section class="agb-textbreite">
-    <div class="agb-überschrift2">
-      Datenschutzerklärung
-    </div>
-      <div class="agb-inhalt">
-        Der Schutz Ihrer personenbezogenen Daten ist mir ein wichtiges Anliegen. Nachfolgend informiere ich Sie gemäß Art. 13 und Art. 14 der Datenschutz-Grundverordnung (DSGVO) über die Art, den Umfang und den Zweck der Erhebung und Verarbeitung personenbezogener Daten auf dieser Website.
-      </div>
-
-    <div class="agb-überschrift2">
-      1. Hosting
-    </div>
-      <div class="agb-inhalt">
-       Diese Website wird bei einem deutschen oder europäischen Hostinganbieter betrieben. Der Hostinganbieter erhebt in der Regel folgende Daten, die automatisch in sogenannten Server-Logfiles gespeichert werden: IP-Adresse, Datum und Uhrzeit der Anfrage, Browsertyp und -version, Verwendetes Betriebssystem, Referrer-URL. Diese Daten dienen der technischen Überwachung, Sicherheit und Optimierung des Webservers und werden in der Regel nach wenigen Tagen automatisch gelöscht.
-      </div>
-
-    <div class="agb-überschrift2">
-      2. Kontaktaufnahme
-    </div>
-      <div class="agb-inhalt">
-        Wenn Sie mich per E-Mail oder via Kontaktformular kontaktieren, werden Ihre Angaben zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter. Die Rechtsgrundlage für die Verarbeitung dieser Daten ist Art. 6 Abs. 1 lit. b DSGVO (Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen). Die Daten werden so lange gespeichert, wie es zur Bearbeitung Ihrer Anfrage erforderlich ist. Zwingende gesetzliche Bestimmungen - insbesondere gesetzliche Aufbewahrungsfristen - bleiben unberührt.<br>
-        Kontaktformular: Wenn Sie unser Kontaktformular auf der Webseite ausfüllen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) an den Drittanbieter Web3Forms übermittelt. Dieser Dienst leitet die Nachricht anschließend an unsere E-Mail-Adresse weiter. Web3Forms speichert Ihre Daten nicht dauerhaft und verwendet sie ausschließlich zur Übermittlung Ihrer Nachricht.Die Verarbeitung Ihrer Daten erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO oder unseres berechtigten Interesses an der Kontaktaufnahme (Art. 6 Abs. 1 lit. f DSGVO). Nach Übermittlung der Nachricht werden Ihre Daten auf den Web3Forms-Servern nur kurzfristig gespeichert, bis die E-Mail zugestellt wurde. Auf unseren Servern werden keine Daten gespeichert.Sie haben jederzeit das Recht, Auskunft über die bei uns gespeicherten personenbezogenen Daten zu erhalten, deren Berichtigung oder Löschung zu verlangen.
-      </div>
-   
-    <div class="agb-überschrift2">
-      3. Auftragsverarbeitung
-    </div>
-      <div class="agb-inhalt">
-        Zur Bereitstellung dieser Website nutze ich ggf. Dienstleister (z.B. Hosting, E-Mail), mit denen ein Vertrag zur Auftragsverarbeitung gemäß Art. 28 DSGVO geschlossen wurde.
-      </div>
-
-    <div class="agb-überschrift2">
-      4. Cookies & Analyse-Tools
-    </div>
-      <div class="agb-inhalt">
-        Auf dieser Website werden derzeit keine Cookies und keine Webanalyse-Tools wie Google Analytics eingesetzt. Es erfolgt kein Tracking Ihres Nutzungsverhaltens.
-      </div>
-
-
-    <div class="agb-überschrift2">
-      5. Einbindung von externen Inhalten
-    </div>
-      <div class="agb-inhalt"> 
-        Diese Website verwendet keine extern eingebetteten Inhalte (wie Google Fonts oder YouTube), die automatisch personenbezogene Daten übertragen. Sollte sich das ändern, wird die Datenschutzerklärung entsprechend angepasst.
-      </div>
-
-    <div class="agb-überschrift2">
-      6. Ihre Rechte als betroffene Person
-    </div>
-      <div class="agb-inhalt">     
-        Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen: Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen. Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der  Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. <br>
-        Wenn Sie die Verarbeitung Ihrer personenbezogenen Daten eingeschränkt haben, dürfen diese Daten, von ihrer Speicherung abgesehen, nur mit Ihrer Einwilligung oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen oder zum Schutz der Rechte einer anderen natürlichen oder juristischen Person oder aus Gründen eines wichtigen öffentlichen Interesses der Europäischen Union oder eines Mitgliedstaats verarbeitet werden.
-      </div>
-      
-    <div class="agb-überschrift2">
-      7. Datensicherheit
-    </div>
-      <div class="agb-inhalt"> 
-        Ich verwende technische und organisatorische Sicherheitsmaßnahmen, um Ihre Daten gegen Manipulation, Verlust, Zerstörung oder den unbefugten Zugriff Dritter zu schützen.
-      </div>
-      
-    <div class="agb-überschrift2">
-       8. Änderungen dieser Datenschutzerklärung
-    </div>
-      <div class="agb-inhalt"> 
-        Ich behalte mir vor, diese Datenschutzerklärung anzupassen, um sie an aktuelle rechtliche Anforderungen oder Änderungen meiner Leistungen anzupassen.
-      </div>
-
-    <div class="agb-überschrift2">
-      9. Nutzungsrechte & Lizenzen
-    </div>
-      <div class="agb-inhalt"> 
-        Die im Rahmen von Kundenaufträgen erstellten gestalterischen Leistungen (z.B. Visualisierungen, Designs, Konzepten) unterliegen dem Urheberrecht. Der Kunde erhält, sofern vertraglich nichts anderes geregelt wurde, ein einfaches Nutzungsrecht zur Verwendung in dem vereinbarten Umfang und Kontext (z.B. Kampagne, Website, Printprodukt).<br>
-        Eine darüber hinausgehende Nutzung (z.B. Bearbeitung, Weitergabe an Dritte, Nachnutzung in anderen Medien oder Kampagnen) ist nur mit schriftlicher Zustimmung des Urhebers gestattet und kann eine zusätzliche Lizenzgebühr erfordern.<br>
-        Die vollständigen Nutzungsbedingungen sind in den Allgemeinen Geschäftsbedingungen (AGB) geregelt. <br>
-        Stand: November 2025
-      </div>
-      <div class="agb-überschrift2">
-      
-    </div>
-      <div class="agb-inhalt">
-        Für weitere Fragen zum Thema Datenschutz können Sie sich an mich wenden. Nutzen Sie das Kontaktformular oder die nachfolgenden Kontaktdaten Michèle Killmaier, Heinsbergstraße 10, 50674 Köln, Deutschland,    info@michelekillmaier.de.
-      </div>
- </section>
-
-<footer id="Contact">
-  <div class="footer-links" role="navigation" aria-label="Footer navigation">
+  <footer class="foot">
     <a href="impressum.html">Impressum</a>
     <a href="AGB.html">AGB</a>
-    <a href="Datenschutz.html">Datenschutz</a>
-  </div>
+    <a href="Datenschutz.html" aria-current="page">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
+  </footer>
 
-  <div class="footer-copy">© 2025 Michèle Killmaier</div>
-</footer>
-
-
-  <a class="back-link" href="../index.html">←</a>
-
-  <script src="../script.js"></script>
+  <script src="../projects/projekt.js?v=30"></script>
+  <script src="../projects/contact.js?v=2" defer></script>
+  <script src="../projects/cursor.js?v=1" defer></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-

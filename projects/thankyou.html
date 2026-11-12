@@ -1,48 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8">
-  <title>why not? Portfolio</title>
-  <link rel="stylesheet" href="styleaboutseite.css">
-  <script src="../script.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Danke | why not? Portfolio</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="stylesheet" href="projekt.css?v=30">
   <link rel="icon" type="image/svg+xml" href="../assets/icons/logo.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="vt-start.js?v=4"></script>
+  <style>
+    /* Danke-Seite nach dem Absenden des Kontaktformulars */
+    .ty {
+      min-height: 100vh; min-height: 100svh;
+      display: grid; align-content: center; justify-items: start; gap: clamp(18px, 3vh, 28px);
+      padding: calc(var(--hdr-h, 76px) + 40px) var(--in) 80px;
+    }
+    .ty-title {
+      margin: 0; max-width: 12em;
+      font-family: var(--serif); font-weight: 400; font-variation-settings: "opsz" var(--opsz);
+      font-size: clamp(40px, min(6.2vw, 10vh), 104px); line-height: .9; letter-spacing: -.01em;
+      text-transform: uppercase; color: var(--ink);
+    }
+    .ty-text { margin: 0; max-width: 32em; font-size: 1rem; line-height: 1.6; color: var(--muted); }
+    .ty-back {
+      display: inline-flex; align-items: center; height: 46px; padding: 0 24px; margin-top: 8px;
+      border-radius: 999px; background: #1b1b19; color: #fff;
+      font-size: .9rem; font-weight: 500; letter-spacing: .3px; transition: background-color .25s;
+    }
+    .ty-back:hover { background: #731e3b; }
+  </style>
 </head>
 
-<body class="aboutseite">
+<body>
 
-  <header>
-    <img src="../assets/icons/WhyNot.svg" alt="Why Not" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
-  
-    <nav>
-      <ul>
-        <li><a href="../index.html">Work</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="about.html#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <header class="hdr">
+    <div class="hdr-top is-plain">
+      <a class="logo" href="../index.html" aria-label="why not? – Startseite">
+        <img src="../assets/icons/WhyNot.svg" alt="why not?">
+      </a>
+      <div class="hdr-act">
+        <nav class="nav" id="main-nav" aria-label="Hauptnavigation">
+          <a href="../index.html">Work</a>
+          <a href="about.html">About</a>
+          <a href="about.html#contact">Contact</a>
+        </nav>
+        <div class="lang">
+          <a href="#" id="btn-de" class="lang-link active" aria-label="Deutsch">de</a>
+          <a href="#" id="btn-en" class="lang-link" aria-label="English">en</a>
+        </div>
+        <button class="burger" type="button" aria-controls="main-nav" aria-expanded="false" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+      </div>
+    </div>
   </header>
 
-  <section id="antwortemail">
-    <h1>Vielen Dank für die Nachricht.</h1>
-    <h2>Ich melden uns so schnell wie möglich bei Ihnen.</h2>
-  </section>
+  <main class="ty">
+    <h1 class="ty-title rv-lines" data-translate="thanks_title">Danke für deine Nachricht</h1>
+    <p class="ty-text rv-fade" data-translate="thanks_text">Ich melde mich so schnell wie möglich bei dir – in der Regel innerhalb von 24 bis 48 Stunden.</p>
+    <a class="ty-back rv-fade" href="../index.html" data-translate="thanks_back">Zurück zur Startseite</a>
+  </main>
 
-   
-    <footer id="Contact">
-    <div class="footer-links" role="navigation" aria-label="Footer navigation">
-      <a href="../impressum/impressum.html">Impressum</a>
-      <a href="../impressum/AGB.html">AGB</a>
-      <a href="../impressum/Datenschutz.html">Datenschutz</a>
-    </div>
-
-    <div class="footer-copy">© 2025 Michèle Killmaier</div>
+  <footer class="foot">
+    <a href="../impressum/impressum.html">Impressum</a>
+    <a href="../impressum/AGB.html">AGB</a>
+    <a href="../impressum/Datenschutz.html">Datenschutz</a>
+    <span class="copy">© <span id="year">2026</span> Michèle Killmaier</span>
   </footer>
 
- 
-  <a class="back-link" href="../index.html">←</a>
-
-
+  <script src="projekt.js?v=30"></script>
+  <script src="contact.js?v=2" defer></script>
+  <script src="cursor.js?v=1" defer></script>
 </body>
 </html>

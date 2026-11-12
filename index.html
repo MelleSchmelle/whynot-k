@@ -1,301 +1,1040 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <title>why not? Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>why not? – Portfolio Michèle Killmaier</title>
   <meta name="description" content="why not? – Portfolio von Michèle Killmaier. Interior, Architektur, Produkt- und Grafikdesign in 2D & 3D.">
-
-  <!-- Erste sichtbare Projektbilder vorab anstoßen (schnellerer First Paint) -->
+  <meta name="theme-color" content="#ecebe7">
+  <meta name="version" content="2026-11-03 v24">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/logo.svg">
   <link rel="preload" as="image" href="projects/interior/kitchen/260312_Kitchen_P5-2.avif" type="image/avif" fetchpriority="high">
+
+  <script>
+    (function (d) {
+      d.classList.remove('no-js');
+      d.classList.add('js');
+      var internal = false;
+      try { var r = document.referrer && new URL(document.referrer); internal = !!r && r.origin === location.origin && r.pathname !== location.pathname; } catch (e) {}
+      try { var nav = performance.getEntriesByType('navigation')[0]; if (nav && nav.type === 'back_forward') internal = true; } catch (e) {}
+      if (!internal && !matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('intro');
+    })(document.documentElement);
+  </script>
+
+  <style>
+    /* ---------- Fonts (self-hosted, Fallback greift ohne Dateien) ---------- */
+    @font-face{font-family:"Archivo";src:url("assets/fonts/archivo.woff2") format("woff2");font-weight:100 900;font-stretch:62% 125%;font-display:swap}
+    @font-face{font-family:"Inter";src:url("assets/fonts/inter.woff2") format("woff2");font-weight:100 900;font-display:swap}
+
+    /* ---------- Tokens ---------- */
+    :root{
+      --paper:#ecebe7;      /* Putz */
+      --ink:#1b1b19;
+      --muted:#6d6c67;
+      --line:rgba(27,27,25,.08);
+      --rule:rgba(27,27,25,.18);
+      --soft:#f0efeb;
+      --sky:#90a6d4;
+      --navy:#1a357b;
+      --wine:#731e3b;
+      --rose:#cfbfc3;
+      --accent:var(--navy);
+
+      --display:"Archivo","Inter","Helvetica Neue",Arial,sans-serif;
+      --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+
+      --expo:cubic-bezier(.16,1,.3,1);
+      --quart:cubic-bezier(.25,1,.5,1);
+
+      --pad:clamp(16px,3.1vw,40px);
+      --gap:clamp(8px,1vw,13px);
+      --r:clamp(14px,1.7vw,22px);
+      --hh:76px;
+
+      --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    *,*::before,*::after{box-sizing:border-box}
+    [hidden]{display:none!important}
+    html{-webkit-text-size-adjust:100%}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:geometricPrecision}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    img,video,picture{display:block;max-width:100%}
+    :focus-visible{outline:2px solid #3b82f6;outline-offset:3px;border-radius:6px}
+    .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+    /* ---------- Header ---------- */
+    .hdr{font-family:sans-serif;color:#111;position:relative;z-index:5;grid-column:1;grid-row:1;align-self:start;min-width:0;margin:0 var(--pad);padding:0 12px 0 22px;background:#fff;border-radius:0 0 var(--r) var(--r);box-shadow:0 0 0 1px var(--line),0 16px 36px -24px rgba(27,27,25,.32)}
+    .hdr-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-rows:var(--hh);grid-template-areas:"logo cats nav";align-items:center}
+    .logo{grid-area:logo}
+    .hdr-act{grid-area:nav;justify-self:end;display:flex;align-items:center;gap:2px}
+    .cats{grid-area:cats}
+    .logo{display:flex;align-items:center;flex:none}
+    .logo img{height:clamp(26px,2.8vw,36px);width:auto}
+    .burger{appearance:none;position:relative;width:44px;height:44px;margin:0;padding:0;border:0;border-radius:999px;background:transparent;cursor:pointer;transition:background-color .25s}
+    .burger:hover,.hdr[data-open="true"] .burger{background:var(--paper)}
+    .burger span{position:absolute;left:13px;right:13px;height:1.5px;border-radius:2px;background:#111;transition:transform .5s var(--expo),opacity .25s var(--quart)}
+    .burger span:nth-child(1){top:15px}
+    .burger span:nth-child(2){top:21.25px}
+    .burger span:nth-child(3){top:27.5px}
+    .hdr[data-open="true"] .burger span:nth-child(1){transform:translateY(6.25px) rotate(45deg)}
+    .hdr[data-open="true"] .burger span:nth-child(2){opacity:0;transform:scaleX(.4)}
+    .hdr[data-open="true"] .burger span:nth-child(3){transform:translateY(-6.25px) rotate(-45deg)}
+    .menu{position:absolute;top:calc(var(--hh) - 6px);right:6px;z-index:6;display:flex;flex-direction:column;gap:2px;min-width:200px;padding:8px;background:#fff;border-radius:calc(var(--r) - 4px);box-shadow:0 0 0 1px var(--line),0 18px 40px -20px rgba(27,27,25,.35);opacity:0;visibility:hidden;transform:translateY(-6px) scale(.98);transform-origin:top right;transition:opacity .25s var(--quart),transform .45s var(--expo),visibility 0s .45s}
+    .hdr[data-open="true"] .menu{opacity:1;visibility:visible;transform:none;transition:opacity .25s var(--quart),transform .45s var(--expo),visibility 0s}
+    .nl{display:flex;align-items:center;height:44px;padding:0 16px;border-radius:calc(var(--r) - 10px);font-size:1rem;font-weight:300;letter-spacing:.5px;transition:background-color .25s}
+    .nl:hover{background:rgba(236,235,231,.6)}
+    .nl.is-current{background:var(--paper)}
+
+    /* ---------- Kategorien (in der Header-Karte) ---------- */
+    .cats{display:flex;align-items:center;min-width:0;margin:0 clamp(16px,3vw,72px)}
+    @media (min-width:760px){.cats .cat-row{flex-wrap:nowrap;font-size:clamp(18px,calc(.78vw + 7.3px),21px)}}
+    @media (min-width:760px) and (max-width:1099px){.cats .cat-row{column-gap:1em}}
+    @media (max-width:759px){
+      .hdr-top{grid-template-columns:auto minmax(0,1fr);grid-template-rows:var(--hh) auto;grid-template-areas:"logo nav" "cats cats"}
+      .cats{margin:0;padding:14px 10px 16px 0;border-top:1px solid var(--line)}
+    }
+    .cat-row{display:flex;flex:1;flex-wrap:wrap;justify-content:center;align-items:flex-start;gap:.25em 1.3em;min-width:0;font-family:garamond,Garamond,"EB Garamond","Cormorant Garamond","Times New Roman",serif;font-weight:300;font-size:clamp(20px,min(2.2vw,4.6vh),34px);line-height:1;letter-spacing:.01em;text-transform:uppercase}
+    .ln{appearance:none;display:flex;align-items:flex-start;gap:.15em;flex:none;margin:0;padding:0;border:0;background:none;font:inherit;letter-spacing:inherit;line-height:inherit;text-transform:inherit;text-align:left;color:inherit;cursor:pointer;border-radius:4px}
+    .mask{display:block;overflow:hidden;padding:.08em .03em .04em 0;margin:-.08em 0 -.04em}
+    .ln .w{display:block;transition:color .35s var(--quart)}
+    .ln .n{font-family:sans-serif;font-size:max(10px,.32em);font-weight:300;letter-spacing:0;line-height:1;margin-top:.1em;color:var(--muted);font-variant-numeric:tabular-nums;transition:color .35s}
+    @media (hover:hover){.ln:hover .w{color:var(--accent)}}
+    .ln.hint .w{color:var(--accent)}
+    .ln[aria-pressed="true"] .n{color:var(--accent)}
+    .ln[aria-pressed="false"] .w{color:rgba(27,27,25,.42)}
+    .ln[aria-pressed="false"].hint .w,
+    .ln[aria-pressed="false"]:hover .w{color:var(--accent)}
+
+
+    /* ---------- Footer (Karte wie Header, rechtsbündig) ---------- */
+    .foot{font-family:sans-serif;position:relative;z-index:5;display:flex;flex-wrap:wrap;align-items:center;justify-content:flex-end;gap:4px 14px;width:var(--cw,300px);margin:0 var(--pad) 0 auto;padding:12px 16px calc(12px + env(safe-area-inset-bottom));text-align:right;background:#fff;border-radius:var(--r) var(--r) 0 0;box-shadow:0 0 0 1px var(--line),0 -16px 36px -24px rgba(27,27,25,.32);font-size:.75rem;font-weight:300;letter-spacing:.3px;color:var(--muted)}
+    .foot a{color:#111}
+    .foot a:hover{text-decoration:underline;text-underline-offset:3px}
+    .foot .copy{flex-basis:100%}
+
+    /* ---------- Layout mit JS: viewport-locked ---------- */
+    .js body{overflow:hidden;overscroll-behavior:none}
+    .js .stage{position:fixed;inset:0;display:grid;grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;padding:0 env(safe-area-inset-right) 0 env(safe-area-inset-left)}
+    .js .foot{grid-column:1;grid-row:3;align-self:end}
+    .js .project > *{display:none}
+
+    /* ---------- Mosaik ---------- */
+    .js .project-list{grid-column:1;grid-row:1/-1;height:auto!important;max-width:none;margin:0;position:relative;z-index:1;min-width:0;min-height:0;display:flex;align-items:flex-start;gap:var(--gap);padding:0 var(--pad);overflow:hidden;overflow:clip;touch-action:none;-webkit-user-select:none;user-select:none}
+    .col{flex:0 0 var(--cw,200px);min-width:0;transition:opacity .5s var(--quart),transform .9s var(--expo);transition-delay:calc(var(--i,0) * 55ms)}
+    .track{position:relative;will-change:transform}
+    .project-list.is-swapping .col{opacity:0;transform:translateY(32px);transition-duration:.28s;transition-delay:0s}
+    /* Gefiltert: ruhendes Raster, jedes Projekt einmal, scrollbar falls nötig */
+    .js .project-list.is-grid{justify-content:center;overflow-x:hidden;overflow-y:auto;touch-action:pan-y;scrollbar-width:none;overscroll-behavior:contain}
+    .project-list.is-grid::-webkit-scrollbar{display:none}
+    .project-list.is-grid .col{transition:opacity .28s var(--quart),transform .28s var(--quart);transition-delay:0s}
+    .tile.gone{opacity:0!important;transition:opacity .26s var(--quart)}
+
+    .tile{position:relative;display:block;margin-bottom:var(--gap);border-radius:var(--r);overflow:hidden;background:#dedcd6;isolation:isolate;-webkit-user-drag:none;transition:opacity .45s var(--quart),filter .45s var(--quart)}
+    .tile .media{position:absolute;inset:0;transition:transform 1s var(--expo)}
+    .tile .media > *,.tile img,.tile video{width:100%;height:100%;object-fit:cover}
+    @media (hover:hover){.tile[href]:hover .media{transform:scale(1.05)}}
+    .tile.dim{opacity:.16;filter:grayscale(1)}
+
+    .mosaic .tile .tile-cap{position:absolute;left:0;right:0;bottom:0;top:auto;z-index:2;display:flex;flex-direction:column;gap:4px;margin:0;padding:56px 18px 16px;border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;background:linear-gradient(to top,rgba(14,14,13,.62),rgba(14,14,13,.28) 55%,rgba(14,14,13,0));color:#fff;opacity:0;transform:translateY(10px);transition:opacity .45s var(--quart),transform .7s var(--expo);pointer-events:none}
+    .mosaic .tile .tile-cap b{display:block;color:#fff;font-family:garamond,Garamond,"EB Garamond","Cormorant Garamond","Times New Roman",serif;font-weight:300;font-size:clamp(18px,1.6vw,24px);line-height:1.05;letter-spacing:.01em}
+    .mosaic .tile .tile-cap i{display:block;color:rgba(255,255,255,.85);font-style:normal;font-family:sans-serif;font-size:12px;font-weight:300;letter-spacing:.3px}
+    @media (hover:hover){.mosaic .tile:hover .tile-cap{opacity:1;transform:none}}
+    .mosaic .tile:focus-visible .tile-cap{opacity:1;transform:none}
+    @media (hover:none){
+      .mosaic .tile .tile-cap{opacity:1;transform:none;padding:32px 10px 9px}
+      .mosaic .tile .tile-cap b{font-size:15px}
+      .mosaic .tile .tile-cap i{display:none}
+    }
+
+    /* Platzhalter-Kacheln */
+    .pl::after{content:"";position:absolute;inset:0;background:var(--grain);background-size:180px;opacity:.16;mix-blend-mode:multiply;pointer-events:none}
+    .pl-sky{background:var(--sky)}
+    .pl-navy{background:var(--navy)}
+    .pl-wine{background:var(--wine)}
+    .pl-rose{background:var(--rose)}
+    .pl-white{background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+    .pl-white::after{display:none}
+    .pl-navy::after,.pl-wine::after{mix-blend-mode:screen;opacity:.06}
+    .tile .mark{position:absolute;left:50%;top:50%;width:34%;height:auto;object-fit:contain;transform:translate(-50%,-50%)}
+
+
+
+    /* ---------- Mobil ---------- */
+    @media (max-width:759px){
+      :root{--hh:62px}
+      .hdr{padding:0 8px 0 16px}
+      .logo img{height:28px}
+      .cats{padding:10px 0 12px}
+      .cat-row{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:0 8px 0 0;font-size:22px;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
+      .cat-row::-webkit-scrollbar{display:none}
+      .foot{gap:2px 10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));font-size:.68rem}
+    }
+    @media (max-height:560px){:root{--hh:60px}}
+
+    /* ---------- Ladesequenz (einmalig) ---------- */
+    @keyframes hdrIn{from{transform:translateY(calc(-100% - 40px))}}
+    @keyframes rise{from{transform:translateY(108%)}}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}}
+    @keyframes colIn{from{opacity:0;transform:translateY(90px)}}
+    .intro .hdr{animation:hdrIn .95s var(--expo) both}
+    .intro .logo{animation:fadeUp .8s var(--quart) .38s both}
+    .intro .burger{animation:fadeUp .8s var(--quart) .48s both}
+    .intro .ln .w{animation:rise 1s var(--expo) both;animation-delay:calc(.32s + var(--i,0) * 70ms)}
+    .intro .ln .n{animation:fadeUp .7s var(--quart) both;animation-delay:calc(.75s + var(--i,0) * 85ms)}
+    .intro .foot{animation:fadeUp .9s var(--quart) .96s both}
+    .intro .col{animation:colIn 1.5s var(--expo) both;animation-delay:calc(.18s + var(--i,0) * 90ms)}
+
+    @media (prefers-reduced-motion:reduce){
+      .tile .media,.tile-cap,.ln .w,.col{transition:none}
+    }
+
+
+    /* ---------- Fallback ohne JS: normales Raster ---------- */
+    .no-js .hdr{position:sticky;top:0}
+    .no-js .ln .n{display:none}
+    .no-js .burger{display:none}
+    .no-js .menu{position:static;grid-column:1/-1;flex-direction:row;opacity:1;visibility:visible;transform:none;box-shadow:none;padding:0 0 12px}
+    .no-js .project-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--gap);padding:0 var(--pad) 40px}
+    .no-js .project a{display:block}
+    .no-js .project img,.no-js .project video{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:var(--r)}
+    .no-js .project-info h2{margin:10px 0 0;font-size:15px}
+    .no-js .project-info p{margin:0;font-size:13px;color:var(--muted)}
+  </style>
 </head>
 
-<body>
-  <header>
-    <img src="assets/icons/WhyNot.svg" alt="why not? – Startseite" class="logo">
-    <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false" aria-controls="main-nav">☰</button>
+<body class="startseite">
+<div class="stage">
 
-    <nav id="main-nav">
-      <ul>
-        <li class="has-submenu">
-          <a href="#work">Work</a>
-            <ul class="submenu">
-              <li><a href="#" data-filter="all">all</a></li>
-              <li><a href="#" data-filter="products">products</a></li>
-              <li><a href="#" data-filter="architecture">architecture</a></li>
-              <li><a href="#" data-filter="interior">interior</a></li>
-              <li><a href="#" data-filter="graphics">graphics</a></li>
-              <li><a href="#" data-filter="ai">ai</a></li>
-            </ul>
-        </li>
-        <li><a href="projects/about.html">About</a></li>
-        <li><a href="projects/about.html#contact">Contact</a></li>
-      </ul>
+  <header class="hdr">
+    <div class="hdr-top">
+    <a class="logo" href="./" aria-label="why not? – Startseite">
+      <img src="assets/icons/WhyNot.svg" alt="why not?">
+    </a>
+    <div class="hdr-act">
+      <button class="burger" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+    </div>
+    <div class="cats" id="work">
+      <h1 class="sr-only" id="work-title">why not? – Work von Michèle Killmaier</h1>
+      <div class="cat-row" role="group" aria-label="Kategorien">
+        <button class="ln" type="button" data-filter="all" aria-pressed="true" style="--i:0"><span class="mask"><span class="w">All</span></span></button>
+        <button class="ln" type="button" data-filter="interior" aria-pressed="false" style="--i:1"><span class="mask"><span class="w">Interior</span></span></button>
+        <button class="ln" type="button" data-filter="architecture" aria-pressed="false" style="--i:2"><span class="mask"><span class="w">Architektur</span></span></button>
+        <button class="ln" type="button" data-filter="products" aria-pressed="false" style="--i:3"><span class="mask"><span class="w">Produkt</span></span></button>
+        <button class="ln" type="button" data-filter="graphics" aria-pressed="false" style="--i:4"><span class="mask"><span class="w">Grafik</span></span></button>
+        <button class="ln" type="button" data-filter="ai" aria-pressed="false" style="--i:5"><span class="mask"><span class="w">AI</span></span></button>
+    </div>
+    </div>
+    </div>
+    <nav class="menu" id="main-nav" aria-label="Hauptnavigation">
+      <a class="nl work is-current" href="#work" data-nav="work" aria-current="page">Work</a>
+      <a class="nl" href="projects/about.html">About</a>
+      <a class="nl" href="projects/about.html#contact">Contact</a>
     </nav>
   </header>
 
 
-<section id="work">
-  <div class="work-inner">
-    <h1 class="work-title">WORK</h1>
+  <main class="project-list" id="projects" aria-label="Projekte">
 
-    <!-- Kategorien-Leiste (steht IM FLOW, drückt die Seite nach unten) -->
-  <div class="work-categories" role="navigation" aria-label="Work Kategorien">
-      <a href="#" data-filter="all">all</a>
-      <a href="#" data-filter="products">products</a>
-      <a href="#" data-filter="architecture">architecture</a>
-      <a href="#" data-filter="interior">interior</a>
-      <a href="#" data-filter="graphics">graphics</a>
-      <a href="#" data-filter="ai">ai</a>
-    </div>
-  </div>
-</section>
-
-
-
-<main class="project-list">
-    <!-- Projekt 1 -->
     <article class="project" data-category="interior">
       <a href="projects/project kitchen.html">
-      <picture>
-        <source srcset="projects/interior/kitchen/260312_Kitchen_P5-2.avif" type="image/avif">
-        <source srcset="projects/interior/kitchen/260312_Kitchen_P5-2.webp" type="image/webp">
-        <img src="projects/interior/kitchen/260312_Kitchen_P5-2.jpg" alt="Kitchen – Interior & 3D"
-             width="2500" height="2000" decoding="async" fetchpriority="high">
-      </picture>
-      <div class="project-info">
-        <h2>Kitchen</h2>
-        <p>2026 – Entwurf & 3D</p>
-      </div>
+        <picture>
+          <source srcset="projects/interior/kitchen/260312_Kitchen_P5-2.avif" type="image/avif">
+          <source srcset="projects/interior/kitchen/260312_Kitchen_P5-2.webp" type="image/webp">
+          <img src="projects/interior/kitchen/260312_Kitchen_P5-2.jpg" alt="Kitchen – Interior & 3D" width="2500" height="2000" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="project-info"><h2>Kitchen</h2><p>2026 – Entwurf & 3D</p></div>
       </a>
     </article>
 
+    <article class="project" data-category="interior ai">
+      <a href="projects/project walk-in closet.html">
+        <picture>
+          <source srcset="projects/interior/walk in closet/walkincloset_P2.avif" type="image/avif">
+          <source srcset="projects/interior/walk in closet/walkincloset_P2.webp" type="image/webp">
+          <img src="projects/interior/walk in closet/walkincloset_P2.jpg" alt="Walk-in Closet – Interior & 3D" width="1952" height="2176" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="project-info"><h2>Walk-in Closet</h2><p>2026 – Entwurf & 3D</p></div>
+      </a>
+    </article>
 
-    <!-- Projekt 2 -->
     <article class="project" data-category="products">
       <a href="projects/project Composition No1.html">
-      <picture>
-        <source srcset="projects/products/Composition No. 1/Composition2.avif" type="image/avif">
-        <source srcset="projects/products/Composition No. 1/Composition2.webp" type="image/webp">
-        <img src="projects/products/Composition No. 1/Composition2.jpg" alt="Composition No. 1 – Produkt & 3D"
-             width="2000" height="2500" decoding="async" fetchpriority="high">
-      </picture>
-      <div class="project-info">
-        <h2>Composition No. 1</h2>
-        <p>2026 – Entwurf & 3D</p>
-      </div>
+        <picture>
+          <source srcset="projects/products/Composition No. 1/Composition2.avif" type="image/avif">
+          <source srcset="projects/products/Composition No. 1/Composition2.webp" type="image/webp">
+          <img src="projects/products/Composition No. 1/Composition2.jpg" alt="Composition No. 1 – Produkt & 3D" width="2000" height="2500" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="project-info"><h2>Composition No. 1</h2><p>2026 – Entwurf & 3D</p></div>
       </a>
     </article>
 
-    <!-- Projekt 3 -->
     <article class="project" data-category="interior">
       <a href="projects/project flagship T.html">
-      <picture>
-        <source srcset="projects/interior/tfh/TFH6.avif" type="image/avif">
-        <source srcset="projects/interior/tfh/TFH6.webp" type="image/webp">
-        <img src="projects/interior/tfh/TFH6.jpg" alt="Flagship Store – Interior"
-             width="2500" height="1667" decoding="async" fetchpriority="high">
-      </picture>
-      <div class="project-info">
-        <h2>Flagship Store</h2>
-        <p>2022 – Entwurf bis Fertigstellung</p>
-      </div>
+        <picture>
+          <source srcset="projects/interior/tfh/TFH6.avif" type="image/avif">
+          <source srcset="projects/interior/tfh/TFH6.webp" type="image/webp">
+          <img src="projects/interior/tfh/TFH6.jpg" alt="Flagship Store – Interior" width="2500" height="1667" decoding="async" fetchpriority="high">
+        </picture>
+        <div class="project-info"><h2>Flagship Store</h2><p>2022 – Entwurf bis Fertigstellung</p></div>
       </a>
     </article>
 
-
-    <!-- Projekt 4 -->
     <article class="project" data-category="graphics">
       <a href="projects/project pearl.html">
-      <picture>
-        <source srcset="projects/grafics/pearl/Pearl_4.avif" type="image/avif">
-        <source srcset="projects/grafics/pearl/Pearl_4.webp" type="image/webp">
-        <img src="projects/grafics/pearl/Pearl_4.jpg" alt="Graphics for Pearl – Grafik & 3D"
-             width="2000" height="2500" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Graphics for Pearl</h2>
-        <p>2020 – Grafiken, Fräsungen und 3D</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 5 -->
-    <article class="project" data-category="products">
-      <a href="projects/project torno.html">
-      <picture>
-        <source srcset="projects/products/plus halle/Plus Halle Compostion.avif" type="image/avif">
-        <source srcset="projects/products/plus halle/Plus Halle Compostion.webp" type="image/webp">
-        <img src="projects/products/plus halle/Plus Halle Compostion.jpg" alt="Composition No. 2 – Produkt & 3D"
-             width="2000" height="2500" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Composition No2</h2>
-        <p>2025 – Entwurf & 3D</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 6 -->
-    <article class="project" data-category="products">
-      <a href="projects/project Donuts.html">
-       <video autoplay muted loop playsinline preload="metadata"
-              width="1920" height="1080"
-              poster="projects/products/donuts/poster.jpg">
-      <source src="projects/products/donuts/0001-0180.mp4" type="video/mp4">
-    </video>
-      <div class="project-info">
-        <h2>Donuts</h2>
-        <p>2025 – 3D & Animation</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 7 -->
-    <article class="project" data-category="products ai">
-            <a href="projects/project biagio.html">
-      <video autoplay muted loop playsinline preload="metadata"
-             width="1920" height="1080"
-             poster="projects/products/biagio/poster.jpg">
-      <source src="projects/products/biagio/0001-0101.mp4" type="video/mp4">
-    </video>
-      <div class="project-info">
-        <h2>Biagio</h2>
-        <p>2025 – 3D & Animation</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 8 -->
-    <article class="project" data-category="interior">
-      <a href="projects/project DSV.html">
-      <picture>
-        <source srcset="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.avif" type="image/avif">
-        <source srcset="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.webp" type="image/webp">
-        <img src="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.png" alt="DSV – Interior & Ausführungsplanung"
-             width="3840" height="2160" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>DSV</h2>
-        <p>2023 - Entwurf & Ausführungsplanung</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 9 -->
-    <article class="project" data-category="products">
-      <a href="projects/project hortensia.html">
-      <picture>
-        <source srcset="projects/products/hortensia/Final 1-3.avif" type="image/avif">
-        <source srcset="projects/products/hortensia/Final 1-3.webp" type="image/webp">
-        <img src="projects/products/hortensia/Final 1-3.jpg" alt="Hortensia – Produkt & 3D"
-             width="2500" height="2000" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Hortensia</h2>
-        <p>2025 – Entwurf & 3D</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 10 -->
-    <article class="project" data-category="products">
-      <a href="projects/project chess.html">
-      <picture>
-        <source srcset="projects/products/Chess/3D_M1_Michele_Killmaier_03.avif" type="image/avif">
-        <source srcset="projects/products/Chess/3D_M1_Michele_Killmaier_03.webp" type="image/webp">
-        <img src="projects/products/Chess/3D_M1_Michele_Killmaier_03.png" alt="Chess – Produkt & 3D"
-             width="1920" height="1080" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Chess</h2>
-        <p>2025 – Entwurf & 3D</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 11 -->
-    <article class="project" data-category="interior">
-      <a href="projects/project privates Wohnhaus.html">
-      <picture>
-        <source srcset="projects/interior/bro/Bro6.avif" type="image/avif">
-        <source srcset="projects/interior/bro/Bro6.webp" type="image/webp">
-        <img src="projects/interior/bro/Bro6.jpg" alt="Privates Wohnhaus – Interior & 3D"
-             width="2200" height="1238" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Privates Wohnhaus</h2>
-        <p>2021 – Entwurf & 3D</p>
-      </div></a>
-    </article>
-
-
-    <!-- Projekt 12 -->
-    <article class="project" data-category="architecture">
-      <a href="projects/project metamorphose.html">
-      <picture>
-        <source srcset="projects/art/metamorphose/frame 2-3.avif" type="image/avif">
-        <source srcset="projects/art/metamorphose/frame 2-3.webp" type="image/webp">
-        <img src="projects/art/metamorphose/frame 2-3.jpg" alt="Metamorphose – Architektur & 3D"
-             width="2000" height="2000" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Metamorphose</h2>
-        <p>2025 – Entwurf & 3D</p>
-      </div>
+        <picture>
+          <source srcset="projects/grafics/pearl/Pearl_4.avif" type="image/avif">
+          <source srcset="projects/grafics/pearl/Pearl_4.webp" type="image/webp">
+          <img src="projects/grafics/pearl/Pearl_4.jpg" alt="Graphics for Pearl – Grafik & 3D" width="2000" height="2500" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Graphics for Pearl</h2><p>2020 – Grafiken, Fräsungen und 3D</p></div>
       </a>
     </article>
 
+    <article class="project" data-category="graphics">
+      <a href="projects/project website.html">
+        <picture>
+          <img src="assets/about/Spielkarte.png" alt="Portfolio-Website – Webdesign" width="646" height="923" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Portfolio-Website</h2><p>2026 – Konzept, Webdesign &amp; Umsetzung</p></div>
+      </a>
+    </article>
 
-    <!-- Projekt 13 -->
+    <article class="project" data-category="products">
+      <a href="projects/project torno.html">
+        <picture>
+          <source srcset="projects/products/plus halle/Plus Halle Compostion.avif" type="image/avif">
+          <source srcset="projects/products/plus halle/Plus Halle Compostion.webp" type="image/webp">
+          <img src="projects/products/plus halle/Plus Halle Compostion.jpg" alt="Composition No. 2 – Produkt & 3D" width="2000" height="2500" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Composition No. 2</h2><p>2025 – Entwurf & 3D</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="products">
+      <a href="projects/project Donuts.html">
+        <video autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="projects/products/donuts/poster.jpg">
+          <source src="projects/products/donuts/0001-0180.mp4" type="video/mp4">
+        </video>
+        <div class="project-info"><h2>Donuts</h2><p>2025 – 3D & Animation</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="products ai">
+      <a href="projects/project biagio.html">
+        <video autoplay muted loop playsinline preload="metadata" width="1920" height="1080" poster="projects/products/biagio/poster.jpg">
+          <source src="projects/products/biagio/0001-0101.mp4" type="video/mp4">
+        </video>
+        <div class="project-info"><h2>Biagio</h2><p>2025 – 3D & Animation</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="interior">
+      <a href="projects/project DSV.html">
+        <picture>
+          <source srcset="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.avif" type="image/avif">
+          <source srcset="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.webp" type="image/webp">
+          <img src="projects/interior/dsv/221006_DSV_Landing Area_Perspektive.png" alt="DSV – Interior & Ausführungsplanung" width="3840" height="2160" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>DSV</h2><p>2023 – Entwurf & Ausführungsplanung</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="products">
+      <a href="projects/project hortensia.html">
+        <picture>
+          <source srcset="projects/products/hortensia/Final 1-3.avif" type="image/avif">
+          <source srcset="projects/products/hortensia/Final 1-3.webp" type="image/webp">
+          <img src="projects/products/hortensia/Final 1-3.jpg" alt="Hortensia – Produkt & 3D" width="2500" height="2000" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Hortensia</h2><p>2025 – Entwurf & 3D</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="products">
+      <a href="projects/project chess.html">
+        <picture>
+          <source srcset="projects/products/Chess/3D_M1_Michele_Killmaier_03.avif" type="image/avif">
+          <source srcset="projects/products/Chess/3D_M1_Michele_Killmaier_03.webp" type="image/webp">
+          <img src="projects/products/Chess/3D_M1_Michele_Killmaier_03.png" alt="Chess – Produkt & 3D" width="1920" height="1080" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Chess</h2><p>2025 – Entwurf & 3D</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="interior">
+      <a href="projects/project privates Wohnhaus.html">
+        <picture>
+          <source srcset="projects/interior/bro/Bro6.avif" type="image/avif">
+          <source srcset="projects/interior/bro/Bro6.webp" type="image/webp">
+          <img src="projects/interior/bro/Bro6.jpg" alt="Privates Wohnhaus – Interior & 3D" width="2200" height="1238" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Privates Wohnhaus</h2><p>2021 – Entwurf & 3D</p></div>
+      </a>
+    </article>
+
+    <article class="project" data-category="architecture">
+      <a href="projects/project metamorphose.html">
+        <picture>
+          <source srcset="projects/art/metamorphose/frame 2-3.avif" type="image/avif">
+          <source srcset="projects/art/metamorphose/frame 2-3.webp" type="image/webp">
+          <img src="projects/art/metamorphose/frame 2-3.jpg" alt="Metamorphose – Architektur & 3D" width="2000" height="2000" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Metamorphose</h2><p>2025 – Entwurf & 3D</p></div>
+      </a>
+    </article>
+
     <article class="project" data-category="interior">
       <a href="projects/project home office.html">
-      <picture>
-        <source srcset="projects/interior/home office/HO2.avif" type="image/avif">
-        <source srcset="projects/interior/home office/HO2.webp" type="image/webp">
-        <img src="projects/interior/home office/HO2.jpg" alt="Home Office – Interior & 3D"
-             width="2000" height="2000" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Home Office</h2>
-        <p>2025 - Entwurf & 3D </p>
-      </div></a>
+        <picture>
+          <source srcset="projects/interior/home office/HO2.avif" type="image/avif">
+          <source srcset="projects/interior/home office/HO2.webp" type="image/webp">
+          <img src="projects/interior/home office/HO2.jpg" alt="Home Office – Interior & 3D" width="2000" height="2000" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Home Office</h2><p>2025 – Entwurf & 3D</p></div>
+      </a>
     </article>
 
-
-    <!-- Projekt 14 -->
     <article class="project" data-category="architecture">
       <a href="projects/project Ort d Wassers.html">
-      <picture>
-        <source srcset="projects/architecture/master/Render - Dach Szene1 Kopie.avif" type="image/avif">
-        <source srcset="projects/architecture/master/Render - Dach Szene1 Kopie.webp" type="image/webp">
-        <img src="projects/architecture/master/Render - Dach Szene1 Kopie.jpg" alt="Ort des Wassers – Masterarbeit"
-             width="1743" height="981" loading="lazy" decoding="async">
-      </picture>
-      <div class="project-info">
-        <h2>Ort des Wassers</h2>
-        <p>2017 – Masterarbeit</p>
-      </div></a>
+        <picture>
+          <source srcset="projects/architecture/master/Render - Dach Szene1 Kopie.avif" type="image/avif">
+          <source srcset="projects/architecture/master/Render - Dach Szene1 Kopie.webp" type="image/webp">
+          <img src="projects/architecture/master/Render - Dach Szene1 Kopie.jpg" alt="Ort des Wassers – Masterarbeit" width="1743" height="981" loading="lazy" decoding="async">
+        </picture>
+        <div class="project-info"><h2>Ort des Wassers</h2><p>2017 – Masterarbeit</p></div>
+      </a>
     </article>
-
 
   </main>
 
-
-
-<footer id="Contact">
-  <div class="footer-links" role="navigation" aria-label="Footer navigation">
+  <footer class="foot" id="Contact">
     <a href="impressum/impressum.html">Impressum</a>
     <a href="impressum/AGB.html">AGB</a>
     <a href="impressum/Datenschutz.html">Datenschutz</a>
-  </div>
+    <span class="copy">© <span data-year>2026</span> Michèle Killmaier</span>
+  </footer>
 
-  <div class="footer-copy">© 2025 Michèle Killmaier</div>
-</footer>
+</div>
 
-  <script src="script.js"></script>
+<script>
+/* Kategorien einzeilig einpassen (Tablet / halbes Fenster) */
+(() => {
+  const row = document.querySelector('.cat-row');
+  if (!row) return;
+  const fit = () => {
+    row.style.fontSize = '';
+    if (innerWidth < 760) return;                       // Handy: wischbare Zeile
+    const items = row.querySelectorAll('.ln');
+    if (!items.length) return;
+    const first = items[0].getBoundingClientRect();
+    const last = items[items.length - 1].getBoundingClientRect();
+    const need = last.right - first.left;
+    const have = row.clientWidth;
+    if (need > have) {
+      const fs = parseFloat(getComputedStyle(row).fontSize);
+      row.style.fontSize = Math.max(12, fs * have / need * 0.97) + 'px';
+    }
+  };
+  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(fit, 80); });
+  fit();
+  document.fonts && document.fonts.ready.then(fit);
+})();
 
+/* Burger-Menü */
+(() => {
+  const hdr = document.querySelector('.hdr');
+  const btn = document.querySelector('.burger');
+  const menu = document.getElementById('main-nav');
+  if (!hdr || !btn || !menu) return;
+  const set = open => {
+    hdr.dataset.open = String(open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+  };
+  set(false);
+  btn.addEventListener('click', e => {
+    const open = hdr.dataset.open !== 'true';
+    set(open);
+    if (open && e.detail === 0) menu.querySelector('a')?.focus();   // per Tastatur geöffnet
+  });
+  menu.addEventListener('click', e => { if (e.target.closest('a')) set(false); });
+  document.addEventListener('click', e => { if (hdr.dataset.open === 'true' && !hdr.contains(e.target)) set(false); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && hdr.dataset.open === 'true') { set(false); btn.focus(); }
+  });
+})();
+</script>
+<script>
+(() => {
+  const root = document.documentElement;
+  const main = document.querySelector('.project-list');
+  const catRow = document.querySelector('.cat-row');
+  document.querySelectorAll('[data-year]').forEach(n => { n.textContent = new Date().getFullYear(); });
+  if (!main || !root.classList.contains('js')) return;
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CATS = ['interior', 'architecture', 'products', 'graphics', 'ai'];
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+
+  /* 1 — Projekte aus dem bestehenden Markup lesen (neue Projekte einfach als <article> ergänzen) */
+  const projects = [...main.querySelectorAll('.project')]
+    .filter(el => el.querySelector('picture, video'))
+    .map(el => {
+      const media = el.querySelector('picture, video');
+      const isVideo = media.tagName === 'VIDEO';
+      const dim = isVideo ? media : media.querySelector('img');
+      const w = +dim.getAttribute('width') || 4;
+      const h = +dim.getAttribute('height') || 5;
+      return {
+        href: el.querySelector('a').getAttribute('href'),
+        title: (el.querySelector('h2')?.textContent || '').trim(),
+        meta: (el.querySelector('.project-info p')?.textContent || '').trim(),
+        cats: (el.dataset.category || '').split(/\s+/).filter(Boolean),
+        media, isVideo,
+        ratio: clamp(h / w, 0.8, 1.3)
+      };
+    });
+  main.replaceChildren();
+  main.removeAttribute('style');
+  main.classList.add('mosaic');
+
+  /* 2 — Filter-Zähler */
+  const count = c => c === 'all' ? projects.length : projects.filter(p => p.cats.includes(c)).length;
+  const filterBtns = [...document.querySelectorAll('button[data-filter]')];
+  const lines = filterBtns.filter(b => b.classList.contains('ln'));
+  filterBtns.forEach(b => {
+    const n = count(b.dataset.filter);
+    const out = b.querySelector('.n');
+    if (out) out.textContent = String(n).padStart(2, '0');
+    const label = b.textContent.replace(/\d+/g, '').trim();
+    b.setAttribute('aria-label', `${label}, ${n} ${n === 1 ? 'Projekt' : 'Projekte'}`);
+    if (!n) b.hidden = true;
+  });
+
+  let filter = 'all';
+  const fromHash = decodeURIComponent(location.hash.slice(1));
+  if (CATS.includes(fromHash) && count(fromHash)) filter = fromHash;
+  const syncPressed = () => {
+    filterBtns.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+    catRow && catRow.classList.toggle('is-filtered', filter !== 'all');
+  };
+  syncPressed();
+
+  /* 3 — Platzhalter */
+  // Schriftzug „why not?“ nur auf den weißen Kacheln (t), farbige bleiben leer
+  const PL = [
+    { c: 'sky' }, { c: 'navy' }, { c: 'rose' }, { c: 'wine' },
+    { c: 'white', t: 1 }, { c: 'sky' }, { c: 'navy' }, { c: 'rose' },
+    { c: 'wine' }, { c: 'sky' }, { c: 'navy' }, { c: 'rose' }
+  ];
+  const PL_AR = [1, 1.25, 0.8, 1.1];
+  const rng = seed => () => ((seed = (seed * 1664525 + 1013904223) >>> 0) / 4294967296);
+
+  const io = 'IntersectionObserver' in window
+    ? new IntersectionObserver(es => es.forEach(e => {
+        const v = e.target;
+        if (e.isIntersecting) { const p = v.play(); p && p.catch(() => {}); } else v.pause();
+      }), { threshold: 0.1 })
+    : null;
+
+  function cloneMedia(p, eager, preload) {
+    const m = p.media.cloneNode(true);
+    if (p.isVideo) {
+      m.removeAttribute('autoplay');
+      m.autoplay = false; m.muted = true; m.loop = true; m.playsInline = true;
+      m.setAttribute('muted', ''); m.setAttribute('playsinline', '');
+      m.preload = preload || 'none';
+      m.setAttribute('aria-hidden', 'true');
+    } else {
+      m.querySelectorAll('img').forEach(img => {
+        img.alt = ''; img.draggable = false;
+        img.removeAttribute('fetchpriority');
+        img.loading = eager ? 'eager' : 'lazy';
+        const fallback = img.getAttribute('src');
+        img.addEventListener('error', () => {
+          if (img.dataset.fb) return;
+          img.dataset.fb = '1';
+          m.querySelectorAll('source').forEach(s => s.remove());
+          img.src = fallback;
+        });
+      });
+    }
+    return m;
+  }
+
+  function makeProject(p, real, eager) {
+    const a = document.createElement('a');
+    a.className = 'tile';
+    a.setAttribute('href', p.href);
+    a.dataset.category = p.cats.join(' ');
+    a.draggable = false;
+    if (real) a.setAttribute('aria-label', p.meta ? `${p.title} – ${p.meta}` : p.title);
+    else { a.tabIndex = -1; a.setAttribute('aria-hidden', 'true'); }
+
+    const box = document.createElement('span');
+    box.className = 'media';
+    box.append(cloneMedia(p, eager, 'none'));
+
+    const cap = document.createElement('span');
+    cap.className = 'tile-cap';
+    cap.setAttribute('aria-hidden', 'true');
+    const b = document.createElement('b'); b.textContent = p.title;
+    const i = document.createElement('i'); i.textContent = p.meta;
+    cap.append(b, i);
+
+    a.append(box, cap);
+    return a;
+  }
+
+  function makePl(spec) {
+    const d = document.createElement('div');
+    d.className = `tile pl pl-${spec.c}`;
+    d.setAttribute('aria-hidden', 'true');
+    if (spec.t) d.innerHTML = '<img class="mark" src="assets/icons/WhyNot.svg" alt="" draggable="false">';
+    return d;
+  }
+
+  /* 4 — Spalten bauen */
+  let cols = [], speed = 70, boostT0 = performance.now(), H = 0;
+
+  function build() {
+    resetGrid();
+    const cs = getComputedStyle(main);
+    const W = main.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    H = main.clientHeight;
+    if (W < 40 || H < 40) return;
+    const gap = parseFloat(cs.columnGap) || 12;
+    const portrait = innerHeight > innerWidth;
+    const C = W < 600 ? 2 : (W < 1100 || portrait) ? 3 : 4;
+    const cw = (W - gap * (C - 1)) / C;
+    speed = cw * 0.36;                       // ≈ ein Drittel Kachelhöhe pro Sekunde
+    main.style.setProperty('--cw', cw + 'px');
+    root.style.setProperty('--cw', cw + 'px');   // Footer übernimmt die Kachelbreite
+    io && io.disconnect();
+
+    const list = filter === 'all' ? projects : projects.filter(p => p.cats.includes(filter));
+    const usePl = filter === 'all';          // Platzhalter nur in „All"
+    const per = Array.from({ length: C }, () => []);
+    if (usePl) list.forEach((p, i) => per[i % C].push(p));
+    else per.forEach((arr, k) => {
+      const shift = Math.round(k * list.length / C);
+      list.forEach((_, i) => arr.push(list[(i + shift) % list.length]));
+    });
+    per.forEach((arr, k) => { if (!arr.length && list.length) arr.push(list[k % list.length]); });
+
+    const seen = new Set();
+    const frag = document.createDocumentFragment();
+    const next = [];
+    const target = H + cw * 1.5;
+
+    per.forEach((arr, k) => {
+      const r = rng(k * 97 + 13 + filter.length * 31);
+      let lastC = '';
+      const pick = () => {
+        let s;
+        do s = PL[Math.floor(r() * PL.length)]; while (s.c === lastC);
+        lastC = s.c;
+        return { pl: s, ar: PL_AR[Math.floor(r() * PL_AR.length)] };
+      };
+      const items = [];
+      let hSum = 0, pass = 0;
+      const add = it => { items.push(it); hSum += cw * it.ar + gap; };
+
+      // Wiederholen, bis die Spalte höher als der sichtbare Bereich ist
+      while ((hSum < target || pass === 0) && pass < 40) {
+        if (!arr.length) add(pick());
+        else arr.forEach((p, i) => {
+          add({ p, ar: p.ratio });
+          if (usePl && (arr.length < 3 || (i + k + pass) % 2 === 0)) add(pick());
+        });
+        pass++;
+      }
+
+      const col = document.createElement('div');
+      col.className = 'col';
+      col.style.setProperty('--i', k);
+      const track = document.createElement('div');
+      track.className = 'track';
+
+      // Zwei identische Sätze → nahtlose Schleife
+      for (let copy = 0; copy < 2; copy++) {
+        items.forEach((it, j) => {
+          let el;
+          if (it.p) {
+            const real = copy === 0 && !seen.has(it.p);
+            if (real) seen.add(it.p);
+            el = makeProject(it.p, real, copy === 0 && j < 3);
+          } else el = makePl(it.pl);
+          el.style.height = (cw * it.ar) + 'px';
+          track.append(el);
+        });
+      }
+      col.append(track);
+      frag.append(col);
+      next.push({ el: col, track, setH: hSum, dir: k % 2 ? -1 : 1, off: (k * cw * 0.58) % hSum, slow: 1, slowT: 1 });
+    });
+
+    main.replaceChildren(frag);
+    cols = next;
+
+    main.querySelectorAll('video').forEach(v => {
+      if (io) io.observe(v);
+      else { v.autoplay = true; const p = v.play(); p && p.catch(() => {}); }
+    });
+
+    cols.forEach(c => {
+      c.el.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') c.slowT = 0.12; });
+      c.el.addEventListener('pointerleave', () => { c.slowT = 1; });
+      c.el.addEventListener('focusin', e => {
+        c.slowT = 0; c.slow = 0;
+        const t = e.target.closest('.tile');
+        const top = (document.querySelector('.hdr')?.offsetHeight || 0) + 16;
+        if (t) c.off = Math.max(0, t.offsetTop - top);
+      });
+      c.el.addEventListener('focusout', () => { c.slowT = 1; });
+    });
+  }
+
+  /* 4b — Gefiltertes Raster: steht still, jedes Projekt genau einmal.
+     Die Kacheln gleiten von ihrer Position im Mosaik an den neuen Platz. */
+  let grid = false;
+  const inCat = (t, cat) => (t.dataset.category || '').split(' ').includes(cat);
+
+  function resetGrid() {
+    grid = false;
+    main.classList.remove('is-grid');
+    main.style.paddingTop = main.style.paddingBottom = '';
+    main.scrollTop = 0;
+  }
+
+  // Für jedes Projekt die am besten sichtbare Kachel merken (Startpunkt des Gleitens)
+  function pickSources(cat) {
+    const mr = main.getBoundingClientRect();
+    const best = new Map();
+    main.querySelectorAll('a.tile[href]').forEach(t => {
+      if (!inCat(t, cat)) return;
+      const r = t.getBoundingClientRect();
+      const vis = Math.max(0, Math.min(r.bottom, mr.bottom) - Math.max(r.top, mr.top)) * r.width;
+      const key = t.getAttribute('href');
+      if (vis > 0 && (!best.has(key) || vis > best.get(key).vis)) best.set(key, { el: t, vis });
+    });
+    return best;
+  }
+
+  function buildGrid(sources) {
+    const cs = getComputedStyle(main);
+    const W = main.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (W < 40) return;
+    const gap = parseFloat(cs.columnGap) || 12;
+    const hdr = document.querySelector('.hdr'), foot = document.querySelector('.foot');
+    const mr = main.getBoundingClientRect();
+    const top = Math.max(gap, (hdr ? hdr.getBoundingClientRect().bottom - mr.top : 0) + gap);
+    const bottom = (foot ? foot.offsetHeight : 0) + gap;
+    const avail = main.clientHeight - top - bottom;
+    const list = projects.filter(p => p.cats.includes(filter));
+    const portrait = innerHeight > innerWidth;
+    const C0 = W < 600 ? 2 : (W < 1100 || portrait) ? 3 : 4;
+
+    // So viele Spalten wie nötig, damit alles ohne Scrollen passt (max. 6)
+    let plan;
+    for (let C = C0; C <= Math.max(C0, 6); C++) {
+      const cw = (W - gap * (C - 1)) / C;
+      const n = Math.min(C, list.length);
+      const per = Array.from({ length: n }, () => ({ items: [], h: 0 }));
+      list.forEach(p => {
+        const c = per.reduce((a, b) => (b.h < a.h ? b : a));
+        c.items.push(p); c.h += cw * p.ratio + gap;
+      });
+      plan = { cw, per };
+      if (Math.max(...per.map(c => c.h)) - gap <= avail || W < 600) break;
+    }
+
+    io && io.disconnect();
+    const frag = document.createDocumentFragment();
+    const tiles = [];
+    plan.per.forEach((c, k) => {
+      const col = document.createElement('div');
+      col.className = 'col';
+      col.style.setProperty('--i', k);
+      const track = document.createElement('div');
+      track.className = 'track';
+      c.items.forEach(p => {
+        const el = makeProject(p, true, true);
+        el.style.height = (plan.cw * p.ratio) + 'px';
+        track.append(el);
+        tiles.push(el);
+      });
+      col.append(track);
+      frag.append(col);
+    });
+
+    grid = true;
+    cols = [];
+    main.classList.add('is-grid');
+    main.style.setProperty('--cw', plan.cw + 'px');
+    main.style.paddingTop = top + 'px';
+    main.style.paddingBottom = bottom + 'px';
+    main.scrollTop = 0;
+
+    // Startpositionen vor dem Austausch lesen
+    const from = new Map();
+    if (sources) sources.forEach((v, k) => from.set(k, v.el.getBoundingClientRect()));
+    main.replaceChildren(frag);
+
+    main.querySelectorAll('video').forEach(v => {
+      if (io) io.observe(v);
+      else { v.autoplay = true; const pr = v.play(); pr && pr.catch(() => {}); }
+    });
+
+    if (reduce) return;
+    let n = 0;
+    tiles.forEach(el => {
+      const a = from.get(el.getAttribute('href'));
+      const b = el.getBoundingClientRect();
+      if (a) {
+        const s = a.width / b.width;
+        el.animate([
+          { transformOrigin: '0 0', transform: `translate(${a.left - b.left}px,${a.top - b.top}px) scale(${s})` },
+          { transformOrigin: '0 0', transform: 'none' }
+        ], { duration: 820, easing: 'cubic-bezier(.16,1,.3,1)' });
+      } else {
+        el.animate([{ opacity: 0, transform: 'translateY(28px) scale(.96)' }, { opacity: 1, transform: 'none' }],
+          { duration: 700, delay: 120 + 60 * n++, easing: 'cubic-bezier(.16,1,.3,1)', fill: 'backwards' });
+      }
+    });
+  }
+
+  const render = () => (filter === 'all' ? build() : buildGrid(null));
+
+  /* 5 — Bewegung: Dauerlauf + Scroll-/Drag-Impuls */
+  let vel = 0, last = performance.now(), dragging = false, frozen = false;
+
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    if (frozen) vel = 0;
+    vel *= Math.exp(-dt * 3.4);
+    if (Math.abs(vel) < 1) vel = 0;
+    const boost = 1 + 4.5 * Math.exp(-(now - boostT0) / 520);
+    for (const c of cols) {
+      c.slow += (c.slowT - c.slow) * (1 - Math.exp(-dt * 7));
+      const cruise = reduce || dragging || frozen ? 0 : speed * c.slow * boost;
+      c.off += (c.dir * cruise + vel) * dt;
+      c.off = ((c.off % c.setH) + c.setH) % c.setH;
+      c.track.style.transform = `translate3d(0,${(-c.off).toFixed(2)}px,0)`;
+    }
+    requestAnimationFrame(frame);
+  }
+
+  const nudge = d => { for (const c of cols) c.off += d; };
+
+  addEventListener('wheel', e => {
+    const k = e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? innerHeight : 1;
+    vel = clamp(vel + e.deltaY * k * 3.6, -5000, 5000);
+  }, { passive: true });
+
+  addEventListener('keydown', e => {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    const map = { ArrowDown: 700, ArrowUp: -700, PageDown: 2000, PageUp: -2000 };
+    if (map[e.key]) { vel = clamp(vel + map[e.key], -5000, 5000); e.preventDefault(); }
+  });
+
+  let drag = null, suppressClick = false;
+  main.addEventListener('pointerdown', e => {
+    if (e.button !== 0 || grid) return;
+    drag = { id: e.pointerId, y0: e.clientY, last: e.clientY, t: performance.now(), v: 0, moved: false };
+  });
+  main.addEventListener('pointermove', e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dy = e.clientY - drag.last;
+    if (!drag.moved && Math.abs(e.clientY - drag.y0) > 6) {
+      drag.moved = true; dragging = true; vel = 0;
+      main.setPointerCapture(e.pointerId);
+    }
+    if (drag.moved) {
+      nudge(-dy);
+      const now = performance.now();
+      const dt = Math.max(1, now - drag.t) / 1000;
+      drag.v = drag.v * 0.6 + (-dy / dt) * 0.4;
+      drag.t = now;
+    }
+    drag.last = e.clientY;
+  });
+  const endDrag = e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    if (drag.moved) {
+      vel = performance.now() - drag.t > 80 ? 0 : clamp(drag.v, -4000, 4000);
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 60);
+    }
+    dragging = false;
+    drag = null;
+  };
+  main.addEventListener('pointerup', endDrag);
+  main.addEventListener('pointercancel', endDrag);
+  main.addEventListener('click', e => { if (suppressClick) { e.preventDefault(); e.stopPropagation(); } }, true);
+  main.addEventListener('dragstart', e => e.preventDefault());
+
+  /* 6 — Filter, Vorschau beim Hover, Hinweis auf Kategorie */
+  function preview(cat) {
+    const on = !!cat && cat !== 'all' && cat !== filter;
+    main.querySelectorAll('.tile').forEach(t => {
+      t.classList.toggle('dim', on && !(t.dataset.category || '').split(' ').includes(cat));
+    });
+  }
+
+  let swapT;
+  function setFilter(cat, push = true) {
+    if (cat !== 'all' && !CATS.includes(cat)) cat = 'all';
+    if (cat === filter) {
+      if (cat !== 'all') setFilter('all', push);
+      return;
+    }
+    filter = cat;
+    syncPressed();
+    preview(null);
+    if (push) history.replaceState(null, '', cat === 'all' ? location.pathname + location.search : '#' + cat);
+    clearTimeout(swapT);
+    if (cat !== 'all') {
+      // Mosaik anhalten, Rest ausblenden, passende Kacheln gleiten ins Raster
+      const src = pickSources(cat);
+      const keep = new Set([...src.values()].map(v => v.el));
+      frozen = true;
+      main.querySelectorAll('.tile').forEach(t => { if (!keep.has(t)) t.classList.add('gone'); });
+      swapT = setTimeout(() => { buildGrid(src); frozen = false; }, reduce ? 0 : 280);
+      return;
+    }
+    if (reduce) { build(); return; }
+    main.classList.add('is-swapping');
+    swapT = setTimeout(() => {
+      build();
+      boostT0 = performance.now();
+      void main.offsetHeight;
+      main.classList.remove('is-swapping');
+    }, 300);
+  }
+
+  filterBtns.forEach(b => {
+    b.addEventListener('click', () => setFilter(b.dataset.filter));
+    b.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') preview(b.dataset.filter); });
+    b.addEventListener('pointerleave', () => preview(null));
+    b.addEventListener('focus', () => preview(b.dataset.filter));
+    b.addEventListener('blur', () => preview(null));
+  });
+
+  const workLink = document.querySelector('[data-nav="work"]');
+  workLink && workLink.addEventListener('click', e => { e.preventDefault(); setFilter('all'); });
+
+  addEventListener('hashchange', () => {
+    const h = decodeURIComponent(location.hash.slice(1));
+    if (CATS.includes(h)) setFilter(h, false);
+  });
+
+  const hint = cats => lines.forEach(l => l.classList.toggle('hint', cats.includes(l.dataset.filter)));
+  main.addEventListener('pointerover', e => {
+    if (e.pointerType !== 'mouse') return;
+    const t = e.target.closest('a.tile');
+    hint(t ? t.dataset.category.split(' ') : []);
+  });
+  main.addEventListener('pointerleave', () => hint([]));
+
+
+  const stage = document.querySelector('.stage');
+
+  /* 9 — Seitenübergang: Bild gleitet in die Projektseite
+     Klick: Das angeklickte Bild bleibt stehen, der Rest der Startseite
+     blendet in die Hintergrundfarbe der Projektseite über. Position,
+     Größe und Bild gehen per sessionStorage an die Projektseite, die
+     genau dort weitermacht (projekt.js, Abschnitt 1). */
+  const modified = e => e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey;
+  let leaving = null;
+  function flyOut(e, href, box, media) {
+    if (reduce || leaving || !box || !media) return;
+    let src = media.tagName === 'VIDEO' ? media.getAttribute('poster') : (media.currentSrc || media.getAttribute('src'));
+    if (!src) return;
+    src = new URL(src, location.href).href;
+    const key = decodeURIComponent(new URL(src).pathname.split('/').pop() || '').replace(/\.[^.]+$/, '');
+    const r = box.getBoundingClientRect();
+    const rad = parseFloat(getComputedStyle(box).borderTopLeftRadius) || 0;
+    // Mini-Fassung (ca. 160 px) als Sofort-Platzhalter für die Projektseite
+    let thumb = '';
+    try {
+      const iw = media.naturalWidth || media.videoWidth, ih = media.naturalHeight || media.videoHeight;
+      if (iw && ih) {
+        const k = 160 / Math.max(iw, ih);
+        const c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(iw * k));
+        c.height = Math.max(1, Math.round(ih * k));
+        c.getContext('2d').drawImage(media, 0, 0, c.width, c.height);
+        thumb = c.toDataURL('image/jpeg', 0.7);
+      }
+    } catch (err) { thumb = ''; }
+    try {
+      sessionStorage.setItem('wn-fly', JSON.stringify({ src, key, thumb, x: r.left, y: r.top, w: r.width, h: r.height, rad, t: Date.now() }));
+    } catch (err) { return; }
+    e.preventDefault();
+
+    // Standbild an exakt derselben Stelle
+    const ghost = document.createElement('img');
+    ghost.alt = '';
+    ghost.decoding = 'sync';
+    ghost.src = src;
+    ghost.style.cssText = `position:fixed;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;border-radius:${rad}px;object-fit:cover;z-index:50;pointer-events:none;margin:0;max-width:none`;
+    document.body.append(ghost);
+    const dur = 260;
+    leaving = {
+      ghost,
+      anims: [
+        stage.animate([{ opacity: 1 }, { opacity: 0 }], { duration: dur, easing: 'ease', fill: 'forwards' })
+      ]
+    };
+    setTimeout(() => { location.href = href; }, dur);
+  }
+  main.addEventListener('click', e => {
+    if (e.defaultPrevented || modified(e)) return;
+    const t = e.target.closest('a.tile');
+    if (t) flyOut(e, t.getAttribute('href'), t, t.querySelector('.media img, .media video'));
+  });
+  // Zurück-Button (bfcache): Startseite wiederherstellen
+  addEventListener('pageshow', e => {
+    if (!e.persisted || !leaving) return;
+    leaving.anims.forEach(a => a.cancel());
+    leaving.ghost.remove();
+    leaving = null;
+  });
+  // Projektseite schon beim Überfahren vorladen → kürzere Wartezeit
+  const prefetched = new Set();
+  const prefetch = href => {
+    if (!href || prefetched.has(href)) return;
+    prefetched.add(href);
+    const l = document.createElement('link');
+    l.rel = 'prefetch';
+    l.href = href;
+    document.head.append(l);
+  };
+  main.addEventListener('pointerover', e => { const t = e.target.closest('a.tile'); if (t) prefetch(t.getAttribute('href')); });
+
+
+  /* 7 — Start + Resize */
+  render();
+  requestAnimationFrame(t => { last = t; requestAnimationFrame(frame); });
+  setTimeout(() => root.classList.remove('intro'), 3200);
+
+  let rW = main.clientWidth, rH = main.clientHeight, rT;
+  if ('ResizeObserver' in window) {
+    new ResizeObserver(() => {
+      clearTimeout(rT);
+      rT = setTimeout(() => {
+        const w = main.clientWidth, h = main.clientHeight;
+        if (Math.abs(w - rW) > 1 || Math.abs(h - rH) > 80) { rW = w; rH = h; render(); }
+      }, 140);
+    }).observe(main);
+  }
+})();
+</script>
+<script src="projects/contact.js?v=2" defer></script>
+<script src="projects/cursor.js?v=1" defer></script>
 </body>
 </html>
